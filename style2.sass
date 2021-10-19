@@ -1,0 +1,171 @@
+.friends-2-spc
+    *
+        font-family: sans-serif !important
+    padding: 20px
+    width: calc(100% - 360px)
+    display: flex
+    position: absolute
+    right: 0 
+    top: 0
+    flex-direction: column
+    background-color: #18191a
+    height: auto !important
+    .friends-2-spc-1
+        padding: 20px 0 4px 0
+        .friends-2-spc-1-1
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+            padding: 0 16px 16px 16px
+            .friends-2-spc-1-1-1
+                h1
+                    font-size: 20px
+                    text-transform: capitalize
+                    color: #e4e6eb
+            .friends-2-spc-1-1-2 
+                p
+                    padding: 10px
+                    border-radius: 10px
+                    color: #4599ff
+                    text-transform: capitalize
+                    cursor: pointer
+                    transition: all 0.2s linear
+                    &:hover
+                        
+                        background-color: #3a3b3c
+    .friends-2-spc-2
+        display: flex
+        flex-direction: row
+        width: 100%
+        height: auto
+        flex-wrap: wrap
+        gap: 5px
+        padding: 0 16px
+        justify-content: center
+        align-items: center
+        .friends-list-items
+            
+            width: 200px 
+            padding: 4px
+            height: auto
+            background-color: #242526
+            border-radius: 10px
+            img
+                object-fit: cover
+                width: 100%
+                height: 201px
+                border-radius: 10px
+            .friends-name
+                margin-top: 5px
+                padding-top: 7px
+                padding: 0 16px
+                padding-bottom: 48px
+            .friends-name
+                text-shadow: 0.5px 0 0 currentColor
+
+            .friends-action
+                padding: 0 12px
+                padding-bottom: 10px
+                .friends-add-friends
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    padding: 10px 12px
+                    font-size: 14px
+                    text-shadow: 0.5px 0 0 currentColor
+                    color: #2d88ff
+                    background-color: #263951
+                    border-radius: 7px
+                    margin-bottom: 5px
+                .friends-remove-friends
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    padding: 10px 12px
+                    font-size: 14px
+                    text-shadow: 0.5px 0 0 currentColor
+                    color: #e4e6eb
+                    background-color: #3a3b3c
+                    border-radius: 7px
+ 
+ 
+    // 
+    // 
+    // 
+    // 
+
+
+        
+    
+    // 
+    // 
+    // 
+
+$color: #e4e6eb
+.dialog-logout
+    z-index: 999999999999999999
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    justify-content: center
+    align-items: center
+    background-color: rgba(0, 0, 0, 0.5)
+
+    .dialog-logout-1
+        width: 450px
+        height: auto
+        padding: 12px 16px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        background-color: #242526   
+        border-radius: 10px
+        .dialog-logout-1-1
+            width: 100%
+            padding: 12px 12px 8px 12px
+            
+            .dialog-logout-1-1-1
+                font-size: 24px
+                font-weight: border
+                color: $color
+                display: flex
+                justify-content: center
+                align-items: center
+
+        .dialog-logout-1-2
+            padding: 8px 12px 12px 12px
+            width: 100%
+            .dialog-logout-1-2-1
+                width: 100%
+                padding: 12px 16px
+                display: flex
+                justify-content: center
+                align-items: center
+                border-radius: 10px
+                cursor: pointer
+                transition: all 0.2s ease-in-out
+                .dialog-logout-1-2-1-1
+                    font-weight: 600
+                    color: #2980ff 
+                &:hover
+                    background-color: #263951
+                    
+                    
+
+            .dialog-logout-1-2-2
+                @extend .dialog-logout-1-2-1
+                &:hover
+                    background-color: #3a3b3c
+                .dialog-logout-1-2-2-1
+                    font-weight: 600
+
+
+
+

@@ -1,0 +1,186 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  background-color: #f0f2f5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #main {
+  z-index: 999;
+  width: 100%;
+  height: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #main ._8epx ._8epx_1 {
+  color: #1877f2;
+  font-weight: 900;
+  padding-bottom: 20px;
+}
+
+body #main ._8epx ._8epx_2 p {
+  text-align: left;
+  width: 75%;
+}
+
+body #main ._12epx {
+  margin-top: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #main ._12epx ._12epx_1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 6px 10px;
+}
+
+body #main ._12epx ._12epx_1 .form {
+  width: 396px;
+  height: auto;
+  border-radius: 5px;
+}
+
+body #main ._12epx ._12epx_1 .form div {
+  margin: 12px 0;
+}
+
+body #main ._12epx ._12epx_1 .form div input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 14px 16px;
+  border: none;
+  background-color: #e8f0fe;
+  font-weight: 900;
+}
+
+body .sub-signup {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (max-width: 888px) {
+  #main {
+    width: 400px !important;
+    height: 70% !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #main ._8epx {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #main ._8epx ._8epx_1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-self: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  #main ._8epx ._8epx_2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-self: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #main ._8epx ._8epx_2 p {
+    width: 100% !important;
+  }
+  #main ._8epx ._8epx_2 ._8epx_2_1 {
+    text-align: center;
+  }
+}
+
+#send-singup {
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
