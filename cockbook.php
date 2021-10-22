@@ -40,7 +40,10 @@
     <script src='7hDInKqY9Bt.js' async crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script ></script>
     <title>Cockbook</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
@@ -342,6 +345,14 @@
             .dialog-logout * {
                 font-family: sans-serif !important;
             }
+            ._8epx {
+                align-self: center !important; 
+            }
+            @media screen and (min-width: 1200px) {
+              ._9epx {
+                  padding-left: 105px !important; 
+              }  
+            }
         </style>
         <div class="dialog-logout" style="display: none">
             <div class="dialog-logout-1">
@@ -361,6 +372,13 @@
                 </div>
             </div>
         </div>
+        <style>
+            @media screen and (max-width: 500px) {
+                .s9tcezmb {
+                    width: 90% !important;
+                }
+            }
+        </style>
         <div class="header-fixed">
 
 
@@ -403,7 +421,8 @@
                         <li class="_9epx_2 _75_re_21_sa_4">
                             <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
                             <div data-it-root="Account" data-it="Tài khoản" class="_13_fr_ya_4 lang">Account</div>
-                            <div style="display: none;transition: all 0.35s linear;border: 1px solid #333435" class="_13_ac_st_1">
+
+                            <div style="display: none;transition: transform 0.25s linear;border: 1px solid #333435;opacity:1;transition: opacity 0s linear !important" class="_13_ac_st_1">
                                 <!--  -->
                                 <!--  -->
                                 <!--  -->
@@ -451,7 +470,7 @@
                                     <!--  -->
                                     <!--  -->
                                     <!--  -->
-                                    <section class="_13_fr_ya_4_pr_f-3-1">
+                                    <section class="_13_fr_ya_4_pr_f-3-1 tuitjroign">
                                         <section class="_13_fr_ya_4_pr_f-3-1-1">
                                             <section class="_13_fr_ya_4_pr_f-3-1-1-1">
                                                 <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -346px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
@@ -499,6 +518,8 @@
                                     transition: all 0.35s linear;
                                 }
                             </style>
+
+
                             <div class="_14_ac_st_1">
                                 <!--  -->
                                 <!--  -->
@@ -554,6 +575,8 @@
                                     .supersunday {
                                         background-color: #ffffff !important;
                                     }
+
+                                    ._13_ac_st_1 {}
                                 </style>
                                 <section class="_14_ac_st_1_3" style="width:85%">
                                     <section class="_14_ac_st_1_3_1" style="width: 100%;">
@@ -626,7 +649,6 @@
                         })
                     </script>
                 </div>
-
 
 
 
@@ -708,97 +730,195 @@
                     <li class="_9epx_2 _75_re_21_sa_4">
                         <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
                         <div class="_13_fr_ya_4">Account</div>
-                        <section style="display: none;transition: all 0.35s linear;border: 1px solid #333435" class="_13_ac_st_1">
-                            <!--  -->
-                            <!--  -->
-                            <!--  -->
-                            <!--  -->
-                            <section class="_13_fr_ya_4_pr_f-1">
-                                <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
-                                <section class="_13_fr_ya_4_12">
-                                    <p class="_13_fr_ya_4_12_1">
-                                        Giang Truong
-                                    </p>
-                                    <p class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important" data-it-root="See your profile" data-it="Xem trang cá nhân của bạn">
-                                        See your profile
-                                    </p>
-                                </section>
-                            </section>
-                            <section class="_5_iogh_qw">
+                        <section class="yhsuidhsdka" style="position: relative">
 
-                                <section class="_13_fr_ya_4_pr_f-2">
-                                    <section class="_13_fr_ya_4_pr_f-2_no">
-
-                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -214px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                                    </section>
-                                    <section class="_13_fr_ya_4_pr_f-2-2">
-                                        <p data-it-root="Give Feeback" data-it="Gửi phản hồi" class="_13_fr_ya_4_pr_f-2-2-1 lang">
-                                            Give Feedback
+                            <section style="display: none;transition: transform 0.25s linear;border: 1px solid #333435;opacity:1;transition: opacity 0s linear !important" class="_13_ac_st_1">
+                                <!--  -->
+                                <!--  -->
+                                <!--  -->
+                                <!--  -->
+                                <section class="_13_fr_ya_4_pr_f-1">
+                                    <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
+                                    <section class="_13_fr_ya_4_12">
+                                        <p class="_13_fr_ya_4_12_1">
+                                            Giang Truong
                                         </p>
-                                        <p data-it-root="Help us improve the new Cockbook" data-it="Giúp chúng tôi cải tiến Cockbook mới" class="_13_fr_ya_4_pr_f-2-2-2 lang" style="font-weight: lighter !important">
-                                            Help us improve the new Cockbook
+                                        <p class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important" data-it-root="See your profile" data-it="Xem trang cá nhân của bạn">
+                                            See your profile
                                         </p>
                                     </section>
                                 </section>
-                            </section>
-                            <section class="_13_fr_ya_4_pr_f-3">
-                                <section class="_13_fr_ya_4_pr_f-3-1 oisrhiora">
-                                    <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/tBr7iKHYsZc.png&quot;); background-position: -22px -438px; background-size: 50px 576px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                <section class="_5_iogh_qw">
+
+                                    <section class="_13_fr_ya_4_pr_f-2">
+                                        <section class="_13_fr_ya_4_pr_f-2_no">
+
+                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -214px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
                                         </section>
-                                        <p data-it-root="Setting & Privacy" data-it="Cài đặt và Quyền bảo mật" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Setting & Privacy</p>
-                                    </section>
-                                    <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                    </section>
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <section class="_13_fr_ya_4_pr_f-3-1">
-                                    <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -346px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
-                                        <p style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang" data-it-root="Help & Support" data-it="Trợ giúp và Ủng hộ">Help & Support</p>
-                                    </section>
-                                    <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                    </section>
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <section class="_13_fr_ya_4_pr_f-3-1 dtkgjdiwe">
-                                    <section class="_13_fr_ya_4_pr_f-3-1-1 _vp_12_q2">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/Xqj6PfAeyFb.png&quot;); background-position: 0px -138px; background-size: 34px 276px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
-                                        <p data-it-root="Display & Accessibility" data-it="Hiển thị và Quyền truy cập" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Display & Accessibility</p>
-                                    </section>
-                                    <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                    </section>
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <section class="_13_fr_ya_4_pr_f-3-1 iodufhjio">
-                                    <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -236px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                        <section class="_13_fr_ya_4_pr_f-2-2">
+                                            <p data-it-root="Give Feeback" data-it="Gửi phản hồi" class="_13_fr_ya_4_pr_f-2-2-1 lang">
+                                                Give Feedback
+                                            </p>
+                                            <p data-it-root="Help us improve the new Cockbook" data-it="Giúp chúng tôi cải tiến Cockbook mới" class="_13_fr_ya_4_pr_f-2-2-2 lang" style="font-weight: lighter !important">
+                                                Help us improve the new Cockbook
+                                            </p>
                                         </section>
-                                        <p data-it-root="Log out" data-it="Đăng xuất" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 ioterujiw lang">Log Out</p>
+                                    </section>
+                                </section>
+                                <section class="_13_fr_ya_4_pr_f-3">
+                                    <section class="_13_fr_ya_4_pr_f-3-1 oisrhiora">
+                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
+                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
+                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/tBr7iKHYsZc.png&quot;); background-position: -22px -438px; background-size: 50px 576px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                            </section>
+                                            <p data-it-root="Setting & Privacy" data-it="Cài đặt và Quyền bảo mật" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Setting & Privacy</p>
+                                        </section>
+                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
+                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
+                                        </section>
+                                    </section>
+                                    <!--  -->
+                                    <!--  -->
+                                    <!--  -->
+                                    <section class="_13_fr_ya_4_pr_f-3-1 tuitjroign">
+                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
+                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
+                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -346px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
+                                            <p style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang" data-it-root="Help & Support" data-it="Trợ giúp và Ủng hộ">Help & Support</p>
+                                        </section>
+                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
+                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
+                                        </section>
+                                    </section>
+                                    <!--  -->
+                                    <!--  -->
+                                    <!--  -->
+                                    <section class="_13_fr_ya_4_pr_f-3-1 dtkgjdiwe">
+                                        <section class="_13_fr_ya_4_pr_f-3-1-1 _vp_12_q2">
+                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
+                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/Xqj6PfAeyFb.png&quot;); background-position: 0px -138px; background-size: 34px 276px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
+                                            <p data-it-root="Display & Accessibility" data-it="Hiển thị và Quyền truy cập" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Display & Accessibility</p>
+                                        </section>
+                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
+                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
+                                        </section>
+                                    </section>
+                                    <!--  -->
+                                    <!--  -->
+                                    <!--  -->
+                                    <section class="_13_fr_ya_4_pr_f-3-1 iodufhjio">
+                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
+                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
+                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -236px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                            </section>
+                                            <p data-it-root="Log out" data-it="Đăng xuất" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 ioterujiw lang">Log Out</p>
+                                        </section>
+
                                     </section>
 
+                                    <!--  -->
+
+                                    <!--  -->
+                                    <!--  -->
+
                                 </section>
+                                <p class="_12_hhtds_1" style="font-size:12px;color:#b0b3b8;font-family:sans-serif !important">Cockbook &copy 2021, All rights reserved</p>
+                            </section>
+                            <style>
+                                .lskhnijedn {
+                                    transform: translateX(100%) translateZ(1px) !important;
+                                    opacity: 0;
+                                    width: 360px;
+                                    height: auto;
+                                    background: #242526;
+                                    padding-bottom: 8px;
+                                    border-radius: 10px;
+                                    border: 1px solid #333435;
+                                    top: 44px;
+                                    transition: transform 0.5s linear !important
+                                }
 
-                                <!--  -->
+                                .lskhnijedn * {
+                                    font-family: sans-serif !important;
+                                    color: #e4e6eb;
+                                    text-transform: capitalize;
+                                }
 
-                                <!--  -->
-                                <!--  -->
+                                .lskhnijedn-1 {
+                                    padding: 8px 16px 16px 16px;
+                                }
+
+                                .qwwsd {
+                                    padding: 8px 16px;
+
+                                }
+
+                                .qwwsd section {
+                                    background: #3a3b3c;
+                                }
+
+                                .qwwsd {
+                                    border-radius: 7px;
+                                    transition: background 0.25s linear
+                                }
+
+                                .qwwsd:hover {
+                                    background: #3a3b3c;
+
+                                }
+
+                                .lskhnijedn>section>section {
+                                    width: 36px;
+                                    height: 36px;
+                                    border-radius: 50%;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    transition: all 0.25s linear;
+                                }
+
+                                .lskhnijedn>section>section:first-of-type:hover {
+                                    background-color: #3a3b3c;
+                                }
+
+                                .lskhnijedn>section {
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    gap: 10px;
+                                }
+
+                                .lskhnijedn>section p {
+                                    font-weight: 600;
+                                }
+                            </style>
+                            <section class="lskhnijedn" style="position: absolute;right:0;transform:translateX(0)">
+                                <section class="lskhnijedn-1">
+                                    <section class="lskhnijedn-1-1">
+                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/7u4uzzx8ZWO.png&quot;); background-position: -152px -48px; background-size: 190px 194px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                    </section>
+                                    <p class="lskhnijedn-1-2" style="font-size: 24px;font-weight: 700">Help & Support</p>
+                                </section>
+                                <section class="lskhnijedn-2 qwwsd">
+                                    <section class="lskhnijedn-2-1">
+                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yp/r/i9ASPgphOU3.png&quot;); background-position: 0px -218px; background-size: 26px 400px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                    </section>
+                                    <p class="lskhnijedn-2-2">help center</p>
+                                </section>
+                                <section class="lskhnijedn-3 qwwsd">
+                                    <section class="lskhnijedn-3-1">
+                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/VPgqy-z7aAG.png&quot;); background-position: 0px -562px; background-size: 26px 1054px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                    </section>
+                                    <p class="lskhnijedn-3-2">support inbox</p>
+                                </section>
+                                <section class="lskhnijedn-4 qwwsd">
+                                    <section class="lskhnijedn-4-1">
+                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/aZV86fX9r3f.png&quot;); background-position: 0px -146px; background-size: 34px 262px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                                    </section>
+                                    <p class="lskhnijedn-4-2">report a problem</p>
+                                </section>
 
                             </section>
-                            <p class="_12_hhtds_1" style="font-size:12px;color:#b0b3b8;font-family:sans-serif !important">Cockbook &copy 2021, All rights reserved</p>
                         </section>
                         <style>
                             ._14_ac_st_1 {
@@ -1118,6 +1238,23 @@
 
             </div>
         </div>
+
+        <!-- execution  -->
+        <script>
+            $(".tuitjroign").on('click', () => {
+                $(".lskhnijedn").addClass("tyodshosdn")
+                $(".lskhnijedn").removeClass("jioefhoignfgjn")
+                $("._13_ac_st_1").addClass("fjgsgndgngsd")
+                $("._13_ac_st_1").removeClass("jgioegjisegjoiser")
+            })
+            $(".lskhnijedn-1-1").on('click', () => {
+                $(".lskhnijedn").removeClass("tyodshosdn")
+                $(".lskhnijedn").addClass("jioefhoignfgjn")
+                $("._13_ac_st_1").removeClass("fjgsgndgngsd")
+                $("._13_ac_st_1").addClass("jgioegjisegjoiser")
+
+            })
+        </script>
         <!--  -->
         <style>
             .choose-language {
@@ -2219,6 +2356,7 @@
                 transform: translate(-50%, -50%);
                 border: 1px solid #2d2e2f;
                 display: block;
+                opacity: 1 !important;
             }
 
             .s9tcezmb-1 {
@@ -2280,28 +2418,45 @@
                     filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(231deg) brightness(102%) contrast(101%) !important;
                 }
             }
-        </style>
-        <div class="s9tcezmb" style="display:none">
-            <div class="s9tcezmb-1">
-                <span class="s9tcezmb-1-1 lang" data-it-root="Create post" data-it="Tạo bài viết">Create post</span>
-                <div class="s9tcezmb-1-2">
-                    <div class="s9tcezmb-1-2-1" style="width:24px;height: 24px">
-                        <i data-visualcompletion="css-img" class="m6k467ps" style="user-select: none;background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -154px -110px; background-size: 190px 212px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="s9tcezmb-2">
-                <div class="s9tcezmb-2-1" style="display:flex;flex-direction:row;align-items:10px;gap:10px;padding:16px 0;margin:0 16px">
-                    <div class="s9tcezmb-2-1-1"><img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="40px" height="40px"></div>
-                    <div class="s9tcezmb-2-1-2" style="display:flex;flex-direction:column">
-                        <div class="s9tcezmb-2-1-2-1">Giang Truong</div>
-                        <div class="s9tcezmb-2-1-2-2" style="cursor:pointer;background-color: #3a3b3c;border-radius:7px;width:max-content !important;padding:4px 8px;font-family:sans-serif !important;font-size:12px;font-weight:600;color:#9b9ca0;display:flex;justify-content:center;align-items:center;gap:5px"><i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;    filter: invert(77%) sepia(12%) saturate(75%) hue-rotate(
-174deg) brightness(87%) contrast(89%);"></i> <span class="lang" data-it-root="Public" data-it="Công khai" style="font-family:sans-serif !important;font-size:12px;font-weight:600;">Public</span><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -72px -194px; background-size: 190px 212px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;filter: invert(77%) sepia(12%) saturate(75%) hue-rotate( 
-174deg) brightness(87%) contrast(89%);"></i> </div>
 
+            .uighduifgdasa {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.65)
+            }
+        </style>
+        <div class="uighduifgdasa" style="display:none">
+
+            <div class="s9tcezmb" style="display:none">
+                <div class="s9tcezmb-1">
+                    <span class="s9tcezmb-1-1 lang" data-it-root="Create post" data-it="Tạo bài viết">Create post</span>
+                    <div class="s9tcezmb-1-2">
+                        <div class="s9tcezmb-1-2-1" style="width:24px;height: 24px">
+                            <i data-visualcompletion="css-img" class="m6k467ps" style="user-select: none;background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -154px -110px; background-size: 190px 212px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="s9tcezmb-2-2"></div>
+                <div class="s9tcezmb-2">
+                    <div class="s9tcezmb-2-1" style="display:flex;flex-direction:row;align-items:10px;gap:10px;padding:16px 0;margin:0 16px">
+                        <div class="s9tcezmb-2-1-1"><img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="40px" height="40px"></div>
+                        <div class="s9tcezmb-2-1-2" style="display:flex;flex-direction:column">
+                            <div class="s9tcezmb-2-1-2-1">Giang Truong</div>
+                            <div class="s9tcezmb-2-1-2-2" style="cursor:pointer;background-color: #3a3b3c;border-radius:7px;width:max-content !important;padding:4px 8px;font-family:sans-serif !important;font-size:12px;font-weight:600;color:#9b9ca0;display:flex;justify-content:center;align-items:center;gap:5px"><i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;    filter: invert(77%) sepia(12%) saturate(75%) hue-rotate(
+                        174deg) brightness(87%) contrast(89%);"></i> <span class="lang" data-it-root="Public" data-it="Công khai" style="font-family:sans-serif !important;font-size:12px;font-weight:600;">Public</span><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -72px -194px; background-size: 190px 212px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;filter: invert(77%) sepia(12%) saturate(75%) hue-rotate( 
+                        174deg) brightness(87%) contrast(89%);"></i> </div>
+
+                        </div>
+                    </div>
+                    <div class="s9tcezmb-2-2"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -2332,9 +2487,15 @@
             $(".s9tcezmb").css({
                 "display": "block"
             })
+            $(".uighduifgdasa").css({
+                "display": "block"
+            })
         })
         $(".s9tcezmb-1-2").on("click", function() {
             $(".s9tcezmb").css({
+                "display": "none"
+            })
+            $(".uighduifgdasa").css({
                 "display": "none"
             })
         })
@@ -2806,8 +2967,48 @@
         }
     </script>
     <!--  -->
-    <script>
+    <style>
+        .fjgsgndgngsd {
+            transform: translateX(-100%) translateZ(1px);
+            opacity: 0 !important;
+            transition: transform 0.25s linear;
+            transition: opacity 0 ease-out !important;
+        }
 
+        .jgioegjisegjoiser {
+            transform: translateX(0) translateZ(1px);
+            opacity: 1 !important;
+            transition: transform 0.25s linear;
+            transition: opacity 0 ease-out !important;
+        }
+
+        .tyodshosdn {
+            transform: translateX(0) translateZ(1px) !important;
+            opacity: 1;
+            transition: transform 0.25s linear;
+            transition: opacity 0.15s ease-in;
+        }
+
+        .jioefhoignfgjn {
+            transform: translateX(100%) translateZ(1px) !important;
+            opacity: 0;
+            transition: transform 0.25s linear;
+            transition: opacity 0.15s ease-in;
+        }
+
+        @media screen and (max-width: 550px) {}
+    </style>
+    <script>
+        $(".header-fixed div,.header-fixed li").on('click', () => {
+            $(".uighduifgdasa").css({
+                "display": "none"
+            })
+        })
+    </script>
+    <script>
+        $("._12epx_1").on('click', function() {
+            window.location.reload(true)
+        })
     </script>
     <!--  -->
 </body>

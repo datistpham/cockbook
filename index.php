@@ -4,6 +4,11 @@
 <head>
     <title>Cookbook - Login or Signup</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cock Book - Login or Sign up">
+    <meta name=”robots” content="noodp,index,follow" />
+    <meta name="revisit-after" content="1 days" />
+    <meta http-equiv="content-language" content="en" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous">
@@ -50,6 +55,67 @@
 
         .fa-eye:hover {
             color: #000000 !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ._12epx_1 {
+            padding: 0 !important;
+        }
+
+        .form {
+            padding: 0 10px;
+        }
+
+        @media screen and (max-width: 1025px) {
+            #main {
+                width: 100% !important;
+            }
+
+            ._8epx {
+                width: 100% !important;
+            }
+
+            ._12epx {
+                width: 100% !important;
+            }
+
+            ._12epx_1 {
+                width: 100% !important;
+
+            }
+
+            .form {
+                width: 100% !important;
+
+            }
+
+            ._12epx>div {
+                width: 100% !important;
+
+            }
+
+            ._12epx_2 {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+
+            }
+
+            ._12epx_2 p {
+                text-align: center;
+            }
+        }
+
+        @media only screen and (orientation:landscape) {
+            #main {
+                display: flex !important;
+                margin: 100px;
+            }
+            
         }
     </style>
 </head>
@@ -132,6 +198,7 @@
             </div>
         </div>
     </div>
+    <style></style>
     <div class="sub-signup">
 
     </div>

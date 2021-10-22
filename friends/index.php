@@ -317,6 +317,21 @@
     @media screen and (max-width:840px) {
         .friends-2-spc-2 .friends-list-items {
             width: 320px !important;
+        }   
+    }
+    @media screen and (max-width:500px) {
+        .friends-2-spc {
+            display: none !important;
+        }
+    }
+    @media screen and (max-width:754px) {
+        .friends.ueiortu{
+            position: relative !important;
+            top: 100px !important
+        
+        }
+        .friends-1-spc {
+            top: 100px !important;
         }
     }
 </style>
@@ -340,8 +355,8 @@
 
 
             ?>
-            <div class="friends-list-items">
-                <img src="<?php echo $row['image'] ?>" alt="">
+            <div class="friends-list-items" style="cursor: pointer">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj6On3/w8ABX8Cav5q0u8AAAAASUVORK5CYII=" lazy-src="<?php echo $row['image'] ?>">
                 <div class="friends-name">
                     <p class="friend-name-1">
                         <?php echo $row['firstname'] ?> <?php echo $row['surname'] ?>
@@ -356,8 +371,29 @@
                     </div>
                 </div>
             </div>
+            
         <?php
         }
         ?>
     </div>
+    <script>
+        function load(img) {
+            const url= img.getAttribute('lazy-src')
+            img.setAttribute('src',url)
+        }
+        function ready111() {
+            let lazyImg= document.querySelectorAll('[lazy-src]')
+            let observer= new IntersectionObserver((entries)=> {
+                entries.forEach(entry=> {
+                    if(entry.isIntersecting) {
+                        load(entry.target)
+                    }
+                })
+            })
+            lazyImg.forEach(img=> {
+                observer.observe(img)
+            })
+        }
+        document.addEventListener('DOMContentLoaded', ready111())
+    </script>
 </div>

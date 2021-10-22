@@ -20,6 +20,12 @@
                     display: none;
                 }
             </style>
+            <script>
+                setTimeout(()=>{
+                    window.location.href="http://localhost/cockbook/loader_animation.html"
+
+                },1000)
+            </script>
                 ';
                 
                 return;

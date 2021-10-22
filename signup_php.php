@@ -4,6 +4,15 @@
         font-weight: 600;
         line-height: 1.4
     }
+    .sub-signup-1 {
+        width: 100%;
+    }
+    #send-singup {
+        transform: scale(1.1);
+    }
+    input[type="text"]:focus {
+        border-color: #2f69e7
+    }
 </style>
 <div class="sub-signup-1" style="position:relative;border-radius:8px;background-color:#fff;box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1)">
     <div style="padding-bottom:20px;padding-top:16px;padding-left:16px;padding-right:16px" class="sub-signup-1-1">
