@@ -11,6 +11,11 @@
         $query= mysqli_query($conne,$sql);
         while($row= mysqli_fetch_array($query)) {
             if($row['account']==$account && $row['password']==$password) {
+                
+                $cookie_value= $account;
+                setcookie("user",$cookie_value,time()+86400*30,"/");  
+                $update_cookie= "UPDATE user_information set token_user = '$account' where user_information.account='$account'";
+                mysqli_query($conne,$update_cookie);       
                 echo '<span style="color:green;font-weight:700;">Login successfully.</span>
                 <style>
                 .lost-account_7spcl-1 {
@@ -22,12 +27,12 @@
             </style>
             <script>
                 setTimeout(()=>{
-                    window.location.href="http://localhost/cockbook/loader_animation.html"
+                    window.location.href="http://localhost/cockbook/cockbook.php"
 
-                },1000)
+                },1200)
             </script>
                 ';
-                
+                      
                 return;
             }
         } 

@@ -4,9 +4,15 @@
         font-weight: 600;
         line-height: 1.4
     }
-    .sub-signup-1 {
-        width: 100%;
+    @media screen and (max-width: 500px) {
+        .sub-signup-1 {
+        width: 100% !important;
+    }    
     }
+    
+    .sub-signup-1 {
+        width: 432px;
+    }    
     #send-singup {
         transform: scale(1.1);
     }

@@ -1,11 +1,26 @@
+<?php 
+    if(!isset($_COOKIE['user'])) {
+        header("Location: http://localhost/cockbook/");
+    }
+    require 'connect.php';
+    $conne= connect();
+
+    $detect_account= "SELECT * from user_information";
+    $query_de= mysqli_query($conne,$detect_account);
+    while($rowzz= mysqli_fetch_assoc($query_de)) {
+        if($rowzz['token_user']== $_COOKIE["user"]) {
+            $name_single_login= $rowzz['surname'];
+            $name_login= $rowzz['surname']." ".$rowzz['firstname'];
+            break;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
-    <script>
-        document.cookie = "name=thao"
-    </script>
+    
     <script type="module">
         // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
@@ -43,7 +58,7 @@
     <script src='7hDInKqY9Bt.js' async crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
+    <script src="iwrjiojrjaweoiaf.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Cockbook</title>
     <style>
@@ -436,7 +451,7 @@
                                     <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
                                     <section class="_13_fr_ya_4_12">
                                         <p class="_13_fr_ya_4_12_1">
-                                            Giang Truong
+                                          <?php echo $name_login ?>
                                         </p>
                                         <p data-it-root="See your profile" data-it="Xem trang cá nhân của bạn" class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important">
                                             See your profile
@@ -746,7 +761,7 @@
                                     <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
                                     <section class="_13_fr_ya_4_12">
                                         <p class="_13_fr_ya_4_12_1">
-                                            Giang Truong
+                                        <?php echo $name_login ?>
                                         </p>
                                         <p class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important" data-it-root="See your profile" data-it="Xem trang cá nhân của bạn">
                                             See your profile
@@ -1438,7 +1453,7 @@
                 <div class="_7_sws_1">
                     <div class="_7_sp_lg_su_a_1 _12epx_wq">
                         <img style="border-radius: 50%" class="_7_sp_lg_su_a_1_ie" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="36px" height="36px">
-                        <span class="_7_sp_lg_su_a_1_tx">Giang Truong</span>
+                        <span class="_7_sp_lg_su_a_1_tx"><?php echo $name_login ?></span>
                     </div>
                     <div class="_7_sp_lg_su_a_2 _12epx_wq">
                         <img class="_7_sp_lg_su_a_2_ie" src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/-XF4FQcre_i.png" alt="" width="36px" height="36px">
@@ -2029,7 +2044,7 @@
                                                 <img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX_3_Qz-&_nc_ht=scontent.fhph1-3.fna&oh=76f66289e602119a36991cf53373534b&oe=618A0C15" alt="" width="36px" height="36px">
                                             </div>
                                             <div class="create-status-1-2">
-                                                <input class="nxhoafnm" type="text" style="padding:10px 12px;border-radius:80px;background-color:#3a3b3c;border:none;outline:none;cursor:pointer" placeholder="What's on your mind, Giang ?">
+                                                <input class="nxhoafnm" type="text" style="padding:10px 12px;border-radius:80px;background-color:#3a3b3c;border:none;outline:none;cursor:pointer" placeholder="What's on your mind, <?php echo $name_single_login ?> ?">
                                             </div>
                                         </div>
                                         <div class="create-status-2" style="user-select: none">
@@ -2072,7 +2087,7 @@
                                     <div class="item1-1">
                                         <img class="item1-1-1" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="">
                                         <div class="item1-1-2">
-                                            <p class="item1-1-2-1">Giang Truong</p>
+                                            <p class="item1-1-2-1"><?php echo $name_login ?></p>
                                             <p class="item1-1-2-2 lang" style="font-size: 12px" data-it-root="1m" data-it="1 phút ·">1m · &nbsp;<i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i> &nbsp; · </p>
                                         </div>
                                     </div>
@@ -2460,7 +2475,7 @@
                     <div class="s9tcezmb-2-1" style="display:flex;flex-direction:row;align-items:10px;gap:10px;padding:16px 0;margin:0 16px">
                         <div class="s9tcezmb-2-1-1"><img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="40px" height="40px"></div>
                         <div class="s9tcezmb-2-1-2" style="display:flex;flex-direction:column">
-                            <div class="s9tcezmb-2-1-2-1">Giang Truong</div>
+                            <div class="s9tcezmb-2-1-2-1"><?php echo $name_login ?></div>
                             <div class="s9tcezmb-2-1-2-2" style="cursor:pointer;background-color: #3a3b3c;border-radius:7px;width:max-content !important;padding:4px 8px;font-family:sans-serif !important;font-size:12px;font-weight:600;color:#9b9ca0;display:flex;justify-content:center;align-items:center;gap:5px"><i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;    filter: invert(77%) sepia(12%) saturate(75%) hue-rotate(
                         174deg) brightness(87%) contrast(89%);"></i> <span class="lang" data-it-root="Public" data-it="Công khai" style="font-family:sans-serif !important;font-size:12px;font-weight:600;">Public</span><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -72px -194px; background-size: 190px 212px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;filter: invert(77%) sepia(12%) saturate(75%) hue-rotate( 
                         174deg) brightness(87%) contrast(89%);"></i> </div>
@@ -2753,7 +2768,7 @@
                 "display": "flex"
             })
             $.ajax({
-                url: 'profile.php',
+                url: 'profiles.php',
                 method: 'get',
                 success: function(data) {
                     $(".profile-id").html(data)
@@ -2993,11 +3008,11 @@
     <script>
         $(".lang-en").on("click", function() {
             $(".search").attr("placeholder", "Search Cockbook")
-            $(".nxhoafnm").attr("placeholder", "What's on your mind, Giang ?")
+            $(".nxhoafnm").attr("placeholder", "What's on your mind, <?php echo $name_single_login ?> ?")
         })
         $(".lang-vi").on("click", function() {
             $(".search").attr("placeholder", "Tìm kiếm trên Cockbook")
-            $(".nxhoafnm").attr("placeholder", "Giang ơi, bạn đang nghĩ gì thế ?")
+            $(".nxhoafnm").attr("placeholder", "<?php echo $name_single_login ?> ơi, bạn đang nghĩ gì thế ?")
 
         })
     </script>

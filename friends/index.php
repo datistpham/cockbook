@@ -348,18 +348,18 @@
     </div>
     <div class="friends-2-spc-2">
         <?php
-        $conn = new mysqli("localhost", "root", "", "cockbook");
-        $query = "SELECT user_information.firstname, user_information.surname,request_friends.image FROM user_information INNER JOIN request_friends ON user_information.id=request_friends.id";
-        $sql = mysqli_query($conn, $query);
-        while ($row = mysqli_fetch_array($sql)) {
-
+        $connec= new mysqli("localhost","root","","cockbook");
+        $queryzzzz = "SELECT user_information.firstname, user_information.surname,request_friends.image FROM user_information INNER JOIN request_friends ON user_information.id=request_friends.id";
+        $sqlzzz = mysqli_query($connec, $queryzzzz);
+            while ($rowqw = mysqli_fetch_array($sqlzzz)) {
+            
 
             ?>
             <div class="friends-list-items" style="cursor: pointer">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj6On3/w8ABX8Cav5q0u8AAAAASUVORK5CYII=" lazy-src="<?php echo $row['image'] ?>">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj6On3/w8ABX8Cav5q0u8AAAAASUVORK5CYII=" lazy-src="<?php echo $rowqw['image'] ?>">
                 <div class="friends-name">
                     <p class="friend-name-1">
-                        <?php echo $row['firstname'] ?> <?php echo $row['surname'] ?>
+                        <?php echo $rowqw['firstname'] ?> <?php echo $rowqw['surname'] ?>
                     </p>
                 </div>
                 <div class="friends-action">

@@ -599,8 +599,7 @@
 .propro .section-main .section-content .super-content .self-timeline {
   border-radius: 7px;
   width: 60%;
-  background: blue;
-  height: 3000px;
+  height: 100%;
   background: #242526;
 }
 /*# sourceMappingURL=style4.css.map */
