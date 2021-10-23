@@ -1,0 +1,52 @@
+.detail-photo {
+  width: 228px;
+  height: 100%;
+  border: 1px solid #3d3f41;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.detail-photo img {
+  width: 228px;
+  height: 228px;
+  border-radius: 6px;
+}
+
+.detail-photo img .name-recommend {
+  padding: 12px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.detail-photo img .name-recommend .button-add-friends {
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.detail-photo img .name-recommend .button-add-friends button {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #2d5585;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+}
+
+.detail-photo img .name-recommend .button-add-friends button i {
+  -webkit-filter: invert(45%) sepia(18%) saturate(7490%) hue-rotate(199deg) brightness(100%) contrast(103%);
+          filter: invert(45%) sepia(18%) saturate(7490%) hue-rotate(199deg) brightness(100%) contrast(103%);
+}
+
+.detail-photo img .name-recommend .button-add-friends button i span {
+  text-transform: capitalize;
+}
+/*# sourceMappingURL=style-for-carousel.css.map */

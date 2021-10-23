@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous">
     <link rel='shortcut icon' type='image/x-icon' href='c-programe.png' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icheck-bootstrap@3.0.1/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -115,7 +116,7 @@
                 display: flex !important;
                 margin: 100px;
             }
-            
+
         }
     </style>
 </head>
@@ -175,8 +176,15 @@
                     <div class="lost-password_7spcl">
                         <p style="display:block" class="lost-password_7spcl-1"></p>
                     </div>
-                    <div class="send" style="display: flex;justify-content:center;align-items:center;cursor:pointer">
-                        <input style="background-color:#1877f2;color:#fff;font-weight:800;border-radius:5px;font-size:20px;cursor:pointer" type="button" value="Log In" class="send" onclick="return confirm_();">
+                    <div class="lost-cc_7spcl" style="display:flex;flex-direction:row;align-items:center;gap:10px">
+                        <div style="width:22px;height:22px;display:flex;align-items:center;justify-content:center">
+                            <input id="remember_me" type="checkbox" class="icheck-primary icheck-turquoise ">
+
+                        </div>
+                        <div style="display:flex;align-items:center;justify-content:center">Remember me</div>
+                    </div>
+                    <div class="sendp" style="display: flex;justify-content:center;align-items:center;cursor:pointer">
+                        <input style="background-color:#1877f2;color:#fff;font-weight:800;border-radius:5px;font-size:20px;cursor:pointer" type="button" value="Log In" class="send" onclick="return confirm_()">
                     </div>
                     <div class="check_all">
                         <p style="display:block" class="check_all_1"></p>
@@ -297,12 +305,32 @@
                     "display": "none",
                     "font-weight": "600"
                 })
-
                 return true
             }
         }
     </script>
+    <script>
+        const rmCheck = document.getElementById("remember_me"),
+            emailInput = document.getElementById("account-1");
 
+        if (localStorage.checkbox && localStorage.checkbox !== "") {
+            rmCheck.setAttribute("checked", "checked");
+            emailInput.value = localStorage.username;
+        } else {
+            rmCheck.removeAttribute("checked");
+            emailInput.value = "";
+        }
+        $(".send").on('click', function() {
+            if (rmCheck.checked && emailInput.value !== "") {
+                localStorage.username = emailInput.value;
+                localStorage.checkbox = rmCheck.value;
+            } else {
+                localStorage.username = "";
+                localStorage.checkbox = "";
+            }
+        })
+        
+    </script>
 </body>
 
 </html>

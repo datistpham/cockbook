@@ -131,6 +131,7 @@ body .sub-signup {
 
 @media screen and (max-width: 888px) {
   #main {
+    width: 400px !important;
     height: 70% !important;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

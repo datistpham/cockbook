@@ -1,0 +1,339 @@
+$color1: #e4e6eb
+$background1: #242526
+* 
+    padding: 0
+    margin: 0
+    font-size: 16px
+    box-sizing: border-box
+    color: #ffffff  
+.propro
+    button,li
+        cursor: pointer
+    *
+        font-family: sans-serif !important
+        color: #e4e6eb !important
+    width: 100%
+    height: 100vh
+    display: flex
+    flex-direction: column
+    .profile-header
+        width: 100%
+        display: flex
+        justify-content: center
+        align-content: center
+        background-color: #242526
+        .profile-header-sub
+            border-radius: 7px
+            width: 80%
+            height: 100%
+            display: flex
+            justify-content: center
+            align-content: center
+            position: relative
+            .cover-photo
+                width: max-content
+                object-fit: contain
+                height: auto
+                border-radius: 7px
+                transform: scale(1.5)
+            .avatar
+                display: flex
+                justify-content: flex
+                align-content: flex
+                width: 168px
+                height: 168px
+                border-radius: 50%
+                position: absolute
+                bottom: 0
+                left: 27%
+                transform: translateX(-100%) translateY(100%) 
+
+                img
+                    width: 168px !important
+                    height: 168px !important
+                    border-radius: 50%
+                    border: 3px solid #242526
+            .profile-name
+                position: absolute
+                z-index: 999
+                display: flex
+                flex-direction: row
+                bottom: -40%
+                width: 70%  
+                left: 30%
+                justify-content: space-around
+                align-items: center
+                .name-info
+                    font-size: 32px
+                    color: $color1 !important
+                    position: relative
+                    left: -10%
+                    font-weight: 700
+                .add-story
+                    .add-story1
+                        display: flex
+                        flex-direction: row
+                        gap: 5px    
+                        button
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            flex-direction: row 
+                            gap: 5px
+                            border: none
+                            outline: none
+                            padding: 8px
+                            border-radius: 5px
+                            img
+                                filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(22deg) brightness(107%) contrast(102%)
+                        .add-story11
+                            background: #2d88ff !important
+                            color: #ffffff
+                            margin-right: 5px
+                        .edit-profile
+                            background-color: #3a3b3c !important
+                        span
+                            font-family: 'Roboto', sans-serif !important
+                            font-weight: 600
+    .section-main
+        width: 100%
+        position: relative
+        top: 25%
+        background: #18191a
+        display: flex
+        flex-direction: column
+        justify-content: flex-start
+        align-items: center
+        .header-2
+            background: #242526
+            border-top: 1px solid #38393a
+            width: 70%
+            height: 60px
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+            padding-left: 16px
+            padding-right: 16px
+            border-radius: 80px
+            path,circle
+                fill: #ffffff
+            .header-2-1
+                
+                display: flex
+                flex-direction: row
+                justify-content: space-between
+                align-items: center
+                li
+                    list-style-type: none
+                    padding: 16px
+                    font-weight: 600
+                    text-transform: capitalize
+                    span
+
+                        color: #b0b3b8
+                .header-2-1-content
+                    border-radius: 7px
+                    transition: all 0.25s linear
+                    &:hover
+                        background-color: #3a3b3c
+                .addp
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    align-items: center
+            .header-2-2
+                width: 48px
+                height: 36px
+                border-radius: 8px
+                background-color: #3a3b3c
+                .header-2-2-content
+                    width: 100%
+                    height: 100%
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    align-items: center
+        .section-content
+            width: 70%
+            height: auto
+            margin-top: 20px
+            .recommend-friends
+                border-radius: 7px
+                background: #242526
+                width: 100%
+                height: auto
+                padding: 16px
+                .people-you-may
+                    width: 100%
+                    display: flex
+                    flex-direction: row
+                    justify-content: space-between
+                    align-items: center
+                    margin-bottom: 12px
+                    .fjksfadad
+                        font-weight: 600 
+                        text-transform: capitalize
+                    .ffjofrjwar
+                        width: 48px
+                        height: 36px
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        border-radius: 8px
+                        background-color: #3a3b3c
+                        svg
+                            circle
+                                fill: #e4e6eb
+                .photo-recommend
+                    overflow: hidden
+                    border-radius: 6px
+                    width: 100%
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    .detail-photo
+                        margin: 0 5px
+                        width: 228px
+                        height: 100%
+                        border: 1px solid #3d3f41
+                        border-radius: 7px
+                        cursor: pointer
+                        img
+                            width: 228px
+                            height: 228px    
+                            border-radius: 6px
+                        .name-recommend
+                            padding: 12px
+                            font-family: 'Roboto', sans-serif !important
+                        .button-add-friends 
+                            padding: 12px
+                            margin-top: 20px
+                            button
+                                width: 100%
+                                outline: none
+                                border: none
+                                border-radius: 5px
+                                background-color: #2d5585
+                                height: 36px
+                                display: flex
+                                align-items: center
+                                justify-content: center
+                                gap: 5px
+                                i
+                                    filter: invert(45%) sepia(18%) saturate(7490%) hue-rotate(199deg) brightness(100%) contrast(103%)
+                                span
+                                    text-transform: capitalize    
+            .super-content
+                width: 100%
+                margin-top: 20px    
+                display: flex
+                justify-content: space-between
+                gap: 20px
+                flex-direction: row
+                
+                .biology
+                    position: sticky
+                    top: 57px
+                    border-radius: 7px
+                    width: 40%
+                    height: auto
+                    background: $background1
+                    padding: 20px 16px
+                    height: 500px !important
+                    .intro-bio
+                        font-size: 24px
+                        font-weight: 600
+                        padding: 10px 0
+                    .edit-bio
+                        width: 100%
+                        .content-story
+                            width: 100% 
+                            text-align: center
+                            margin: 10px 0
+                            margin-bottom: 20px
+                        .tap-to-edit-bio
+                            width: 100%
+                            border: none
+                            outline: none
+                            background: #3a3b3c
+                            border-radius: 7px
+                            height: 36px
+                            font-weight: 600
+                        .photo-self
+                            width: 100%
+                            
+                    .edit-direct
+                
+                        .shsoidjs
+                            width: 100%   
+                            height: auto 
+                        .shsoidjs 
+                            margin: 10px 0
+                            width: 100%
+                            display: flex
+                            justify-content: flex-end
+                            align-items: center
+                            span
+                                font-size: 12px
+                            
+                        .dfhfsd
+                            width: 100%
+                            border-radius: 7px
+                            background: #3a3b3c
+                            height: 74px   
+                            border: none
+                            outline: none
+                            padding: 12px
+                            text-align: center
+                            resize: none
+                            
+                            padding: 8px 12px
+                            &:focus
+
+                                outline: 1px solid #117dfe 
+                        .liketomake
+                            width: 100%
+                            display: flex
+                            flex-direction: row
+                            justify-content: space-between
+                            align-items: center
+                            .afhsddass
+                                display: flex
+                                gap: 5px
+                                flex-direction: row
+                                align-items: center                            
+                                .hdhsiodda
+                                    width: 36px
+                                    height: 36px
+                                    display: flex
+                                    align-items: center
+                                    justify-content: center
+                                    i
+                                        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(211deg) brightness(108%) contrast(106%)
+                                .hudihifdiudfifa
+                            .jsiosiodsdio
+                                display: flex
+                                flex-direction: row
+                                gap: 10px
+                                align-items: center
+                                button
+                                    border: none
+                                    outline: none
+                                    padding: 12px
+                                    background: #505151
+                                    border-radius: 8px
+                                .hudfhsiudh
+
+                                .hduihaoidja
+
+
+
+                .self-timeline
+                    border-radius: 7px
+                    width: 60%  
+                    background: blue
+                    height: 3000px
+                    background: $background1
+
+                        

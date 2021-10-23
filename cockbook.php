@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <script>
         document.cookie = "name=thao"
@@ -36,17 +37,19 @@
     <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style4.css">
+
     <link rel='shortcut icon' type='image/x-icon' href='c-programe.png' />
     <script src='7hDInKqY9Bt.js' async crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script ></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Cockbook</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
         * {
             padding: 0;
@@ -345,13 +348,15 @@
             .dialog-logout * {
                 font-family: sans-serif !important;
             }
+
             ._8epx {
-                align-self: center !important; 
+                align-self: center !important;
             }
+
             @media screen and (min-width: 1200px) {
-              ._9epx {
-                  padding-left: 105px !important; 
-              }  
+                ._9epx {
+                    padding-left: 105px !important;
+                }
             }
         </style>
         <div class="dialog-logout" style="display: none">
@@ -1387,7 +1392,8 @@
             .friends,
             .pages,
             .watch,
-            .groups {
+            .groups,
+            .profile-id {
                 color: #ffffff !important;
                 z-index: 0;
                 background-color: #18191a;
@@ -1411,6 +1417,11 @@
                 padding-left: 16px;
                 padding-right: 5px;
             }
+
+            .profile-id {
+                top: 0;
+                height: 100vh;
+            }
         </style>
         <!--  -->
         <div class="friends ueiortu" style="position:relative">
@@ -1418,6 +1429,7 @@
         <div class="pages ueiortu"></div>
         <div class="watch ueiortu"></div>
         <div class="groups ueiortu"></div>
+        <div class="profile-id ueiortu"></div>
         <!--  -->
         <div class="wrapper">
             <!--  -->
@@ -2700,6 +2712,10 @@
         .ukfdhgeuidfh:hover {
             background-color: #3a3b3c !important;
         }
+
+        .create-status-1-1 {
+            cursor: pointer
+        }
     </style>
 
 
@@ -2714,6 +2730,37 @@
 
     <!--  -->
     <script>
+        ///
+        $("._7_sp_lg_su_a_1,.create-status-1-1").on('click', function() {
+            history.replaceState({}, null, "/cockbook/profile.php?id=<?php echo random_int(100000, 300000) ?>")
+
+            $(".wrapper").css({
+                "display": "none"
+            })
+            $(".pages").css({
+                "display": "none"
+            })
+            $(".watch").css({
+                "display": "none"
+            })
+            $(".groups").css({
+                "display": "none"
+            })
+            $(".friends").css({
+                "display": "none"
+            })
+            $(".profile-id").css({
+                "display": "flex"
+            })
+            $.ajax({
+                url: 'profile.php',
+                method: 'get',
+                success: function(data) {
+                    $(".profile-id").html(data)
+                }
+            })
+        })
+        /// friends
         $("._17ev_or_2").on("click", function() {
             history.replaceState({}, null, "/cockbook/friend")
             $(".wrapper").css({
@@ -2731,6 +2778,9 @@
             $(".friends").css({
                 "display": "flex"
             })
+            $(".profile-id").css({
+                "display": "none"
+            })
             $("title").html("Friends | Cockbook")
             $.ajax({
                 url: "/cockbook/friends",
@@ -2747,9 +2797,6 @@
         // 
         $("._17ev_or_1").on("click", function() {
             history.replaceState({}, null, "/cockbook/cockbook.php")
-            $(".friends").css({
-                "display": "none"
-            })
             $(".wrapper").css({
                 "display": "flex"
             })
@@ -2760,6 +2807,12 @@
                 "display": "none"
             })
             $(".groups").css({
+                "display": "none"
+            })
+            $(".friends").css({
+                "display": "none"
+            })
+            $(".profile-id").css({
                 "display": "none"
             })
             $("title").html("Cockbook")
@@ -2783,6 +2836,9 @@
             $(".groups").css({
                 "display": "none"
             })
+            $(".profile-id").css({
+                "display": "none"
+            })
             $("title").html("Pages | Cockbook")
 
         })
@@ -2802,6 +2858,9 @@
                 "display": "flex"
             })
             $(".groups").css({
+                "display": "none"
+            })
+            $(".profile-id").css({
                 "display": "none"
             })
             $("title").html("Watch | Cockbook")
@@ -2824,6 +2883,9 @@
             })
             $(".groups").css({
                 "display": "flex"
+            })
+            $(".profile-id").css({
+                "display": "none"
             })
             $("title").html("Groups | Cockbook")
 

@@ -1,0 +1,606 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #ffffff;
+}
+
+.propro {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.propro button, .propro li {
+  cursor: pointer;
+}
+
+.propro * {
+  font-family: sans-serif !important;
+  color: #e4e6eb !important;
+}
+
+.propro .profile-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background-color: #242526;
+}
+
+.propro .profile-header .profile-header-sub {
+  border-radius: 7px;
+  width: 80%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  position: relative;
+}
+
+.propro .profile-header .profile-header-sub .cover-photo {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: auto;
+  border-radius: 7px;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.propro .profile-header .profile-header-sub .avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: flex;
+      -ms-flex-pack: flex;
+          justify-content: flex;
+  -ms-flex-line-pack: flex;
+      align-content: flex;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 27%;
+  -webkit-transform: translateX(-100%) translateY(100%);
+          transform: translateX(-100%) translateY(100%);
+}
+
+.propro .profile-header .profile-header-sub .avatar img {
+  width: 168px !important;
+  height: 168px !important;
+  border-radius: 50%;
+  border: 3px solid #242526;
+}
+
+.propro .profile-header .profile-header-sub .profile-name {
+  position: absolute;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  bottom: -40%;
+  width: 70%;
+  left: 30%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .name-info {
+  font-size: 32px;
+  color: #e4e6eb !important;
+  position: relative;
+  left: -10%;
+  font-weight: 700;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 5px;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 5px;
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 button img {
+  -webkit-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(22deg) brightness(107%) contrast(102%);
+          filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(22deg) brightness(107%) contrast(102%);
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 .add-story11 {
+  background: #2d88ff !important;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 .edit-profile {
+  background-color: #3a3b3c !important;
+}
+
+.propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 span {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 600;
+}
+
+.propro .section-main {
+  width: 100%;
+  position: relative;
+  top: 25%;
+  background: #18191a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .header-2 {
+  background: #242526;
+  border-top: 1px solid #38393a;
+  width: 70%;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 80px;
+}
+
+.propro .section-main .header-2 path, .propro .section-main .header-2 circle {
+  fill: #ffffff;
+}
+
+.propro .section-main .header-2 .header-2-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .header-2 .header-2-1 li {
+  list-style-type: none;
+  padding: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.propro .section-main .header-2 .header-2-1 li span {
+  color: #b0b3b8;
+}
+
+.propro .section-main .header-2 .header-2-1 .header-2-1-content {
+  border-radius: 7px;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+
+.propro .section-main .header-2 .header-2-1 .header-2-1-content:hover {
+  background-color: #3a3b3c;
+}
+
+.propro .section-main .header-2 .header-2-1 .addp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .header-2 .header-2-2 {
+  width: 48px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: #3a3b3c;
+}
+
+.propro .section-main .header-2 .header-2-2 .header-2-2-content {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content {
+  width: 70%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.propro .section-main .section-content .recommend-friends {
+  border-radius: 7px;
+  background: #242526;
+  width: 100%;
+  height: auto;
+  padding: 16px;
+}
+
+.propro .section-main .section-content .recommend-friends .people-you-may {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 12px;
+}
+
+.propro .section-main .section-content .recommend-friends .people-you-may .fjksfadad {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.propro .section-main .section-content .recommend-friends .people-you-may .ffjofrjwar {
+  width: 48px;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 8px;
+  background-color: #3a3b3c;
+}
+
+.propro .section-main .section-content .recommend-friends .people-you-may .ffjofrjwar svg circle {
+  fill: #e4e6eb;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend {
+  overflow: hidden;
+  border-radius: 6px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo {
+  margin: 0 5px;
+  width: 228px;
+  height: 100%;
+  border: 1px solid #3d3f41;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo img {
+  width: 228px;
+  height: 228px;
+  border-radius: 6px;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo .name-recommend {
+  padding: 12px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo .button-add-friends {
+  padding: 12px;
+  margin-top: 20px;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo .button-add-friends button {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #2d5585;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo .button-add-friends button i {
+  -webkit-filter: invert(45%) sepia(18%) saturate(7490%) hue-rotate(199deg) brightness(100%) contrast(103%);
+          filter: invert(45%) sepia(18%) saturate(7490%) hue-rotate(199deg) brightness(100%) contrast(103%);
+}
+
+.propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo .button-add-friends button span {
+  text-transform: capitalize;
+}
+
+.propro .section-main .section-content .super-content {
+  width: 100%;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.propro .section-main .section-content .super-content .biology {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 57px;
+  border-radius: 7px;
+  width: 40%;
+  height: auto;
+  background: #242526;
+  padding: 20px 16px;
+  height: 500px !important;
+}
+
+.propro .section-main .section-content .super-content .biology .intro-bio {
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-bio {
+  width: 100%;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-bio .content-story {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+  margin-bottom: 20px;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-bio .tap-to-edit-bio {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #3a3b3c;
+  border-radius: 7px;
+  height: 36px;
+  font-weight: 600;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-bio .photo-self {
+  width: 100%;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .shsoidjs {
+  width: 100%;
+  height: auto;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .shsoidjs {
+  margin: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .shsoidjs span {
+  font-size: 12px;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .dfhfsd {
+  width: 100%;
+  border-radius: 7px;
+  background: #3a3b3c;
+  height: 74px;
+  border: none;
+  outline: none;
+  padding: 12px;
+  text-align: center;
+  resize: none;
+  padding: 8px 12px;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .dfhfsd:focus {
+  outline: 1px solid #117dfe;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake .afhsddass {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake .afhsddass .hdhsiodda {
+  width: 36px;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake .afhsddass .hdhsiodda i {
+  -webkit-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(211deg) brightness(108%) contrast(106%);
+          filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(211deg) brightness(108%) contrast(106%);
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake .jsiosiodsdio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.propro .section-main .section-content .super-content .biology .edit-direct .liketomake .jsiosiodsdio button {
+  border: none;
+  outline: none;
+  padding: 12px;
+  background: #505151;
+  border-radius: 8px;
+}
+
+.propro .section-main .section-content .super-content .self-timeline {
+  border-radius: 7px;
+  width: 60%;
+  background: blue;
+  height: 3000px;
+  background: #242526;
+}
+/*# sourceMappingURL=style4.css.map */
