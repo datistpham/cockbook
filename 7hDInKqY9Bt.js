@@ -3,8 +3,8 @@ let page = 1
 let stopped = false
 $(document).ready(function() {
     $("._8_sp_lg").scroll(function() {
-        $element = $('#content')
-        if ($("._8_sp_lg").scrollTop() + $("._8_sp_lg").height() >= ($element.height())) {
+        $element = $('.wrapper-item')
+        if ($("._8_sp_lg").scrollTop() + $("._8_sp_lg").height() >= 0.85*($element.height())) {
             if (is_busy == true) {
                 return false
             }
@@ -20,7 +20,6 @@ $(document).ready(function() {
                     data: { page: page },
                     success: function(result) {
                         $element.append(result)
-                        $(".item").css({"backgroundColor":"#242526"})
                     }
                 })
                 .always(function() {

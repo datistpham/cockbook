@@ -1,26 +1,32 @@
-<?php 
-    if(!isset($_COOKIE['user'])) {
-        header("Location: http://localhost/cockbook/");
-    }
-    require 'connect.php';
-    $conne= connect();
+<?php
+if (!isset($_COOKIE['user'])) {
+    header("Location: http://localhost/cockbook/");
+}
+session_start();
+$_SESSION['user'] = $_COOKIE['user'];
 
-    $detect_account= "SELECT * from user_information";
-    $query_de= mysqli_query($conne,$detect_account);
-    while($rowzz= mysqli_fetch_assoc($query_de)) {
-        if($rowzz['token_user']== $_COOKIE["user"]) {
-            $name_single_login= $rowzz['surname'];
-            $name_login= $rowzz['surname']." ".$rowzz['firstname'];
-            break;
-        }
+require 'connect.php';
+$conne = connect();
+
+$detect_account = "SELECT * from user_information where token_user=" . $_SESSION["user"] . ""; // declare 1 row
+$query_de = mysqli_query($conne, $detect_account);
+while ($rowzz = mysqli_fetch_assoc($query_de)) {
+    if ($rowzz['token_user'] == $_COOKIE["user"]) {
+        $name_single_login = $rowzz['surname'];
+        $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
+        $id_login = $rowzz['id'];
+        $storyz = $rowzz['story'];
+        break;
     }
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="cockbook">
 
 
 <head>
-    
+<script src='7hDInKqY9Bt.js' async="1" crossorigin="anonymous"></script>
+
     <script type="module">
         // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
@@ -45,7 +51,6 @@
   const analytics = getAnalytics(app);
 </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="euioryheosifm.js" async></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,10 +60,9 @@
     <link rel="stylesheet" href="style4.css">
 
     <link rel='shortcut icon' type='image/x-icon' href='c-programe.png' />
-    <script src='7hDInKqY9Bt.js' async crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src="iwrjiojrjaweoiaf.js" crossorigin="anonymous"></script>
+    <script src="iwrjiojrjaweoiaf.js" async="1" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Cockbook</title>
     <style>
@@ -80,6 +84,10 @@
         html {
             width: 100%;
             height: 100%;
+        }
+
+        .item {
+            background: #18191a !important;
         }
 
         #main {
@@ -118,6 +126,10 @@
             visibility: hidden;
             transition: all 1s linear;
 
+        }
+
+        ._7_sp_lg::-webkit-scrollbar-track {
+            background-color: #18191a;
         }
 
         ._7_sp_lg::-webkit-scrollbar-thumb,
@@ -353,12 +365,315 @@
             }
 
         }
+
+        #all-full-page {
+            position: relative;
+
+        }
+
+        /*  */
+
+        .lds-ring {
+            display: inline-block;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            z-index: 999;
+            left: 46%;
+            top: 10%;
+            transform: scale(-100%, -100%);
+            margin-top: -200px;
+            opacity: 0;
+            transition: all 0.2s ease-out;
+            background: #18191a;
+            border-radius: 50%;
+            transform: scale(0.8);
+
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #2196F3 transparent transparent transparent;
+            
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        
+        .blur-aovcl {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color:rgba(0, 0, 0, 0.45);
+            z-index: 900;
+        }
+        .post-status {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 500px;
+            height: auto;
+            background: #242526;
+            border-radius: 8px;
+            z-index: 990;
+        }
+        .title-post-status {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            border-bottom: 1px solid #2f3031;
+
+        }
+        .title-post-status h3 {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 60px
+        }
+        .main-status {
+            margin: 0 16px;
+            padding: 16px 0;
+
+        }
+        .main-status-section1 {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: row;
+        }
+        .main-status-section2 {
+            padding: 16px 0;
+        }
+        .gaygsdfdf {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+        }
+        .gaygsdfdf img {
+            border-radius: 50%;
+        }
+        .jsiufhainskd {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            }
+            .enter-content-status {
+                width: 100%;
+                border: none;
+                outline: none;
+                background-color: unset;
+                font-size: 24px;
+                min-height: 60px;
+                word-wrap: break-word;
+                font-family: sans-serif !important;
+                font-weight: 500;
+            }
+            .main-status-section3 {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .main-status-section3>div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .main-status-section4 {
+                width: 100%;
+                height: 56px;
+                display: flex;
+                padding: 8px;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 8px;
+                border: 1px solid #3e4042;
+                margin: 16px 0;
+            }
+.main-status-section4-2 {
+    display: flex;
+    flex-direction: row;
+}
+            .main-status-section4-2>div {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            .main-status-section4-2>div>div {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.25s ease-in-out;
+            }
+            .main-status-section3>div {
+                cursor: pointer;
+            }
+            .main-status-section4-2>div>div:hover {
+                background-color: #3a3b3c;
+            }
+.main-status-section5 {
+    width: 100%;
+    height: 36px;
+    border-radius: 8px;
+}
+.main-button-section5 {
+    background-color: #505151;
+    color: #858686;
+    cursor: not-allowed;
+}
+.close-status {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s linear;
+    right: 0;
+    background-color: #3a3b3c;
+    top:3%;
+    right:3%;
+    cursor: pointer;
+}
+.close-status i {
+    filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
+}
+
+
     </style>
 
 </head>
 
-<body>
+<body id="all-full-page">
+<div class="blur-aovcl" style="display:none"></div>
+    <div class="post-status" style="display:none">
+        <div class="close-status">
+            
+                <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+            
+        </div>
+        <div class="title-post-status">
+            <h3 class="content-title">
+                Create post
+            </h3>
+        </div>
+        <div class="main-status">
+            <div class="main-status-section1">
+                <div class="gaygsdfdf" ><img src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.60.60a/p60x60/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=7206a8&_nc_ohc=MvfZyA4L2DMAX-cq8KA&_nc_ht=scontent.fhph1-3.fna&oh=d227aa22822253604a8d8a0c2ec090d0&oe=619D9468" width="40px" height="40px" alt=""></div>
+                <div class="jsiufhainskd">
+                    <p style="font-size: 12px"><?php echo $name_login ?></p>
+                    <div class="select-audience" style="border-radius:5px;width:max-content;font-size: 12px;padding: 4px 5px;background-color: #3a3b3c">Public</div>
+                </div>
+            </div>
+            <div class="main-status-section2">
+                <input type="text" placeholder="<?php echo "What's on your mind $name_single_login ?" ?>" class="enter-content-status">
+            </div>
+            <div class="main-status-section3" style="width:100%">
+                <div class="main-status-section3-1"><img height="38" alt="" referrerpolicy="origin-when-cross-origin" src="	https://www.facebook.com/images/composer/SATP_Aa_square-2x.png"></div>
+                <div class="main-status-section3-2"><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -190px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div>
+
+            </div>
+            <!--  -->
+            <div class="main-status-section4">
+                <div style="cursor:pointer" class="main-status-section4-1"><p style="font-size: 14px;font-family:sans-serif !important;font-weight: 500;" class="jdaawffawe">Add to your post</p></div>
+                <div class="main-status-section4-2">
+                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -268px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -242px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/jFFXSLBdcxF.png&quot;); background-position: 0px -234px; background-size: 26px 260px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/U0nt1n3ZL3O.png&quot;); background-position: 0px -104px; background-size: 26px 280px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -164px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+
+                </div>
+            </div>
+            <!--  -->
+            <div class="main-status-section5">
+                <button disabled style="font-size: 14px;padding:0 12px;height: 100%;width: 100%;border-radius: 8px;border:none;outline:none;" class="main-button-section5">Post</button>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <script>
+        $(".enter-content-status").on("keyup", function() {
+            if($(this).val()=="") {
+                $(".main-button-section5").attr("disable",true).css({"background-color":"#505151","color":"#858686","cursor":"not-allowed"})
+            }
+            else {
+                $(".main-button-section5").removeAttr("disable").css({"background-color":"rgb(45, 136, 255)","color":"#ffffff","cursor":"pointer"})
+
+            }
+        })
+        $(".close-status").on("click", function() {
+            $(".post-status").css({"display":"none"})
+            $(".blur-aovcl").css({"display":"none"})
+        })
+        
+    </script>
+    <!--  -->
+    
+    <!--  -->
+   
+    
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script>
+        $(window).on("load", function() {
+            $.ajax({
+                url: "home.php",
+                method: "GET",
+                success: function(result) {
+                    $("._8_sp_lg").html(result)
+                }
+            })
+        })
+    </script>
     <div id="main" style="position: relative !important;">
+
         <style>
             .dialog-logout * {
                 font-family: sans-serif !important;
@@ -399,6 +714,7 @@
                 }
             }
         </style>
+        
         <div class="header-fixed">
 
 
@@ -415,31 +731,31 @@
                             }
                         </style>
 
-                        <i data-visualcompletion="css-img" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block"></i>
+                        <i class="lucasV" data-visualcompletion="css-img" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block;filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);z-index: 10000"></i>
 
-                        <input class="search" type="text" name="search-result" placeholder="Search Cockbook">
+                        <input class="search lucasV" type="text" name="search-result" placeholder="Search Cockbook">
                     </div>
                 </div>
                 <div class="_9epx">
                     <ul class="_9epx_1">
-                        <li class="_9epx_2 _75_re_21_sa_1"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
-                            <div class="_13_fr_ya_1">Menu</div>
+                        <li class="_9epx_2 _75_re_21_sa_1 lucasV"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
+                            <div class="_13_fr_ya_1 lucasV">Menu</div>
                         </li>
-                        <li class="_9epx_2 _75_re_21_sa_2"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
+                        <li class="_9epx_2 _75_re_21_sa_2 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
                                 <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z">
                                 </path>
 
                             </svg>
-                            <div class="_13_fr_ya_2">Messenger</div>
+                            <div class="_13_fr_ya_2 lucasV">Messenger</div>
                         </li>
-                        <li class="_9epx_2 _75_re_21_sa_3"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
+                        <li class="_9epx_2 _75_re_21_sa_3 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
                                 <path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z">
                                 </path>
                             </svg>
-                            <div class="_13_fr_ya_3">Notifications</div>
+                            <div class="_13_fr_ya_3 lucasV">Notifications</div>
                         </li>
-                        <li class="_9epx_2 _75_re_21_sa_4">
-                            <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
+                        <li class="_9epx_2 _75_re_21_sa_4 lucasV">
+                            <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d lucasV6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
                             <div data-it-root="Account" data-it="Tài khoản" class="_13_fr_ya_4 lang">Account</div>
 
                             <div style="display: none;transition: transform 0.25s linear;border: 1px solid #333435;opacity:1;transition: opacity 0s linear !important" class="_13_ac_st_1">
@@ -451,7 +767,7 @@
                                     <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
                                     <section class="_13_fr_ya_4_12">
                                         <p class="_13_fr_ya_4_12_1">
-                                          <?php echo $name_login ?>
+                                            <?php echo $name_login ?>
                                         </p>
                                         <p data-it-root="See your profile" data-it="Xem trang cá nhân của bạn" class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important">
                                             See your profile
@@ -600,7 +916,7 @@
                                 </style>
                                 <section class="_14_ac_st_1_3" style="width:85%">
                                     <section class="_14_ac_st_1_3_1" style="width: 100%;">
-                                        <input style="cursor:pointer;transform: scale(1.25);width:100%;padding:16px 0 !important" type="radio" id="light_mode" class="iorueroiqa" name="mode" value="light">
+                                        <input style="cursor:pointer;transform: scale(1.25);width:100%;padding:16px 0 !important" name="modevippro" type="radio" id="light_mode" class="iorueroiqa" value="light">
                                     </section>
                                     <section class="_14_ac_st_1_3_2">
                                         <span data-it-root="Off" data-it="Tắt" class="_14_ac_st_1_3_2_1 lang">Off</span>
@@ -610,7 +926,7 @@
                                 <!--  -->
                                 <section class="_14_ac_st_1_4" style="width:85%;padding-bottom:16px !important">
                                     <section class="_14_ac_st_1_4_1" style="width: 100%;">
-                                        <input style="cursor:pointer;transform: scale(1.25);width:100%" checked type="radio" id="dark_mode" name="mode" value="dark">
+                                        <input style="cursor:pointer;transform: scale(1.25);width:100%" name="modevippro" checked type="radio" id="dark_mode" value="dark">
                                     </section>
                                     <section class="_14_ac_st_1_4_2">
                                         <span data-it-root="On" data-it="Bật" class="_14_ac_st_1_4_2_1 lang">On</span>
@@ -682,15 +998,15 @@
                         }
                     </style>
 
-                    <i data-visualcompletion="css-img" class="m6k467ps l2qw32fc" style="filter: invert(100%) sepia(12%) saturate(2%) hue-rotate(335deg) brightness(103%) contrast(101%);background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block"></i>
+                    <i data-visualcompletion="css-img" class="m6k467ps l2qw32fc" style="filter: invert(100%) sepia(12%) saturate(2%) hue-rotate(335deg) brightness(103%) contrast(101%);background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block;z-index:10000"></i>
 
-                    <input class="search" type="text" name="search-result" placeholder="Search Facebook">
+                    <input class="search lucasV" type="text" name="search-result" placeholder="Search Cockbook">
                 </div>
             </div>
 
             <div class="_8epx">
                 <ul class="_8epx_1">
-                    <li class="_8epx_2 _17ev_or_1"><svg viewBox="0 0 28 28" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 aaxa7vy3" height="28" width="28">
+                    <li class="_8epx_2 _17ev_or_1 please"><svg viewBox="0 0 28 28" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 aaxa7vy3" height="28" width="28">
                             <path d="M25.825 12.29C25.824 12.289 25.823 12.288 25.821 12.286L15.027 2.937C14.752 2.675 14.392 2.527 13.989 2.521 13.608 2.527 13.248 2.675 13.001 2.912L2.175 12.29C1.756 12.658 1.629 13.245 1.868 13.759 2.079 14.215 2.567 14.479 3.069 14.479L5 14.479 5 23.729C5 24.695 5.784 25.479 6.75 25.479L11 25.479C11.552 25.479 12 25.031 12 24.479L12 18.309C12 18.126 12.148 17.979 12.33 17.979L15.67 17.979C15.852 17.979 16 18.126 16 18.309L16 24.479C16 25.031 16.448 25.479 17 25.479L21.25 25.479C22.217 25.479 23 24.695 23 23.729L23 14.479 24.931 14.479C25.433 14.479 25.921 14.215 26.132 13.759 26.371 13.245 26.244 12.658 25.825 12.29">
                             </path>
                         </svg>
@@ -731,25 +1047,25 @@
             </div>
             <div class="_9epx">
                 <ul class="_9epx_1">
-                    <li class="_9epx_2 _75_re_21_sa_1"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
-                        <div class="_13_fr_ya_1">Menu</div>
+                    <li class="_9epx_2 _75_re_21_sa_1 lucasV"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
+                        <div class="_13_fr_ya_1 lucasV">Menu</div>
                     </li>
-                    <li class="_9epx_2 _75_re_21_sa_2"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
+                    <li class="_9epx_2 _75_re_21_sa_2 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
                             <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z">
                             </path>
 
                         </svg>
-                        <div class="_13_fr_ya_2">Messenger</div>
+                        <div class="_13_fr_ya_2 lucasV">Messenger</div>
                     </li>
-                    <li class="_9epx_2 _75_re_21_sa_3"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
+                    <li class="_9epx_2 _75_re_21_sa_3 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
                             <path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z">
                             </path>
                         </svg>
-                        <div class="_13_fr_ya_3">Notifications</div>
+                        <div class="_13_fr_ya_3 lucasV">Notifications</div>
                     </li>
-                    <li class="_9epx_2 _75_re_21_sa_4">
+                    <li class="_9epx_2 _75_re_21_sa_4 lucasV">
                         <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
-                        <div class="_13_fr_ya_4">Account</div>
+                        <div class="_13_fr_ya_4 lucasV">Account</div>
                         <section class="yhsuidhsdka" style="position: relative">
 
                             <section style="display: none;transition: transform 0.25s linear;border: 1px solid #333435;opacity:1;transition: opacity 0s linear !important" class="_13_ac_st_1">
@@ -761,7 +1077,7 @@
                                     <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
                                     <section class="_13_fr_ya_4_12">
                                         <p class="_13_fr_ya_4_12_1">
-                                        <?php echo $name_login ?>
+                                            <?php echo $name_login ?>
                                         </p>
                                         <p class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important" data-it-root="See your profile" data-it="Xem trang cá nhân của bạn">
                                             See your profile
@@ -1004,7 +1320,7 @@
                             </style>
                             <section class="_14_ac_st_1_3" style="width:85%">
                                 <section class="_14_ac_st_1_3_1" style="width: 100%;">
-                                    <input style="cursor:pointer;transform: scale(1.25);width:100%;padding:16px 0 !important" type="radio" id="light_mode" class="iorueroiqa" name="mode" value="light">
+                                    <input style="cursor:pointer;transform: scale(1.25);width:100%;padding:16px 0 !important" type="radio" name="modevippro" id="light_mode" class="iorueroiqa" value="light">
                                 </section>
                                 <section class="_14_ac_st_1_3_2">
                                     <span data-it-root="Off" data-it="Tắt" class="_14_ac_st_1_3_2_1 lang">Off</span>
@@ -1014,7 +1330,7 @@
                             <!--  -->
                             <section class="_14_ac_st_1_4" style="width:85%">
                                 <section class="_14_ac_st_1_4_1" style="width: 100%;">
-                                    <input style="cursor:pointer;transform: scale(1.25);width:100%" checked type="radio" id="dark_mode" name="mode" value="dark">
+                                    <input style="cursor:pointer;transform: scale(1.25);width:100%" checked type="radio" name="modevippro" id="dark_mode" value="dark">
                                 </section>
                                 <section class="_14_ac_st_1_4_2">
                                     <span data-it-root="On" data-it="Bật" class="_14_ac_st_1_4_2_1 lang">On</span>
@@ -1034,6 +1350,7 @@
                             <!--  -->
                             <script>
                                 $("#light_mode").on("click", function() {
+
                                     $(".wrapper").css({
                                         "background-color": "#f0f2f5"
                                     })
@@ -1118,7 +1435,32 @@
                                 })
                             </script>
                         </div>
+                        <script>
+                            $("._14_ac_st_1_3").on("click", function() {
+                                $.ajax({
+                                    url: "check_light.php",
 
+                                })
+                            })
+                            $("._14_ac_st_1_4").on("click", function() {
+                                $.ajax({
+                                    url: "check_dark.php",
+                                })
+                            })
+                        </script>
+                        <script>
+                            $("._14_ac_st_1_3").on("click", function() {
+                                $.ajax({
+                                    url: "check_light_spe.php",
+
+                                })
+                            })
+                            $("._14_ac_st_1_4").on("click", function() {
+                                $.ajax({
+                                    url: "check_dark_spe.php",
+                                })
+                            })
+                        </script>
                         <style>
                             .language-setting * {
                                 font-family: sans-serif !important;
@@ -1438,6 +1780,8 @@
                 height: 100vh;
             }
         </style>
+        <!--  -->
+        
         <!--  -->
         <div class="friends ueiortu" style="position:relative">
         </div>
@@ -1809,505 +2153,7 @@
 
             <!--  -->
             <div class="_8_sp_lg">
-                <div class="_8_sp_lg_su_se">
-                    <div class="_8_sp_lg_su_se-main">
-                        <!--  -->
-                        <!--  -->
-                        <!--  -->
-                        <style>
-                            .story {
-                                width: 100%;
-                                height: auto;
-                                display: flex;
-                                flex-direction: row;
-                                gap: 10px;
-                                height: 200px;
-                                border-radius: 10px;
-                                margin: 25px 0
-                            }
 
-                            .story>div {
-                                width: 20%;
-                                background-color: #242526;
-                                border-radius: 10px
-                            }
-                        </style>
-                        <!--  -->
-                        <!--  -->
-                        <!--  -->
-                        <style>
-                            .story-i-spc {
-                                height: 50px !important;
-                                display: none;
-                                padding-left: 15px;
-                                align-items: center;
-
-                            }
-
-                            .storyvippro * {
-                                background-color: #FFFFFF !important;
-                            }
-                        </style>
-                        <div id="content">
-                            <div class="uerhuirfnesd" style="width: 100%;display:flex;flex-direction: column">
-
-                                <div class="story">
-                                    <div class="story-i-spc">
-                                        <p>Story</p>
-                                    </div>
-                                    <div class="story1-self"></div>
-                                    <div class="story2"></div>
-                                    <div class="story3"></div>
-                                    <div class="story4"></div>
-                                    <div class="story5"></div>
-
-                                </div>
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <style>
-                                    .create-status {
-                                        width: 100%;
-                                        padding: 12px;
-                                        background-color: #242526;
-                                        margin-bottom: 20px;
-                                        border-radius: 10px;
-                                    }
-
-                                    .create-status-main {
-                                        width: 100%
-                                    }
-
-                                    .create-status-1 {
-                                        padding-bottom: 12px;
-                                        display: flex;
-                                        flex-direction: row;
-                                        justify-content: flex-start;
-                                        align-items: center;
-                                        width: 100%;
-                                        gap: 7px;
-                                        border-bottom: 1px solid #3a3b3c;
-                                    }
-
-                                    .create-status-2 {
-                                        display: flex;
-                                        flex-direction: row;
-                                        padding-top: 8px;
-                                        width: 100%
-                                    }
-
-                                    .create-status-2>div {
-                                        display: flex;
-                                        flex-direction: row;
-                                        align-items: center;
-                                        gap: 7px;
-                                        width: calc(100% / 3);
-                                        justify-content: center;
-                                        align-items: center;
-                                        border-radius: 10px;
-                                        padding: 10px 0;
-                                        transition: all 0.2s linear;
-                                        cursor: pointer;
-
-                                    }
-
-                                    .create-status-2>div:hover {
-                                        background-color: #3a3b3c;
-                                    }
-
-                                    .create-status-2>div div {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        position: relative;
-                                        gap: 7px;
-                                    }
-
-                                    .create-status-1-2 {
-                                        width: calc(100% - 36px);
-                                    }
-
-                                    .create-status-1-2 input {
-                                        width: 100%;
-                                        font-family: sans-serif !important;
-                                        font-weight: lighter;
-                                    }
-
-                                    .create-status-1-2 input::placeholder {
-                                        color: rgb(176, 179, 184)
-                                    }
-
-                                    @media screen and (max-width: 1200px) {
-                                        .create-status-2 {
-                                            flex-direction: column;
-
-                                        }
-
-                                        ._8epx_1 li {
-                                            padding: 0 20px !important;
-                                        }
-
-                                        .create-status-2>div {
-                                            width: 100%;
-                                            justify-content: flex-start;
-                                            padding-left: 15px;
-                                        }
-
-                                        /*  */
-                                        ._12epx_2 {
-                                            justify-content: center;
-                                            align-items: center;
-                                            width: 40px;
-                                            height: 40px !important;
-                                            border-radius: 50%;
-                                            background-color: #3a3b3c;
-
-                                        }
-
-                                        body #main .header-fixed ._12epx ._12epx_2 input {
-                                            display: none
-                                        }
-
-                                        /*  */
-                                        .story {
-                                            flex-wrap: wrap;
-                                            height: auto !important;
-                                            justify-content: center;
-                                        }
-
-                                        .story div {
-                                            width: 49.2%;
-                                            height: 200px;
-                                        }
-
-                                        .story div.story1-self {
-                                            width: 100%
-                                        }
-
-                                        ._7_sp_lg {
-                                            display: none !important;
-
-                                        }
-
-                                        ._4_ds_sa_3 {
-                                            display: flex !important;
-                                        }
-
-                                        ._8_sp_lg {
-                                            width: 75% !important;
-                                        }
-
-                                        ._8_sp_lg_su_se {
-                                            padding: 0 !important;
-
-                                        }
-
-                                        #content {
-                                            min-width: 350px !important;
-                                        }
-
-                                    }
-
-                                    @media screen and (max-width: 975px) {
-                                        .story div:not(:first-of-type) {
-                                            width: 18% !important;
-                                        }
-
-                                        .story {
-                                            justify-content: space-between;
-                                            flex-direction: row;
-                                            flex-wrap: wrap !important;
-                                        }
-
-                                        .story-i-spc {
-                                            display: flex;
-                                            width: 100% !important;
-                                        }
-
-                                        ._7seven_epx_1 {
-                                            display: flex !important;
-                                        }
-
-                                        ._9_sp_lg {
-                                            display: none !important;
-                                        }
-
-                                        ._8_sp_lg {
-                                            width: 100% !important;
-                                        }
-                                    }
-                                </style>
-                                <div class="create-status">
-                                    <div class="create-status-main">
-                                        <div class="create-status-1">
-                                            <div class="create-status-1-1">
-                                                <img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX_3_Qz-&_nc_ht=scontent.fhph1-3.fna&oh=76f66289e602119a36991cf53373534b&oe=618A0C15" alt="" width="36px" height="36px">
-                                            </div>
-                                            <div class="create-status-1-2">
-                                                <input class="nxhoafnm" type="text" style="padding:10px 12px;border-radius:80px;background-color:#3a3b3c;border:none;outline:none;cursor:pointer" placeholder="What's on your mind, <?php echo $name_single_login ?> ?">
-                                            </div>
-                                        </div>
-                                        <div class="create-status-2" style="user-select: none">
-                                            <div class="create-status-2-1">
-                                                <div class="create-status-2-1-spc-1">
-
-                                                    <div class="create-status-2-1-spc"><i class="create-status-2-1-1" data-visualcompletion="css-img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/-5ddrwu0GXQ.png&quot;); background-position: 0px 0px; background-size: 26px 558px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                                    </div>
-                                                    <p data-it-root="Live video" data-it="Video trực tiếp" class="create-status-2-1-2 lang">Live video</p>
-                                                </div>
-                                            </div>
-                                            <div class="create-status-2-2">
-                                                <div class="create-status-2-2-spc-1">
-
-                                                    <div class="create-status-2-2-spc"><i class="create-status-2-2-1" data-visualcompletion="css-img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/-5ddrwu0GXQ.png&quot;); background-position: 0px -234px; background-size: 26px 558px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                                    </div>
-                                                    <p data-it-root="Photo/Video" data-it="Ảnh/Video" class="create-status-2-2-2 lang">Photo/Video</p>
-                                                </div>
-                                            </div>
-                                            <div class="create-status-2-3">
-                                                <div class="create-status-2-3-spc-1">
-
-                                                    <div class="create-status-2-3-spc"><i class="create-status-2-3-1" data-visualcompletion="css-img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/-5ddrwu0GXQ.png&quot;); background-position: 0px -26px; background-size: 26px 558px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                                    </div>
-                                                    <p data-it-root="Feeling/Activity" data-it="Cảm xúc/Hoạt động" class="create-status-2-3-2 lang">Feeling/Activity</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!--  -->
-                            <!--  -->
-                            <!--  -->
-                            <!--  -->
-                            <div class="item">
-                                <div class="item1" style="margin-bottom:10px">
-                                    <div class="item1-1">
-                                        <img class="item1-1-1" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="">
-                                        <div class="item1-1-2">
-                                            <p class="item1-1-2-1"><?php echo $name_login ?></p>
-                                            <p class="item1-1-2-2 lang" style="font-size: 12px" data-it-root="1m" data-it="1 phút ·">1m · &nbsp;<i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i> &nbsp; · </p>
-                                        </div>
-                                    </div>
-                                    <!-- hide report  -->
-                                    <style>
-                                        .item1-2-2 * {
-                                            user-select: none !important;
-                                        }
-                                    </style>
-                                    <div class="item1-2">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps gshiuhsdsc" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:0 -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:11px"></i>
-                                        <div class="item1-2-2" style="display:none;user-select: none">
-                                            <div class="item1-2-2-1">
-                                                <div class="item1-2-2-1-1"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/Gs_HiEUMIYK.png&quot;); background-position: 0px -48px; background-size: 26px 268px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i></div>
-                                                <div class="item1-2-2-1-1 lang" title="Save to your collection" data-it-root="Save posts" data-it="Lưu bài viết">Save post</div>
-                                            </div>
-                                            <!-- content with text   -->
-                                            <div class="item1-2-2-2">
-                                                <div class="item1-2-2-2-1"><img class="hu5pjgll lzf7d6o1" src="https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/jVvbRDT0Ugn.png" alt="" style="filter: invert(79%) sepia(11%) saturate(69%) hue-rotate(177deg) brightness(93%) contrast(84%);" height="20" width="20"></div>
-                                                <div class="item1-2-2-2-2 lang" title="Remove post from your timeline" data-it-root="Hide post" data-it="Ẩn bài viết">Hide post</div>
-
-                                            </div>
-                                            <!-- image or video  -->
-                                            <div class="item1-2-2-3">
-                                                <div class="item1-2-2-3-1"><img class="hu5pjgll lzf7d6o1" src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/c1yEIG3gvJo.png" alt="" style="filter: invert(79%) sepia(11%) saturate(69%) hue-rotate(177deg) brightness(93%) contrast(84%);" height="20" width="20"></div>
-                                                <div class="item1-2-2-3-2 lang" data-it-root="Find support or report post" data-it="Tìm kiếm hỗ trợ hoặc báo cáo bài viết">Find support or report post</div>
-
-                                            </div>
-                                            <!-- show react and comment -->
-                                            <div class="item1-2-2-4">
-                                                <div class="item1-2-2-4-1"></div>
-                                                <div class="item1-2-2-4-2"></div>
-
-                                            </div>
-                                            <!-- perform like comment or share  -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <div class="item2" style="display:flex;padding: 12px 16px 0 16px"></div>
-                                <!--  -->
-                                <div class="item3" style="display:flex;width:100%;padding: 12px 16px 0 16px">
-
-                                </div>
-                                <div class="item4" style="gap:5px;display:flex;width:100%;padding:12px;justify-content:space-between;align-items:center;border-left: 1px solid #2e89ff">
-                                    <div class="item4-1-spc" style="display: flex;flex-direction: row;align-items:center;gap: 10px">
-
-                                        <div class="item4-1">
-                                            <img class="j1lvzwm4" height="18" role="presentation" src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 16 16'%3e%3cdefs%3e%3clinearGradient id='a' x1='50%25' x2='50%25' y1='0%25' y2='100%25'%3e%3cstop offset='0%25' stop-color='%2318AFFF'/%3e%3cstop offset='100%25' stop-color='%230062DF'/%3e%3c/linearGradient%3e%3cfilter id='c' width='118.8%25' height='118.8%25' x='-9.4%25' y='-9.4%25' filterUnits='objectBoundingBox'%3e%3cfeGaussianBlur in='SourceAlpha' result='shadowBlurInner1' stdDeviation='1'/%3e%3cfeOffset dy='-1' in='shadowBlurInner1' result='shadowOffsetInner1'/%3e%3cfeComposite in='shadowOffsetInner1' in2='SourceAlpha' k2='-1' k3='1' operator='arithmetic' result='shadowInnerInner1'/%3e%3cfeColorMatrix in='shadowInnerInner1' values='0 0 0 0 0 0 0 0 0 0.299356041 0 0 0 0 0.681187726 0 0 0 0.3495684 0'/%3e%3c/filter%3e%3cpath id='b' d='M8 0a8 8 0 00-8 8 8 8 0 1016 0 8 8 0 00-8-8z'/%3e%3c/defs%3e%3cg fill='none'%3e%3cuse fill='url(%23a)' xlink:href='%23b'/%3e%3cuse fill='black' filter='url(%23c)' xlink:href='%23b'/%3e%3cpath fill='white' d='M12.162 7.338c.176.123.338.245.338.674 0 .43-.229.604-.474.725a.73.73 0 01.089.546c-.077.344-.392.611-.672.69.121.194.159.385.015.62-.185.295-.346.407-1.058.407H7.5c-.988 0-1.5-.546-1.5-1V7.665c0-1.23 1.467-2.275 1.467-3.13L7.361 3.47c-.005-.065.008-.224.058-.27.08-.079.301-.2.635-.2.218 0 .363.041.534.123.581.277.732.978.732 1.542 0 .271-.414 1.083-.47 1.364 0 0 .867-.192 1.879-.199 1.061-.006 1.749.19 1.749.842 0 .261-.219.523-.316.666zM3.6 7h.8a.6.6 0 01.6.6v3.8a.6.6 0 01-.6.6h-.8a.6.6 0 01-.6-.6V7.6a.6.6 0 01.6-.6z'/%3e%3c/g%3e%3c/svg%3e" width="18">
-                                        </div>
-                                        <div style="color:#8f9195;font-family:sans-serif !important;font-size:15px" class="item4-2">
-                                            1
-                                        </div>
-                                    </div>
-                                    <div class="item4-2">
-                                        <div class="item4-2-1">
-                                            <p class="item4-2-1-1"></p>
-                                            <p class="item4-2-1-2"></p>
-                                        </div>
-                                        <div class="item4-2-2">
-                                            <p class="item4-2-2-1">
-
-                                            </p>
-                                            <p class="item4-2-2-2">
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <style>
-                                    .item5 {
-                                        display: flex;
-                                        flex-direction: row;
-
-                                    }
-
-                                    .item5-spc {
-                                        padding: 14px 12px;
-                                        justify-content: space-between
-                                    }
-
-                                    .item5-spc>div {
-                                        width: 100%;
-                                        display: flex;
-                                        flex-direction: row;
-                                        border-top: 0.75px solid #37393a;
-                                        border-bottom: 0.75px solid #37393a;
-                                    }
-
-                                    .item5-spc>div>div {
-                                        width: calc(100% / 3);
-                                        justify-content: center;
-                                        align-self: center;
-                                        padding: 14px 0;
-                                        border-radius: 10px;
-                                        cursor: pointer;
-                                        transition: all 0.2s linear;
-                                    }
-
-                                    .item5-spc>div>div:hover {
-                                        background-color: #3a3b3c;
-                                    }
-
-                                    .qwe_sek_1 * {
-                                        fill: #2d88ff !important;
-                                    }
-                                </style>
-
-
-
-
-
-                                <script>
-                                    $(document).on("click", "._8epx_1 ._8epx_2", function() {
-                                        $(this).addClass("qwe_sek_1").siblings().removeClass("qwe_sek_1")
-                                    })
-                                </script>
-
-
-
-
-
-                                <div class="item5" style="padding: 12px">
-                                    <div class="item5-spc" style="width: 100%">
-                                        <div class="item5-spc-1">
-
-                                            <div class="item5-1" style="user-select: none">
-                                                <div class="item5-1-1" style="position:relative;">
-                                                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps qwerty1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -228px; background-size: 26px 928px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;filter: invert(64%) sepia(6%) saturate(144%) hue-rotate( 176deg) brightness(89%) contrast(97%);display:block"></i>
-                                                    <i data-visualcompletion="css-img" class="hu5pjgll op6gxeva o6fdk32" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -208px; background-size: 26px 928px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;position:absolute;top:0;right:0;left:0;bottom:0;display:flex;align-items:center;justify-content:center;margin: 0 !important;filter: invert(8%) sepia(5%) saturate(505%) hue-rotate(169deg) brightness(97%) contrast(85%);display:none;position:absolute;top:-10px;left:-15px"></i>
-                                                </div>
-                                                <div style="color: #ffffff" class="item5-1-2 lang" data-it-root="Like" data-it="Thích">Like</div>
-                                            </div>
-                                            <div class="item5-2">
-                                                <div class="item5-2-1">
-                                                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -188px; background-size: 26px 928px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;"></i>
-                                                </div>
-                                                <div class="item5-2-2 lang" data-it-root="Comment" data-it="Bình luận">
-                                                    Comment
-                                                </div>
-                                            </div>
-                                            <div class="item5-3">
-                                                <div class="item5-3-1">
-                                                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -248px; background-size: 26px 928px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;"></i>
-                                                </div>
-                                                <div class="item5-3-2 lang" data-it-root="Share" data-it="Chia sẻ">
-                                                    Share
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <script>
-                            $(".item5-1").on("click", function() {
-                                if ($(".qwerty1").css("display") == "none") {
-                                    $(".item5-1-2").css({
-                                        "color": "#ffffff"
-                                    })
-                                    $(".qwerty1").css({
-                                        "filter": "invert(64%) sepia(6%) saturate(144%) hue-rotate(176deg) brightness(89%) contrast(97%)",
-
-                                        "display": "initial"
-                                    })
-                                    $(".o6fdk32").css({
-                                        "filter": "initial",
-                                        "display": "none"
-                                    })
-
-                                } else {
-                                    $(".item5-1-2").css({
-                                        "color": "#2d86ff"
-                                    })
-                                    $(".qwerty1").css({
-                                        "filter": "invert(36%) sepia(78%) saturate(1328%) hue-rotate(198deg) brightness(107%) contrast(101%)",
-                                        "display": "none"
-                                    })
-                                    $(".o6fdk32").css({
-                                        "filter": "invert(45%) sepia(56%) saturate(3341%) hue-rotate(199deg) brightness(99%) contrast(104%)",
-                                        "display": "inline-block"
-                                    })
-                                }
-
-                            })
-                        </script>
-
-
-
-
-
-
-                        <!--  -->
-                        <style>
-                            .item1-2 {
-                                user-select: none !important;
-
-                            }
-                        </style>
-                        <!--  -->
-                        <script>
-                            $(".gshiuhsdsc").on("click", function() {
-                                if ($(".item1-2-2").css("display") == "none") {
-                                    $(".item1-2-2").removeClass("ajpiewrj")
-                                    $(".item1-2-2").removeClass("vheouirhbn")
-                                    $(".item1-2-2").css("display", "flex")
-                                } else {
-                                    $(".item1-2-2").css("display", "none")
-                                }
-                            })
-                        </script>
-                        <!--  -->
-                        <!--  -->
-                    </div>
-
-                </div>
             </div>
             <!--  -->
             <!--  -->
@@ -2620,6 +2466,20 @@
         .jglkgjlwfd>svg path {
             fill: #2d86ff !important
         }
+
+        .story>div,
+        .create-status {
+            background-color: #18191a;
+
+        }
+
+        .item {
+            background: #18191a;
+        }
+
+        ._8_sp_lg {
+            background: #242526
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -2746,8 +2606,8 @@
     <!--  -->
     <script>
         ///
-        $("._7_sp_lg_su_a_1,.create-status-1-1").on('click', function() {
-            history.replaceState({}, null, "/cockbook/profile.php?id=<?php echo random_int(100000, 300000) ?>")
+        $(document).on('click', "._7_sp_lg_su_a_1,.create-status-1-1", function() {
+            history.replaceState({}, null, "/cockbook/profile.php?id=<?php echo $id_login ?>")
 
             $(".wrapper").css({
                 "display": "none"
@@ -2768,15 +2628,16 @@
                 "display": "flex"
             })
             $.ajax({
-                url: 'profiles.php',
+                url: 'profiles.php?id=<?php echo $id_login ?>',
                 method: 'get',
                 success: function(data) {
                     $(".profile-id").html(data)
                 }
             })
+            $("title").html("<?php echo $name_login ?> | Cockbook")
         })
         /// friends
-        $("._17ev_or_2").on("click", function() {
+        $(document).on("click", "._17ev_or_2, ._7_sp_lg_su_a_2", function() {
             history.replaceState({}, null, "/cockbook/friend")
             $(".wrapper").css({
                 "display": "none"
@@ -2809,7 +2670,23 @@
                 }
             })
         })
+        // other version send friends
+        $("._7_sp_lg_su_a_2").on("click", function() {
+            $("body #main .header-fixed ._8epx ._8epx_1 ._17ev_or_2 svg path").css({
+                "fill": "#2d88ff"
+            })
+        })
+        $(window).on("click", function() {
+            if (!$(event.target).is("._7_sp_lg_su_a_2")) {
+
+                $("body #main .header-fixed ._8epx ._8epx_1 ._17ev_or_2 svg path").css({
+                    "fill": "#a5a7ac"
+                })
+            }
+        })
         // 
+
+        //
         $("._17ev_or_1").on("click", function() {
             history.replaceState({}, null, "/cockbook/cockbook.php")
             $(".wrapper").css({
@@ -2834,6 +2711,9 @@
 
         })
         // 
+
+
+        //
         $("._17ev_or_3").on("click", function() {
             history.replaceState({}, null, "/cockbook/pages")
             $(".friends").css({
@@ -2858,7 +2738,10 @@
 
         })
         // 
-        $("._17ev_or_4").on("click", function() {
+
+
+        //
+        $(document).on("click", "._17ev_or_4, ._7_sp_lg_su_a_6", function() {
             history.replaceState({}, null, "/cockbook/watch")
             $(".friends").css({
                 "display": "none"
@@ -2879,6 +2762,24 @@
                 "display": "none"
             })
             $("title").html("Watch | Cockbook")
+
+            $("._7_sp_lg_su_a_6").on("click", function() {
+                $("body #main .header-fixed ._8epx ._8epx_1 ._17ev_or_4 svg path").css({
+                    "fill": "#2d88ff"
+                })
+            })
+            //
+
+
+            $(window).on("click", function() {
+                if (!$(event.target).is("._7_sp_lg_su_a_6")) {
+
+                    $("body #main .header-fixed ._8epx ._8epx_1 ._17ev_or_4 svg path").css({
+                        "fill": "#a5a7ac !important"
+                    })
+                }
+            })
+            //
 
         })
         // 
@@ -2985,9 +2886,13 @@
 
         })
         $(".dialog-logout-1-2-1").on("click", function() {
+            $.ajax({
+                url: 'logout.php',
+                method: 'POST',
+            })
             setTimeout(() => {
                 window.location.href = "http://localhost/cockbook/"
-            })
+            }, 1000)
         })
     </script>
     <!--  -->
@@ -3017,6 +2922,7 @@
         })
     </script>
     <!--  -->
+
     <script>
         const langs = document.querySelectorAll(".lang")
         const langslink = document.querySelectorAll(".lang-links")
@@ -3073,6 +2979,10 @@
             transition: opacity 0.15s ease-in;
         }
 
+        .please svg path {
+            fill: #2d88ff !important;
+        }
+
         @media screen and (max-width: 550px) {}
     </style>
     <script>
@@ -3084,10 +2994,59 @@
     </script>
     <script>
         $("._12epx_1").on('click', function() {
-            window.location.reload(true)
+            page= 1
+            $(".wrapper").css({
+                "display": "flex"
+            })
+            $(".ueiortu").css({
+                "display": "none"
+            })
+            $.ajax({
+                url: "home.php",
+                method: "GET",
+                success: function(result) {
+                    $("._8_sp_lg").empty()
+                    $(".lds-ring").css({
+                        "margin-top": 0,
+                        "opacity": "1"
+                    })
+                    setTimeout(() => {
+
+                        $(".lds-ring").css({
+                            "margin-top": "-200px",
+                            "opacity": "0"
+                        })
+                        $("._8_sp_lg").html(result).scrollTop(0)
+
+                    }, 1500)
+
+
+
+                }
+            })
+        })
+        $(window).on("click", function(e) {
+            if (!$(event.target).is("._17ev_or_1,._17ev_or_4")) {
+                $("._17ev_or_1").removeClass("please")
+                $("._17ev_or_4").removeClass("please")
+            }
+
         })
     </script>
-    <!--  -->
+<!--  -->
+        <style>
+            ._9epx_1>li,.search,._12epx_1 {
+                position: relative !important;
+                z-index: 1000 !important;
+        }
+        .lusasV {
+            position: relative !important; 
+            z-index: 1000 !important
+        }
+        </style>
+        <!--  -->
+        
+<!--  -->
 </body>
 
 </html>

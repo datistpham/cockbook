@@ -36,8 +36,16 @@
         }
     }
     if ($total <= $limit) {
-        echo '<script language="javascript">stopped = true</script>';
-        echo '<div class="end-status" style="text-align:center;padding:10px 0 20px 0">Da het tin vui long load lai </div>';
+        echo '
+        <style>
+            .wrap-ball {
+                display: none !important;
+            }
+        </style>
+        <script language="javascript">stopped = true</script>';
+        echo '<div class="end-status" style="text-align:center;padding:10px 0 20px 0">Da het tin vui long load lai </div>
+        
+        ';
     }
 
 ?>

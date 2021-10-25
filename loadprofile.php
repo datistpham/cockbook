@@ -32,7 +32,7 @@ $total = count($result);
 if ($total > $limit_profile){
     for ($i = 0; $i < $total - 1; $i++)
     {
-        echo '<div class="item1">';
+        echo '<div class="item2z">';
             echo $result[$i]['id'].' - '.$result[$i]['content'];
         echo '</div>';
     }
@@ -40,7 +40,13 @@ if ($total > $limit_profile){
 else{
     for ($i = 0; $i < $total; $i++)
     {
-        echo '<div class="item1">';
+        echo '
+        <style>
+            .balls {
+                display: none !important;
+            }
+        </style>
+        <div class="item2z">';
             echo $result[$i]['id'].' - '.$result[$i]['content'];
         echo '</div>';
     }

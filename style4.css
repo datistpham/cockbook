@@ -25,7 +25,6 @@
 
 .propro * {
   font-family: sans-serif !important;
-  color: #e4e6eb !important;
 }
 
 .propro .profile-header {
@@ -43,7 +42,6 @@
 
 .propro .profile-header .profile-header-sub {
   border-radius: 7px;
-  width: 80%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -116,7 +114,7 @@
 
 .propro .profile-header .profile-header-sub .profile-name .name-info {
   font-size: 32px;
-  color: #e4e6eb !important;
+  color: #e4e6eb;
   position: relative;
   left: -10%;
   font-weight: 700;
@@ -171,7 +169,6 @@
 
 .propro .profile-header .profile-header-sub .profile-name .add-story .add-story1 span {
   font-family: 'Roboto', sans-serif !important;
-  font-weight: 600;
 }
 
 .propro .section-main {
@@ -374,7 +371,7 @@
 
 .propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo {
   margin: 0 5px;
-  width: 228px;
+  width: 230px;
   height: 100%;
   border: 1px solid #3d3f41;
   border-radius: 7px;
@@ -382,8 +379,7 @@
 }
 
 .propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo img {
-  width: 228px;
-  height: 228px;
+  width: 100%;
   border-radius: 6px;
 }
 
@@ -477,7 +473,6 @@
   background: #3a3b3c;
   border-radius: 7px;
   height: 36px;
-  font-weight: 600;
 }
 
 .propro .section-main .section-content .super-content .biology .edit-bio .photo-self {
