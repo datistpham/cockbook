@@ -1,12 +1,62 @@
+<script async>
+    window.addEventListener('load', function(e) {
+        if (navigator.onLine) {
+            console.log('We\'re online!');
+        } else {
+            console.log('We\'re offline...');
+        }
+    }, false);
+
+    window.addEventListener('online', function() {
+       $(".qwgewewgw").css({"display":"block"})
+       $(".dfrrgferehterwgnte").css({"display":"none"})
+       setTimeout(()=> {
+       $(".qwgewewgw").css({"display":"none"})
+
+        },5000)
+
+    }, false);
+    
+    window.addEventListener('offline', function(e) {
+        
+       $(".qwgewewgw").css({"display":"none"})
+            
+            $(".dfrrgferehterwgnte").css({"display":"block"})
+         
+    }, false);
+</script>
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 if (!isset($_COOKIE['user'])) {
     header("Location: http://localhost/cockbook/");
 }
+
 session_start();
 $_SESSION['user'] = $_COOKIE['user'];
-
+$asl = $_SESSION['user'];
 require 'connect.php';
 $conne = connect();
+$sql_11 = "SELECT * FROM mode";
+$sql_19 = "SELECT * FROM theme_status limit 10";
+$query_19 = mysqli_query($conne, $sql_19);
+$query_11 = mysqli_query($conne, $sql_11);
+while ($row = mysqli_fetch_array($query_11)) {
+    $as = $row["state"];
+}
+
+
+if ($as === 0) {
+    require "check_dark.php";
+} else if ($as === 1) {
+    require "check_light.php";
+}
+//
+
+
+
+
 
 $detect_account = "SELECT * from user_information where token_user=" . $_SESSION["user"] . ""; // declare 1 row
 $query_de = mysqli_query($conne, $detect_account);
@@ -14,10 +64,20 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     if ($rowzz['token_user'] == $_COOKIE["user"]) {
         $name_single_login = $rowzz['surname'];
         $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
-        $id_login = $rowzz['id'];
+        $id_login = $rowzz['id']; // 1
         $storyz = $rowzz['story'];
+        $avatarr = $rowzz['avatar'];
         break;
     }
+}
+if (isset($_SESSION['user'])) {
+    echo '
+        <style>
+        .message_vippro {
+            justify-content: flex-start;
+        }
+        </style>
+    ';
 }
 ?>
 <!DOCTYPE html>
@@ -25,32 +85,34 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
 
 <head>
-<script src='7hDInKqY9Bt.js' async="1" crossorigin="anonymous"></script>
+    <script async src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
     <script type="module">
         // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDRNsk8eji8J6BBWCSIzQ9HcdGWm6opN4k",
-    authDomain: "inlaid-goods-323805.firebaseapp.com",
-    projectId: "inlaid-goods-323805",
-    storageBucket: "inlaid-goods-323805.appspot.com",
-    messagingSenderId: "795778883777",
-    appId: "1:795778883777:web:8e3b6de48b424f908ab440",
-    measurementId: "G-BJ2HC7403W"
-  };
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDRNsk8eji8J6BBWCSIzQ9HcdGWm6opN4k",
+                authDomain: "inlaid-goods-323805.firebaseapp.com",
+                projectId: "inlaid-goods-323805",
+                storageBucket: "inlaid-goods-323805.appspot.com",
+                messagingSenderId: "795778883777",
+                appId: "1:795778883777:web:8e3b6de48b424f908ab440",
+                measurementId: "G-BJ2HC7403W"
+            };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,12 +120,17 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="style3.css">
     <link rel="stylesheet" href="style4.css">
-
-    <link rel='shortcut icon' type='image/x-icon' href='c-programe.png' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel='shortcut icon' type='image/x-icon' href='http://localhost/cockbook/c-programe.png' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="iwrjiojrjaweoiaf.js" async="1" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src='7hDInKqY9Bt.js' async="1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icheck-bootstrap@3.0.1/icheck-bootstrap.min.css">
+
     <title>Cockbook</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
@@ -87,7 +154,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         }
 
         .item {
-            background: #18191a !important;
+            background: #242526 !important;
         }
 
         #main {
@@ -171,6 +238,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         ._9epx_2 {
             position: relative;
 
+        }
+
+        .jfoifjowiejo {
+            border-radius: 8px;
         }
 
         ._9epx_2 div {
@@ -402,7 +473,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             border-radius: 50%;
             animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
             border-color: #2196F3 transparent transparent transparent;
-            
+
         }
 
         .lds-ring div:nth-child(1) {
@@ -426,26 +497,28 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 transform: rotate(360deg);
             }
         }
-        
-        
+
+
         .blur-aovcl {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color:rgba(0, 0, 0, 0.45);
+            background-color: rgba(0, 0, 0, 0.45);
             z-index: 900;
         }
+
         .post-status {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             width: 500px;
             height: auto;
             background: #242526;
             border-radius: 8px;
             z-index: 990;
         }
+
         .title-post-status {
             width: 100%;
             height: 60px;
@@ -456,6 +529,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             border-bottom: 1px solid #2f3031;
 
         }
+
         .title-post-status h3 {
             font-size: 24px;
             font-weight: 600;
@@ -463,11 +537,13 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             vertical-align: middle;
             line-height: 60px
         }
+
         .main-status {
             margin: 0 16px;
             padding: 16px 0;
 
         }
+
         .main-status-section1 {
             width: 100%;
             display: flex;
@@ -475,155 +551,1105 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             gap: 10px;
             flex-direction: row;
         }
+
         .main-status-section2 {
             padding: 16px 0;
         }
+
         .gaygsdfdf {
             border-radius: 50%;
             display: flex;
             justify-content: center;
-            align-items: center;    
+            align-items: center;
         }
+
         .gaygsdfdf img {
             border-radius: 50%;
         }
+
         .jsiufhainskd {
             display: flex;
             flex-direction: column;
             gap: 3px;
-            }
-            .enter-content-status {
-                width: 100%;
-                border: none;
-                outline: none;
-                background-color: unset;
-                font-size: 24px;
-                min-height: 60px;
-                word-wrap: break-word;
-                font-family: sans-serif !important;
-                font-weight: 500;
-            }
-            .main-status-section3 {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .main-status-section3>div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .main-status-section4 {
-                width: 100%;
-                height: 56px;
-                display: flex;
-                padding: 8px;
-                justify-content: space-between;
-                align-items: center;
-                border-radius: 8px;
-                border: 1px solid #3e4042;
-                margin: 16px 0;
-            }
-.main-status-section4-2 {
-    display: flex;
-    flex-direction: row;
-}
-            .main-status-section4-2>div {
-                width: 40px;
-                height: 40px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-            }
-            .main-status-section4-2>div>div {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: all 0.25s ease-in-out;
-            }
-            .main-status-section3>div {
-                cursor: pointer;
-            }
-            .main-status-section4-2>div>div:hover {
-                background-color: #3a3b3c;
-            }
-.main-status-section5 {
-    width: 100%;
-    height: 36px;
-    border-radius: 8px;
-}
-.main-button-section5 {
-    background-color: #505151;
-    color: #858686;
-    cursor: not-allowed;
-}
-.close-status {
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.25s linear;
-    right: 0;
-    background-color: #3a3b3c;
-    top:3%;
-    right:3%;
-    cursor: pointer;
-}
-.close-status i {
-    filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
-}
+        }
+
+        .enter-content-status {
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: unset;
+            font-size: 24px;
+            min-height: 60px;
+            word-wrap: break-word;
+            font-family: sans-serif !important;
+            font-weight: 500;
+        }
+
+        .main-status-section3 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .main-status-section3>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-status-section4 {
+            width: 100%;
+            height: 56px;
+            display: flex;
+            padding: 8px;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            border: 1px solid #3e4042;
+            margin: 16px 0;
+        }
+
+        .main-status-section4-2 {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .main-status-section4-2>div {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .main-status-section4-2>div>div {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.25s ease-in-out;
+        }
+
+        .main-status-section3>div {
+            cursor: pointer;
+        }
+
+        .main-status-section4-2>div>div:hover {
+            background-color: #3a3b3c;
+        }
+
+        .main-status-section5 {
+            width: 100%;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .main-button-section5 {
+            background-color: #505151;
+            color: #858686;
+            cursor: not-allowed;
+        }
+
+        .close-status {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.25s linear;
+            right: 0;
+            background-color: #3a3b3c;
+            top: 3%;
+            right: 3%;
+            cursor: pointer;
+        }
+
+        .close-status i {
+            filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
+        }
+
+        /*  */
+        /*  */
+        /*  */
+        .cockbook_mess {
+            position: absolute !important;
+            width: 350px;
+            height: auto;
+            background-color: #000000;
+            z-index: 99999999999999999999999;
+            right: 1%;
+            top: 56px;
+            border-radius: 8px;
+            background-color: #242526 !important;
+        }
+
+        .ifsjioedsed {
+            width: 100%;
+            padding: 12px 16px 8px 16px;
+            font-family: sans-serif !important;
+            font-size: 24px;
+        }
+
+        .search-message {
+            width: 100%;
+            padding: 8px 16px 16px 16px;
+            border-radius: 80px;
+
+        }
+
+        .search-message input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: #3a3b3c;
+            padding: 12px 16px;
+            border-radius: 80px;
+            font-family: sans-serif !important;
+            font-weight: 500;
+        }
+
+        .mess {
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
 
 
+        }
+
+        .mess-avt {
+            width: 56px;
+            height: 56px;
+
+        }
+
+        .mess-avt .image-avt {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .wrap-mess-1 {
+            padding: 6px 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .search-result-table {
+
+            width: 320px;
+            position: absolute;
+
+            top: 57px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 900;
+            background-color: #242526;
+            display: flex;
+            flex-direction: column;
+            height: max-content;
+            border-radius: 8px;
+            border: 1px solid #e4e6eb;
+        }
+
+        .search-result-table>div {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+        }
+
+        .search-result-table-1-1 {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #3a3b3c;
+            cursor: pointer;
+        }
+
+        .history-search {
+            border-radius: 8px;
+            transition: all 0.2s linear;
+            cursor: pointer;
+        }
+
+        .history-search:hover {
+            background-color: #3a3b3c;
+        }
+
+        .history-search-1 {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-search-1-1 {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+
+        }
+
+        .history-search-1-1-1 {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .history-search-1-1-1 img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .delete-recent-search i {
+            filter: invert(98%) sepia(2%) saturate(646%) hue-rotate(187deg) brightness(96%) contrast(91%);
+            transform: scale(1.05);
+
+        }
+
+        .delete-recent-search {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-result-table-1-1 svg * {
+            fill: #dbdee1;
+        }
+
+        .guihfggefdpjgihffjg {
+            width: 100%;
+            height: 100%;
+        }
+        .state-network {
+            position: fixed !important;
+            z-index: 999;
+            bottom: 10px;
+            left: 10px;
+            border-radius: 8px;
+            background-color: #fff;
+
+        }
+        .hghgdfdfrjwsd {
+            width: 300px;
+            height: 36px;
+            box-sizing: content-box;
+            padding: 16px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .hghgdfdfrjwsd {
+        
+        }
+        .fhujfiffdddfsfd {
+            font-family: sans-serif !important;
+            font-weight: 500;
+            color: #000 !important;
+            font-size: 14px;
+        }
+        .fiogjfggjifgdfijfgd {
+            font-family: sans-serif !important;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .iofjgdfgjkjdsjfnd {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;    
+        }
+        .dfrrgferehterwgnte,.qwgewewgw {
+            display: none;
+        }
+        .igoifdofdss i {
+            filter: invert(34%) sepia(91%) saturate(2728%) hue-rotate(102deg) brightness(103%) contrast(95%);
+        }
     </style>
 
 </head>
 
 <body id="all-full-page">
-<div class="blur-aovcl" style="display:none"></div>
+    <div class="state-network dfrrgferehterwgnte">
+        <div class="hghgdfdfrjwsd">
+            <div class="igoifdofdssd">
+                <svg viewBox="0 0 24 24" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 crt8y2ji" height="24" width="24"><path d="M23.7805.2195c.2925.293.2925.768 0 1.061l-22.5 22.5C1.134 23.927.942 24 .75 24c-.192 0-.384-.073-.5305-.2195-.2925-.293-.2925-.768 0-1.061l12.1967947-12.1971509c-2.3773758-.1150468-4.79162015.7286756-6.6038447 2.5401009-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.024 0-1.414 2.65728981-2.65728981 6.3696459-3.62280965 9.8005664-2.90852144l2.430738-2.43186193C11.7816792 4.58111626 6.15198938 5.65271062 2.27735 9.52735c-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.0235 0-1.414 4.6714534-4.67191574 11.571522-5.78608437 17.3096457-3.34843552L22.7195.2195c.293-.2925.768-.2925 1.061 0zM12 18.5c.6905 0 1.25.5595 1.25 1.25S12.6905 21 12 21s-1.25-.5595-1.25-1.25.5595-1.25 1.25-1.25zm1.4175-4.81495c.9705.2455 1.8905.741 2.6485 1.499.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.512-.0975-.707-.293-.7835333-.7835333-1.8301422-1.1445778-2.8581093-1.0880116L11.574 15.52855l1.8435-1.8435zm3.8154-3.8154c.848.4725 1.649 1.059 2.3685 1.779.391.39.391 1.023 0 1.414-.195.195-.451.293-.707.293-.2555 0-.5115-.098-.707-.293-.7285-.728-1.5575-1.291-2.439-1.7085zm2.1908-2.1908l1.4425-1.4425c.8.545 1.5615 1.168 2.2705 1.877.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.5115-.0975-.707-.293-.5933333-.59333333-1.2283333-1.11861111-1.895162-1.57959491L19.4237 7.67885l1.4425-1.4425z"></path></svg>
+            </div>
+            <div class="djfgfjfkgdfis">
+                <p class="fhujfiffdddfsfd">You are currently offine.</p>
+            </div>
+            <div class="ifjhfigjfjd">
+                <a class="fiogjfggjifgdfijfgd" href="http://localhost/cockbook/cockbook.php">Refresh</a>
+            </div>
+            <div class="iogfjrigjrwiojg">
+                <div class="iofjgdfgjkjdsjfnd">
+                    <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/I2I8fiyTBO8.png&quot;); background-position: -130px -74px; background-size: 190px 190px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="state-network qwgewewgw">
+        <div class="hghgdfdfrjwsd">
+            <div class="igoifdofdssd">
+                <i data-visualcompletion="css-img" class="hu5pjgll pya715lg" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/zQwRoodXQgd.png&quot;); background-position: 0px -222px; background-size: 34px 442px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
+            </div>
+            <div class="djfgfjfkgdfis">
+                <p class="fhujfiffdddfsfd">Your connection was stored.</p>
+            </div>
+            <div class="iogfjrigjrwiojg">
+                <div class="iofjgdfgjkjdsjfnd">
+                    <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/I2I8fiyTBO8.png&quot;); background-position: -130px -74px; background-size: 190px 190px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".iofjgdfgjkjdsjfnd").on("click", function() {
+            $(".state-network").css({"display":"none"})
+        })
+    </script>
+    <script async>
+        let keyvip = (Cookies.get("user"))
+    </script>
+    <div class="guihfggefdpjgihffjg" style="display:none">
+
+    </div>
+    <div class="search-result-table" style="display:none">
+        <div class="search-result-table-1">
+            <div class="search-result-table-1-1">
+                <svg viewBox="0 0 20 20" width="1em" height="1em" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv jnigpg78 odw8uiq3">
+                    <g fill-rule="evenodd" transform="translate(-446 -350)">
+                        <g fill-rule="nonzero">
+                            <path d="M100.249 201.999a1 1 0 0 0-1.415-1.415l-5.208 5.209a1 1 0 0 0 0 1.414l5.208 5.209A1 1 0 0 0 100.25 211l-4.501-4.501 4.5-4.501z" transform="translate(355 153.5)"></path>
+                            <path d="M107.666 205.5H94.855a1 1 0 1 0 0 2h12.813a1 1 0 1 0 0-2z" transform="translate(355 153.5)"></path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="recent-search">
+                <p>Recent Searches</p>
+            </div>
+        </div>
+        <div class="history-search">
+            <div class="history-search-1">
+                <div class="history-search-1-1">
+                    <div class="history-search-1-1-1">
+                        <img src="https://scontent.fhph1-2.fna.fbcdn.net/v/t1.6435-1/cp0/p56x56/243273887_410309000455177_4700856354523978893_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=HmGOmGKKEVQAX8aChL6&_nc_ht=scontent.fhph1-2.fna&oh=2b85d0653aa46ab6bccd3f8f90513e53&oe=619F7923" alt="">
+                    </div>
+                    <div class="history-search-1-1-2">
+                        <p>Giang Truong</p>
+                    </div>
+
+                </div>
+                <div class="delete-recent-search">
+                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yN/r/I2I8fiyTBO8.png&quot;); background-position: -130px -74px; background-size: 190px 190px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i>
+                </div>
+                <script async>
+                    $(".delete-recent-search").on("click", function() {
+                        $(".history-search").css({
+                            "display": "none"
+                        })
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="cockbook_mess" style="display:none">
+        <div class="cockbook_mess_title">
+            <h2 class="ifsjioedsed">Cockbook Message</h2>
+        </div>
+        <div class="search-message">
+            <input type="text" class="search-mess-cockbook" placeholder="Search message Cockbook">
+        </div>
+
+        <!--  -->
+        <div class="mess">
+            <div class="wrap-mess-1">
+
+                <div class="mess-avt">
+                    <img class="image-avt" src="https://scontent.fhph1-2.fna.fbcdn.net/v/t1.6435-1/p320x320/243273887_410309000455177_4700856354523978893_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=pYD6YP41GPYAX_W_QKq&tn=kmKm_M7eP4L2RpoE&_nc_ht=scontent.fhph1-2.fna&oh=789c3511f3dcf815086d58a2fccd8d7a&oe=618F8E38" alt="">
+                </div>
+                <div class="name-avt">
+                    <p class="sub-name-avt">Nguyen Thao</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!--  -->
+    </div>
+    <!--  -->
+
+
+
+    <!--  -->
+    <style>
+        .frame-message {
+            display: none;
+            position: absolute;
+            z-index: 9999999;
+            width: 338px;
+            height: 455px;
+            bottom: 0;
+            right: 2%;
+            border-radius: 8px;
+
+            background-color: #242526;
+        }
+
+        .jfoifjowiejo {
+            width: 100%;
+            padding: 8px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            border-bottom: 1px solid #2f3031;
+            border-top: 1px solid #2f3031;
+        }
+
+        .jfoifjowiejo .jirioejgag {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-content: center;
+            align-items: center;
+        }
+
+        .jfoifjowiejo .jirioejgag .hfjlejpeqrwf {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        .jfoifjowiejo .jirioejgag .hfjlejpeqrwf img {
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .jirioejgag {
+            height: 50px !important;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 0 5px !important;
+            transition: all 0.25s ease;
+
+        }
+
+        .ieuogrimgcs>div {
+            cursor: pointer;
+
+        }
+
+        .jirioejgag:hover {
+            background-color: #3a3b3c !important;
+        }
+
+        .jfoifjowiejo .jirioejgag .hfjlejpeqrwf .diejwoads {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .ieuogrimgcs {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .ieuogrimgcs>div {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: all 0.25s ease-in;
+        }
+
+        .diejwoads {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .ieuogrimgcs>div:hover {
+            background-color: #3a3b3c;
+
+        }
+
+        .sjidjaeadfs {
+            margin: 0 !important;
+        }
+
+        .create-status-2>div p {
+            margin: 0 !important;
+        }
+    </style>
+    <!-- frame message -->
+    <div class="frame-message">
+        <div class="jfoifjowiejo">
+            <div class="jirioejgag">
+                <div class="hfjlejpeqrwf">
+                    <img src="https://scontent.fhph1-2.fna.fbcdn.net/v/t1.6435-1/p320x320/243273887_410309000455177_4700856354523978893_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=pYD6YP41GPYAX_W_QKq&tn=kmKm_M7eP4L2RpoE&_nc_ht=scontent.fhph1-2.fna&oh=789c3511f3dcf815086d58a2fccd8d7a&oe=618F8E38" width="36px" height="36px" alt="">
+                </div>
+                <div class="diejwoads">
+                    <p class="sjidjaeadfs">Nguyen Thao</p>
+                </div>
+
+            </div>
+            <style>
+                .tooltip {
+                    position: relative;
+                    z-index: 999999999999999999;
+
+                }
+
+                .test-po+.tooltip>.tooltip-inner {
+                    background-color: #73AD21;
+                    color: #FFFFFF;
+                    border: 1px solid green;
+                    padding: 15px;
+                    font-size: 20px;
+                    z-index: 999999999999999999;
+                }
+            </style>
+            <div class="ieuogrimgcs">
+                <div class="jdiruwiorjwf-1 test-po" data-toggle="tooltip" data-placement="top" title="Minimize chat">
+                    <svg width="26px" height="26px" viewBox="-4 -4 24 24">
+                        <line x1="2" x2="14" y1="8" y2="8" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line>
+                    </svg>
+                </div>
+                <div class="mfiifriwrjsf test-po" data-toggle="tooltip" data-placement="top" title="Close chat">
+                    <svg width="26px" height="26px" viewBox="-4 -4 24 24">
+                        <line x1="2" x2="14" y1="2" y2="14" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line>
+                        <line x1="2" x2="14" y1="14" y2="2" stroke-linecap="round" stroke-width="2" stroke="#bec2c9"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <style>
+            .content-message {
+                width: 100%;
+                height: 347px;
+                overflow: auto
+            }
+
+            .content-message>div {
+                width: calc(100% - 24px);
+                display: flex;
+                justify-content: flex-end;
+                padding: 4px 12px;
+                border-radius: 80px;
+                margin: 10px;
+                ;
+            }
+
+            .content-message>div>p {
+                padding: 3px 5px;
+            }
+        </style>
+        <script async>
+
+        </script>
+
+        <!--  -->
+        <div class="content-message">
+            <?php
+            $kakashi = "SELECT * FROM message_vippro";
+            $query_op = mysqli_query($conne, $kakashi);
+            while ($rowxc = mysqli_fetch_assoc($query_op)) {
+                if ($_COOKIE['user'] == $rowxc['detect_key']) {
+                    $pfjeg = $rowxc['detect_key'];
+                    echo '
+                    <style>
+                    .a' . "$pfjeg" . ' {
+
+                        justify-content: flex-start !important;
+                    }   
+                    
+                    </style>
+                    ';
+                    break;
+                }
+            }
+            while ($rowxc = mysqli_fetch_assoc($query_op)) {
+
+                echo "
+                <div id='asvb' class='a" . $asl . "'>
+                <p class='received'>
+                    " . $rowxc['send_message'] . "
+                </p>
+             </div>
+        ";
+            }
+
+
+            ?>
+        </div>
+        <!--  -->
+        <style>
+            .send-message {
+                width: 100%;
+                height: calc(455px - 68px - 348px);
+                border-top: 1px solid #2f3031;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .thioauraitja {
+                border: none;
+                outline: none;
+                background-color: #3a3b3c;
+                border-radius: 80px;
+                height: 100%;
+                width: 250px;
+                text-indent: 12px;
+                font-family: sans-serif !important;
+                font-weight: 500;
+            }
+
+            .wrap_mess {
+                height: 100%;
+            }
+
+            .symbol-send svg path {
+                fill: #666768;
+            }
+
+            .symbol-send {
+                cursor: pointer;
+            }
+        </style>
+        <!--  -->
+
+
+        <!--  -->
+        <div class="send-message">
+            <div class="send-message">
+                <div class="wrap_mess">
+                    <input type="text" class="thioauraitja" placeholder="Aa">
+
+                </div>
+                <div class="symbol-send">
+                    <svg class="crt8y2ji" width="20px" height="20px" viewBox="0 0 24 24">
+                        <path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.8132856,11.0605983 22.3423792,10.4322088 21.714504,10.118014 L4.13399899,1.16346272 C3.34915502,0.9 2.40734225,1.00636533 1.77946707,1.4776575 C0.994623095,2.10604706 0.8376543,3.0486314 1.15159189,3.99121575 L3.03521743,10.4322088 C3.03521743,10.5893061 3.34915502,10.7464035 3.50612381,10.7464035 L16.6915026,11.5318905 C16.6915026,11.5318905 17.1624089,11.5318905 17.1624089,12.0031827 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z" fill-rule="evenodd" stroke="none"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+    <script async>
+        $("._9epx_2 _75_re_21_sa_2").on("click", function() {
+            if ($(".cockbook_mess").css("display") == "none") {
+                $(".cockbook_mess").css({
+                    "display": "block"
+                })
+            } else {
+                $(".cockbook_mess").css({
+                    "display": "none"
+                })
+
+            }
+        })
+    </script>
+    <!--  -->
+    <div class="blur-aovcl" style="display:none"></div>
     <div class="post-status" style="display:none">
         <div class="close-status">
-            
-                <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-            
+
+            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+
         </div>
         <div class="title-post-status">
             <h3 class="content-title">
                 Create post
             </h3>
+            <style>
+                .hfbjdjbdf {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background-color: #3a3b3c;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                }
+
+                .hfbjdjbdf i {
+                    filter: invert(95%) sepia(4%) saturate(195%) hue-rotate(185deg) brightness(102%) contrast(86%);
+
+                }
+            </style>
         </div>
         <div class="main-status">
             <div class="main-status-section1">
-                <div class="gaygsdfdf" ><img src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.60.60a/p60x60/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=7206a8&_nc_ohc=MvfZyA4L2DMAX-cq8KA&_nc_ht=scontent.fhph1-3.fna&oh=d227aa22822253604a8d8a0c2ec090d0&oe=619D9468" width="40px" height="40px" alt=""></div>
+                <div class="gaygsdfdf"><img src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.60.60a/p60x60/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=7206a8&_nc_ohc=MvfZyA4L2DMAX-cq8KA&_nc_ht=scontent.fhph1-3.fna&oh=d227aa22822253604a8d8a0c2ec090d0&oe=619D9468" width="40px" height="40px" alt=""></div>
                 <div class="jsiufhainskd">
                     <p style="font-size: 12px"><?php echo $name_login ?></p>
                     <div class="select-audience" style="border-radius:5px;width:max-content;font-size: 12px;padding: 4px 5px;background-color: #3a3b3c">Public</div>
                 </div>
             </div>
             <div class="main-status-section2">
+
+                <!--  -->
+                <div class="hfbjdjbdf" style="display:none">
+                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                </div>
+                <!--  -->
+
                 <input type="text" placeholder="<?php echo "What's on your mind $name_single_login ?" ?>" class="enter-content-status">
+            </div>
+            <style>
+                .frame-image-upload {
+                    width: 100%;
+                    min-height: 190px;
+                    max-height: auto;
+                    background-color: #323436;
+                    margin: 15px 0;
+                    border-radius: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    position: relative;
+                }
+
+                .frame-image-upload:hover {
+                    background-color: #3a3b3c;
+                    transition: all 0.25s ease;
+                }
+
+                .frame-image-upload-1 {}
+
+                .frame-image-upload-1-1 {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    background-color: #47494a;
+                    border-radius: 50%;
+                }
+
+                .file_hidden {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    filter: alpha(opacity=0);
+                    cursor: pointer;
+                }
+
+                .frame-image-upload-1-1 i {
+                    filter: invert(95%) sepia(4%) saturate(195%) hue-rotate(185deg) brightness(102%) contrast(86%);
+                }
+
+                .hu5pjgll {}
+
+                .lzf7d6o1 {}
+
+                .frame-image-upload-2 {}
+
+                .frame-image-upload-3 {
+                    font-size: 12px;
+                    color: #b0b3b8
+                }
+
+                .show_image_1 {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .close-frame-image-upload {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    z-index: 999;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 50%;
+                    background-color: #3a3b3c;
+                    right: 10px;
+                    top: 10px;
+                }
+
+                .close-frame-image-upload i {
+                    filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
+                }
+            </style>
+            <div class="frame-image-upload" style="display:none">
+                <div class="close-frame-image-upload">
+                    <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                </div>
+                <input type="file" class="file_hidden">
+                <div class="frame-image-upload-1">
+                    <div class="frame-image-upload-1-1">
+                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/Tyg3tpxFlcK.png&quot;); background-position: 0px -600px; background-size: 50px 922px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                    </div>
+                </div>
+                <div class="frame-image-upload-2">
+                    Add Photos/Videos
+                </div>
+                <div class="frame-image-upload-3">
+                    or drag and drop
+                </div>
+                <style>
+                    .show_image_update {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+
+
+                    .iourwoirujaoirawjr {
+                        width: max-content;
+                        height: max-content;
+                    }
+
+                    .iourwoirujaoirawjr>img,
+                    .ut8arjowidjsfgs,
+                    .gjsistrjwais {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 10px;
+                    }
+
+                    .ut8arjowidjsfgs,
+                    .gjsistrjwais {
+                        background-color: #3e4042;
+                        display: flex !important;
+                        justify-content: center !important;
+                        align-content: center !important;
+                        align-items: center !important;
+                    }
+
+                    .ut8arjowidjsfgs i,
+                    .gjsistrjwais i {
+                        filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
+                    }
+
+                    .jsiufhainskd * {
+                        font-family: sans-serif !important;
+                        font-weight: 600;
+                    }
+
+                    .asfjfoijwoirda {
+                        width: 100% !important;
+                        display: flex;
+                        flex-direction: row !important;
+                        justify-content: space-around !important;
+                        align-items: center !important;
+                        height: 38px !important;
+                    }
+                </style>
+
+
+                <script async>
+                    $(".frame-image-upload").on("click", function() {
+                        $.ajax({
+                            url: 'handle_img.php',
+                            method: "POST",
+
+                            success: function(result) {
+                                $(".frame-image-upload").html(result)
+                            }
+                        })
+                    })
+                </script>
+
+
             </div>
             <div class="main-status-section3" style="width:100%">
                 <div class="main-status-section3-1"><img height="38" alt="" referrerpolicy="origin-when-cross-origin" src="	https://www.facebook.com/images/composer/SATP_Aa_square-2x.png"></div>
+
+                <div class="asfjfoijwoirda" style="display:none">
+                    <div class="ut8arjowidjsfgs">
+                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/CcUh0b7059j.png&quot;); background-position: -18px -662px; background-size: 50px 860px; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                    </div>
+                    <?php
+                    while ($rowzzzzzzz = mysqli_fetch_array($query_19)) {
+
+
+                        ?>
+
+
+                        <div class="iourwoirujaoirawjr <?php echo 'abmnc' . $rowzzzzzzz['id'] ?>">
+                            <img class="<?php echo $rowzzzzzzz['res'] ?>" src="<?php echo $rowzzzzzzz['them_specified'] ?>" alt="">
+                        </div>
+
+
+                    <?php
+                    }
+                    ?>
+                    <div class="gjsistrjwais">
+                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/kxJz77IWyy2.png&quot;); background-position: 0px -294px; background-size: 26px 434px; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                    </div>
+                </div>
+                <!--  -->
+
+                <script async>
+                    $(document).on("click", ".asfjfoijwoirda img", function() {
+                        ($(event.target).attr('class'))
+                        $.ajax({
+                            url: 'process_theme.php',
+                            method: 'POST',
+                            data: {
+                                theme_specified: ($(event.target).attr('class'))
+                            },
+                            success: function(result) {
+                                $(".main-status-section2").css({
+                                    "height": "220px",
+                                    "background-image": `url(${result})`,
+                                    "margin": "16px 0"
+                                })
+                                $(".hfbjdjbdf").css({
+                                    "display": "flex"
+                                })
+
+                                $(".enter-content-status").css({
+                                    "text-align": "center"
+                                })
+                            }
+
+                        })
+                    })
+                    $(".hfbjdjbdf").on("click", function() {
+                        $(this).css({
+                            "display": "none"
+                        })
+                        $(".main-status-section2").css({
+                            "height": "60px",
+                            "background-image": "none"
+                        })
+                        $(".enter-content-status").css({
+                            "text-align": "left"
+                        })
+
+                    })
+                </script>
+                <style>
+
+                </style>
+                <!--  -->
                 <div class="main-status-section3-2"><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -190px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div>
 
             </div>
             <!--  -->
+            <script async>
+                $(".main-status-section3-1").on("click", function() {
+                    $(".asfjfoijwoirda").css({
+                        "display": "flex"
+                    })
+                    $(".main-status-section3-1").css({
+                        "display": "none"
+                    })
+                    $(".fjkdkgnjkffljdgbn").css({
+                        "display": "none"
+                    })
+                })
+                $(".ut8arjowidjsfgs").on("click", function() {
+                    $(".main-status-section3-1").css({
+                        "display": "flex"
+                    })
+                    $(".asfjfoijwoirda").css({
+                        "display": "none"
+                    })
+                    $(".fjkdkgnjkffljdgbn").css({
+                        "display": "flex"
+                    })
+
+                })
+            </script>
+            <!--  -->
             <div class="main-status-section4">
-                <div style="cursor:pointer" class="main-status-section4-1"><p style="font-size: 14px;font-family:sans-serif !important;font-weight: 500;" class="jdaawffawe">Add to your post</p></div>
+                <div style="cursor:pointer" class="main-status-section4-1">
+                    <p style="font-size: 14px;font-family:sans-serif !important;font-weight: 500;" class="jdaawffawe">Add to your post</p>
+                </div>
                 <div class="main-status-section4-2">
-                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -268px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
-                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -242px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
-                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/jFFXSLBdcxF.png&quot;); background-position: 0px -234px; background-size: 26px 260px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
-                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/U0nt1n3ZL3O.png&quot;); background-position: 0px -104px; background-size: 26px 280px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
-                    <div class="main-status-section4-2-1"><div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -164px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div></div>
+                    <div class="main-status-section4-2-1 upload_image_ fjkdkgnjkffljdgbn">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/Tyg3tpxFlcK.png&quot;); background-position: 0px -422px; background-size: 50px 922px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
+                    <div class="main-status-section4-2-1">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -268px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
+                    <div class="main-status-section4-2-1">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -242px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
+                    <div class="main-status-section4-2-1">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yF/r/jFFXSLBdcxF.png&quot;); background-position: 0px -234px; background-size: 26px 260px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
+                    <div class="main-status-section4-2-1">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/U0nt1n3ZL3O.png&quot;); background-position: 0px -104px; background-size: 26px 280px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
+                    <div class="main-status-section4-2-1">
+                        <div><i data-visualcompletion="css-img" class="hu5pjgll bixrwtb6" style="height: 24px; width: 24px; background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/AkEan132Ikr.png&quot;); background-position: 0px -164px; background-size: 34px 1638px; background-repeat: no-repeat; display: inline-block;"></i></div>
+                    </div>
 
                 </div>
             </div>
@@ -634,34 +1660,21 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         </div>
     </div>
     <!--  -->
-    <script>
-        $(".enter-content-status").on("keyup", function() {
-            if($(this).val()=="") {
-                $(".main-button-section5").attr("disable",true).css({"background-color":"#505151","color":"#858686","cursor":"not-allowed"})
-            }
-            else {
-                $(".main-button-section5").removeAttr("disable").css({"background-color":"rgb(45, 136, 255)","color":"#ffffff","cursor":"pointer"})
 
-            }
-        })
-        $(".close-status").on("click", function() {
-            $(".post-status").css({"display":"none"})
-            $(".blur-aovcl").css({"display":"none"})
-        })
-        
-    </script>
     <!--  -->
-    
+
     <!--  -->
-   
-    
+
+    <!--  -->
+
+
     <div class="lds-ring">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
     </div>
-    <script>
+    <script async>
         $(window).on("load", function() {
             $.ajax({
                 url: "home.php",
@@ -714,277 +1727,138 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 }
             }
         </style>
-        
+
         <div class="header-fixed">
 
 
 
 
             <div class="header-fixed-supervippro">
-                <div class="_12epx">
-                    <div class="_12epx_1"><img src="c-programe.png" alt="" width="40px" height="40px"></div>
-                    <div class="_12epx_2">
-                        <style>
-                            .l2qw32fc {
-                                transition: all 0.35s linear;
 
+
+                <style>
+                    .pzxzlwqsds {
+                        position: relative !important;
+                    }
+
+                    .fgifrifhgrprigfhjfiorpwih {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 8px;
+                        border-radius: 80px;
+                        padding: 2px 5px;
+                        cursor: pointer;
+                        transition: all 0.2s linear;
+                    }
+
+                    .fgifrifhgrprigfhjfiorpwih:hover {
+                        background-color: #3a3b3c;
+                    }
+
+                    .fgifrifhgrprigfhjfiorpwih img {
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+
+                    .fgifrifhgrprigfhjfiorpwih p {
+                        font-size: 14px;
+                        white-space: nowrap;
+                    }
+
+                    @media screen and (max-width: 888px) {
+                        .fgifrifhgrprigfhjfiorpwih {
+                            display: none !important
+                        }
+                    }
+                </style>
+
+                <style>
+                    ._14_ac_st_1 {
+                        position: absolute;
+                        margin-right: -1000px;
+                        transition: all 0.35s linear;
+                    }
+                </style>
+                <style>
+                    ._14_ac_st_1_3,
+                    ._14_ac_st_1_4 {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        margin-left: auto;
+                        margin-right: 0;
+                        justify-content: flex-end;
+                        padding: 16px 16px 8px 8px;
+                        border-radius: 7px;
+                    }
+
+                    ._14_ac_st_1_3:hover,
+                    ._14_ac_st_1_4:hover {
+                        background-color: #3a3b3c
+                    }
+
+                    ._14_ac_st_1_3_1,
+                    ._14_ac_st_1_4_1 {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+
+                    ._14_ac_st_1_3,
+                    ._14_ac_st_1_4 {
+                        display: flex;
+                        align-items: center;
+                        padding-bottom: 16px
+                    }
+
+                    .supersunday {
+                        background-color: #ffffff !important;
+                    }
+
+                    ._13_ac_st_1 {}
+                </style>
+                <style>
+                    .djkhgjfd {
+                        border-bottom: 1px solid #f1f2f5 !important;
+                    }
+
+                    .jsdiofdhj {
+                        background-color: #ffffff !important;
+                    }
+                </style>
+                <script async>
+                    $(".opiasq1").ready(function() {
+
+
+                        $(".opiasq1").on("click", function() {
+                            if ($("._13_ac_st_1").css("display") == "block") {
+                                $("._13_ac_st_1").css({
+                                    "display": "none"
+                                })
+                                $(this).css({
+                                    "filter": "invert(96%) sepia(1%) saturate(5193%) hue-rotate(192deg) brightness(103%) contrast(83%)"
+                                })
+                                $("._75_re_21_sa_4").css({
+                                    "background-color": "#3a3b3c"
+                                })
+
+
+                            } else {
+                                $("._75_re_21_sa_4").css({
+                                    "background-color": "#263851"
+                                })
+                                $(this).css({
+                                    "filter": "invert(38%) sepia(82%) saturate(1060%) hue-rotate(192deg) brightness(102%) contrast(99%)"
+                                })
+                                $("._13_ac_st_1").css({
+                                    "display": "block"
+                                })
                             }
-                        </style>
-
-                        <i class="lucasV" data-visualcompletion="css-img" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block;filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);z-index: 10000"></i>
-
-                        <input class="search lucasV" type="text" name="search-result" placeholder="Search Cockbook">
-                    </div>
-                </div>
-                <div class="_9epx">
-                    <ul class="_9epx_1">
-                        <li class="_9epx_2 _75_re_21_sa_1 lucasV"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
-                            <div class="_13_fr_ya_1 lucasV">Menu</div>
-                        </li>
-                        <li class="_9epx_2 _75_re_21_sa_2 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
-                                <path d="M14 2.042c6.76 0 12 4.952 12 11.64S20.76 25.322 14 25.322a13.091 13.091 0 0 1-3.474-.461.956 .956 0 0 0-.641.047L7.5 25.959a.961.961 0 0 1-1.348-.849l-.065-2.134a.957.957 0 0 0-.322-.684A11.389 11.389 0 0 1 2 13.682C2 6.994 7.24 2.042 14 2.042ZM6.794 17.086a.57.57 0 0 0 .827.758l3.786-2.874a.722.722 0 0 1 .868 0l2.8 2.1a1.8 1.8 0 0 0 2.6-.481l3.525-5.592a.57.57 0 0 0-.827-.758l-3.786 2.874a.722.722 0 0 1-.868 0l-2.8-2.1a1.8 1.8 0 0 0-2.6.481Z">
-                                </path>
-
-                            </svg>
-                            <div class="_13_fr_ya_2 lucasV">Messenger</div>
-                        </li>
-                        <li class="_9epx_2 _75_re_21_sa_3 lucasV"><svg viewBox="0 0 28 28" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry" height="20" width="20">
-                                <path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z">
-                                </path>
-                            </svg>
-                            <div class="_13_fr_ya_3 lucasV">Notifications</div>
-                        </li>
-                        <li class="_9epx_2 _75_re_21_sa_4 lucasV">
-                            <i data-clicked="no" data-visualcompletion="css-img" class="hu5pjgll lzf7d lucasV6o1 opiasq1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -154px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block;padding:10px"></i>
-                            <div data-it-root="Account" data-it="Tài khoản" class="_13_fr_ya_4 lang">Account</div>
-
-                            <div style="display: none;transition: transform 0.25s linear;border: 1px solid #333435;opacity:1;transition: opacity 0s linear !important" class="_13_ac_st_1">
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <!--  -->
-                                <section class="_13_fr_ya_4_pr_f-1">
-                                    <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
-                                    <section class="_13_fr_ya_4_12">
-                                        <p class="_13_fr_ya_4_12_1">
-                                            <?php echo $name_login ?>
-                                        </p>
-                                        <p data-it-root="See your profile" data-it="Xem trang cá nhân của bạn" class="_13_fr_ya_4_12_2 lang" style="font-weight: lighter !important">
-                                            See your profile
-                                        </p>
-                                    </section>
-                                </section>
-                                <section class="_5_iogh_qw">
-
-                                    <section class="_13_fr_ya_4_pr_f-2">
-                                        <section class="_13_fr_ya_4_pr_f-2_no">
-
-                                            <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -214px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                                        </section>
-                                        <section class="_13_fr_ya_4_pr_f-2-2">
-                                            <p data-it-root="Give Feedback" data-it="Gửi phản hồi" class="_13_fr_ya_4_pr_f-2-2-1 lang">
-                                                Give Feedback
-                                            </p>
-                                            <p data-it-root=" Help us improve the new Cockbook" data-it="Trợ giúp và Ủng hộ" class="_13_fr_ya_4_pr_f-2-2-2 lang" style="font-weight: lighter !important">
-                                                Help us improve the new Cockbook
-                                            </p>
-                                        </section>
-                                    </section>
-                                </section>
-                                <section class="_13_fr_ya_4_pr_f-3">
-                                    <section class="_13_fr_ya_4_pr_f-3-1 oisrhiora">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/tBr7iKHYsZc.png&quot;); background-position: -22px -438px; background-size: 50px 576px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                                            </section>
-                                            <p data-it-root="Setting & Privacy" data-it="Cài đặt & Quyền bảo mật" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Setting & Privacy</p>
-                                        </section>
-                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                        </section>
-                                    </section>
-                                    <!--  -->
-                                    <!--  -->
-                                    <!--  -->
-                                    <section class="_13_fr_ya_4_pr_f-3-1 tuitjroign">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -346px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
-                                            <p data-it-root="Help & Support" data-it="Trợ giúp và Ủng hộ" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2">Help & Support</p>
-                                        </section>
-                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                        </section>
-                                    </section>
-                                    <!--  -->
-                                    <!--  -->
-                                    <!--  -->
-                                    <section class="_13_fr_ya_4_pr_f-3-1">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1 _vp_12_q2">
-                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/Xqj6PfAeyFb.png&quot;); background-position: 0px -138px; background-size: 34px 276px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i> </section>
-                                            <p data-it-root="Display & Accessibility" data-it="Hiển thị và Quyền truy cập" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Display & Accessibility</p>
-                                        </section>
-                                        <section class="_13_fr_ya_4_pr_f-3-1-2">
-                                            <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: -74px -48px; background-size: 190px 212px; width: 24px; height: 24px; background-repeat: no-repeat; display: inline-block;"></i>
-                                        </section>
-                                    </section>
-                                    <!--  -->
-                                    <!--  -->
-                                    <!--  -->
-                                    <section class="_13_fr_ya_4_pr_f-3-1">
-                                        <section class="_13_fr_ya_4_pr_f-3-1-1">
-                                            <section class="_13_fr_ya_4_pr_f-3-1-1-1">
-                                                <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/Xr6MLEZDZKD.png&quot;); background-position: 0px -236px; background-size: 26px 496px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                                            </section>
-                                            <p data-it-root="Log Out" data-it="Đằng xuất" style="font-size:14px" class="_13_fr_ya_4_pr_f-3-1-1-2 lang">Log Out</p>
-                                        </section>
-
-                                    </section>
-                                    <!--  -->
-                                    <!--  -->
-                                    <!--  -->
-                                </section>
-                                <p class="_12_hhtds_1" style="font-size:12px;color:#b0b3b8;font-family:sans-serif !important">Cockbook &copy 2021, All rights reserved</p>
-                            </div>
-                            <style>
-                                ._14_ac_st_1 {
-                                    position: absolute;
-                                    margin-right: -1000px;
-                                    transition: all 0.35s linear;
-                                }
-                            </style>
-
-
-                            <div class="_14_ac_st_1">
-                                <!--  -->
-                                <!--  -->
-                                <section class="_14_ac_st_1_1">
-                                    <section class="_14_ac_st_1_1_1 _5678 ukfdhgeuidfh" style="background-color: unset">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png&quot;); background-position: 0px -88px; background-size: 190px 212px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;transform: scale(1.25)"></i>
-                                    </section>
-                                    <p data-it-root="Display & Accessibility" data-it="Hiển thị và Quyền truy cập" style="font-size:24px;font-weight:900;font-family:san-serif" class="_14_ac_st_1_1_2 lang">Display & Accessibility</p>
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <section class="_14_ac_st_1_1">
-                                    <section class="_14_ac_st_1_1_1 _5678">
-                                        <i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/Xqj6PfAeyFb.png&quot;); background-position: 0px -138px; background-size: 34px 276px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-                                    </section>
-
-                                    <p data-it-root="Dark Mode" data-it="Chế độ tối" class="_14_ac_st_1_1_2 lang">Dark Mode</p>
-
-
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <style>
-                                    ._14_ac_st_1_3,
-                                    ._14_ac_st_1_4 {
-                                        display: flex;
-                                        flex-direction: row-reverse;
-                                        margin-left: auto;
-                                        margin-right: 0;
-                                        justify-content: flex-end;
-                                        padding: 16px 16px 8px 8px;
-                                        border-radius: 7px;
-                                    }
-
-                                    ._14_ac_st_1_3:hover,
-                                    ._14_ac_st_1_4:hover {
-                                        background-color: #3a3b3c
-                                    }
-
-                                    ._14_ac_st_1_3_1,
-                                    ._14_ac_st_1_4_1 {
-                                        display: flex;
-                                        justify-content: flex-end;
-                                    }
-
-                                    ._14_ac_st_1_3,
-                                    ._14_ac_st_1_4 {
-                                        display: flex;
-                                        align-items: center;
-                                        padding-bottom: 16px
-                                    }
-
-                                    .supersunday {
-                                        background-color: #ffffff !important;
-                                    }
-
-                                    ._13_ac_st_1 {}
-                                </style>
-                                <section class="_14_ac_st_1_3" style="width:85%">
-                                    <section class="_14_ac_st_1_3_1" style="width: 100%;">
-                                        <input style="cursor:pointer;transform: scale(1.25);width:100%;padding:16px 0 !important" name="modevippro" type="radio" id="light_mode" class="iorueroiqa" value="light">
-                                    </section>
-                                    <section class="_14_ac_st_1_3_2">
-                                        <span data-it-root="Off" data-it="Tắt" class="_14_ac_st_1_3_2_1 lang">Off</span>
-                                    </section>
-                                </section>
-                                <!--  -->
-                                <!--  -->
-                                <section class="_14_ac_st_1_4" style="width:85%;padding-bottom:16px !important">
-                                    <section class="_14_ac_st_1_4_1" style="width: 100%;">
-                                        <input style="cursor:pointer;transform: scale(1.25);width:100%" name="modevippro" checked type="radio" id="dark_mode" value="dark">
-                                    </section>
-                                    <section class="_14_ac_st_1_4_2">
-                                        <span data-it-root="On" data-it="Bật" class="_14_ac_st_1_4_2_1 lang">On</span>
-                                    </section>
-                                </section>
-                                <style>
-                                    .djkhgjfd {
-                                        border-bottom: 1px solid #f1f2f5 !important;
-                                    }
-
-                                    .jsdiofdhj {
-                                        background-color: #ffffff !important;
-                                    }
-                                </style>
-
-                                <!--  -->
-
-
-
-
-
-
-                            </div>
-                        </li>
-                    </ul>
-                    <script>
-                        $(".opiasq1").ready(function() {
-
-
-                            $(".opiasq1").on("click", function() {
-                                if ($("._13_ac_st_1").css("display") == "block") {
-                                    $("._13_ac_st_1").css({
-                                        "display": "none"
-                                    })
-                                    $(this).css({
-                                        "filter": "invert(96%) sepia(1%) saturate(5193%) hue-rotate(192deg) brightness(103%) contrast(83%)"
-                                    })
-                                    $("._75_re_21_sa_4").css({
-                                        "background-color": "#3a3b3c"
-                                    })
-
-
-                                } else {
-                                    $("._75_re_21_sa_4").css({
-                                        "background-color": "#263851"
-                                    })
-                                    $(this).css({
-                                        "filter": "invert(38%) sepia(82%) saturate(1060%) hue-rotate(192deg) brightness(102%) contrast(99%)"
-                                    })
-                                    $("._13_ac_st_1").css({
-                                        "display": "block"
-                                    })
-                                }
-                            })
-
                         })
-                    </script>
-                </div>
+
+                    })
+                </script>
+
 
 
 
@@ -1000,8 +1874,33 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
                     <i data-visualcompletion="css-img" class="m6k467ps l2qw32fc" style="filter: invert(100%) sepia(12%) saturate(2%) hue-rotate(335deg) brightness(103%) contrast(101%);background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-72px -176px;background-size:190px 212px;width:16px;height:16px;background-repeat:no-repeat;display:inline-block;z-index:10000"></i>
 
-                    <input class="search lucasV" type="text" name="search-result" placeholder="Search Cockbook">
+                    <input id="skrtttttt" class="search lucasV plmnbg" type="text" placeholder="Search Cockbook">
                 </div>
+                <script async>
+                    {
+
+                        let timeout = null
+                        $("#skrtttttt").on("keyup", function() {
+
+                            if ($("#skrtttttt").val() != "") {
+
+                                clearTimeout(timeout)
+                                timeout = setTimeout(() => {
+                                    $.ajax({
+                                        url: 'result_suggest.php',
+                                        method: 'GET',
+                                        data: {
+                                            title: $("#skrtttttt").val()
+                                        },
+                                        success: function(result) {
+                                            $(".search-result-table").html(result)
+                                        }
+                                    })
+                                })
+                            }
+                        })
+                    }
+                </script>
             </div>
 
             <div class="_8epx">
@@ -1047,6 +1946,16 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             </div>
             <div class="_9epx">
                 <ul class="_9epx_1">
+                    <li class="fgifrifhgrprigfhjfiorpwih">
+                        <div class="fdgjdgfjkd">
+                            <img style="width:28px;height:28px;" src="<?php echo $avatarr ?>" alt="">
+                        </div>
+                        <div class="fgrtryretrtes">
+                            <p class="gdsghfgjdsedg">
+                                <?php echo $name_single_login ?>
+                            </p>
+                        </div>
+                    </li>
                     <li class="_9epx_2 _75_re_21_sa_1 lucasV"><i data-visualcompletion="css-img" class="hu5pjgll lzf7d6o1" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/K75psRNo_n5.png');background-position:-44px -132px;background-size:190px 212px;width:20px;height:20px;background-repeat:no-repeat;display:inline-block"></i>
                         <div class="_13_fr_ya_1 lucasV">Menu</div>
                     </li>
@@ -1330,7 +2239,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                             <!--  -->
                             <section class="_14_ac_st_1_4" style="width:85%">
                                 <section class="_14_ac_st_1_4_1" style="width: 100%;">
-                                    <input style="cursor:pointer;transform: scale(1.25);width:100%" checked type="radio" name="modevippro" id="dark_mode" value="dark">
+                                    <input style="cursor:pointer;transform: scale(1.25);width:100%" type="radio" name="modevippro" id="dark_mode" value="dark">
                                 </section>
                                 <section class="_14_ac_st_1_4_2">
                                     <span data-it-root="On" data-it="Bật" class="_14_ac_st_1_4_2_1 lang">On</span>
@@ -1348,94 +2257,9 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                             <!--  -->
 
                             <!--  -->
-                            <script>
-                                $("#light_mode").on("click", function() {
 
-                                    $(".wrapper").css({
-                                        "background-color": "#f0f2f5"
-                                    })
-                                    $("._7_sp_lg").css({
-                                        "background-color": "#f0f2f5"
-                                    })
-                                    $("*").css({
-                                        "color": "#000000"
-                                    })
-                                    $("._14_ac_st_1").css({
-                                        "background-color": "#ffffff"
-                                    })
-                                    $(".header-fixed").css({
-                                        "background-color": "#ffffff",
-                                        "border-bottom": "1px solid #ced0d4"
-                                    })
-                                    $(".search").css({
-                                        "background-color": "#ffffff"
-                                    })
-                                    $("._8_sp_lg").css({
-                                        "background-color": "#f0f2f5"
-                                    })
-                                    $("._9_sp_lg").css({
-                                        "background-color": "#f0f2f5"
-                                    })
-                                    $("._7_sws_1").css({
-                                        "border-bottom": "1px solid #ced0d4"
-                                    })
-                                    $("._13_ac_st_1").css({
-                                        "background-color": "#ffffff"
-                                    })
-                                    $(".search").css({
-                                        "background-color": "#f0f2f5"
-                                    })
-                                    $("._7_sp_lg_su_a_spc").addClass("sduikl17")
-                                    $(".story").addClass("storyvippro")
-                                    $(".create-status").addClass("storyvippro supersunday")
-                                    $(".create-status-1").addClass("djkhgjfd")
-                                    $(".item").addClass("supersunday")
-                                    $("#content .item").addClass("jsdiofdhj")
-                                })
-                                $("#dark_mode").on("click", function() {
-                                    $(".wrapper").css({
-                                        "background-color": "#18191a"
-                                    })
-                                    $("._7_sp_lg").css({
-                                        "background-color": "#18191a"
-                                    })
-                                    $("*").css({
-                                        "color": "#242526"
-                                    })
-                                    $("._14_ac_st_1").css({
-                                        "background-color": "#242526"
-                                    })
-                                    $(".header-fixed").css({
-                                        "background-color": "#242526",
-                                        "border-bottom": "1px solid #363738"
-                                    })
-                                    $(".search").css({
-                                        "background-color": "#242526"
-                                    })
-                                    $("._8_sp_lg").css({
-                                        "background-color": "#18191a"
-                                    })
-                                    $("._9_sp_lg").css({
-                                        "background-color": "#18191a"
-                                    })
-                                    $("._7_sws_1").css({
-                                        "border-bottom": "1px solid #363738"
-                                    })
-                                    $("._13_ac_st_1").css({
-                                        "background-color": "#242526"
-                                    })
-                                    $(".search").css({
-                                        "background-color": "#18191a"
-                                    })
-                                    $("._7_sp_lg_su_a_spc").removeClass("sduikl17")
-                                    $(".story").removeClass("storyvippro")
-                                    $(".create-status").removeClass("storyvippro supersunday")
-                                    $(".create-status-1").removeClass("djkhgjfd")
-                                    $(".item").removeClass("supersunday")
-                                })
-                            </script>
                         </div>
-                        <script>
+                        <script async>
                             $("._14_ac_st_1_3").on("click", function() {
                                 $.ajax({
                                     url: "check_light.php",
@@ -1448,7 +2272,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                                 })
                             })
                         </script>
-                        <script>
+                        <script async>
                             $("._14_ac_st_1_3").on("click", function() {
                                 $.ajax({
                                     url: "check_light_spe.php",
@@ -1600,6 +2424,8 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
             </div>
         </div>
+        <!--  -->
+
 
         <!-- execution  -->
         <script>
@@ -1715,9 +2541,6 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             }
         </style>
         <!--  -->
-        <script>
-
-        </script>
         <!--  -->
         <!--  -->
         <!--  -->
@@ -1781,7 +2604,26 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             }
         </style>
         <!--  -->
-        
+        <script async>
+            $(".plmnbg").on("click", function() {
+                if ($(".search-result-table").css("display") == 'none') {
+                    $(".search-result-table").css({
+                        "display": "block"
+                    })
+                } else {
+                    $(".search-result-table").css({
+                        "display": "none"
+                    })
+
+                }
+            })
+            $(".search-result-table-1-1").on("click", function() {
+                $(".search-result-table").css({
+                    "display": "none"
+                })
+
+            })
+        </script>
         <!--  -->
         <div class="friends ueiortu" style="position:relative">
         </div>
@@ -1799,6 +2641,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         <img style="border-radius: 50%" class="_7_sp_lg_su_a_1_ie" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="36px" height="36px">
                         <span class="_7_sp_lg_su_a_1_tx"><?php echo $name_login ?></span>
                     </div>
+
                     <div class="_7_sp_lg_su_a_2 _12epx_wq">
                         <img class="_7_sp_lg_su_a_2_ie" src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/-XF4FQcre_i.png" alt="" width="36px" height="36px">
 
@@ -1814,6 +2657,13 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
                         <span data-it-root="saved" data-it="đã lưu" class="_7_sp_lg_su_a_4_tx_4 lang">saved</span>
                     </div>
+                    <!--  -->
+                    <div class="_7_sp_lg_su_a_add-1 _12epx_wq">
+                        <img class="_7_sp_lg_su_a_2_ie" style="width:28px !important;height:28px !important" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Google_Translate_logo.svg/768px-Google_Translate_logo.svg.png" alt="" width="36px" height="36px">
+
+                        <span style="margin-left:8px !important" data-it-root="find friends" data-it="Cockbook dịch" class="_7_sp_lg_su_a_2_tx_2 lang">cockbook translate</span>
+                    </div>
+                    <!--  -->
                     <div class="_7_sp_lg_su_a_5 _12epx_wq">
                         <img class="_7_sp_lg_su_a_5_ie" src="https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/9BDqQflVfXI.png" alt="" width="36px" height="36px">
 
@@ -1828,6 +2678,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         .sduikl17 * {
                             color: #000000 !important;
                         }
+
+                        .search-result-table {
+                            border: 1px solid #484848 !important;
+                        }
                     </style>
                     <div class="_7_sp_lg_su_a_spc" style="width: 100%">
 
@@ -1839,7 +2693,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         <span class="_7_sp_lg_su_a_7_tx_7 lang" style="margin:0" data-it-root="see more" data-it="xem thêm">see more</span>
                     </div>
                 </div>
-                <script>
+                <script async>
                     $(document).ready(function() {
                         $(".yushjdweas").on("click", function() {
                             $.ajax({
@@ -2049,86 +2903,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 }
             </style>
             <!--  -->
-            <script>
-                $("._14_ac_st_1_3_1").on("click", function() {
-                    $(".wrapper").addClass("_11110").removeClass("_11110-1")
-                    $("._7_sp_lg").addClass("_11110").removeClass("_11110-1")
-                    $("*").addClass("_11111").removeClass("_11111-1")
-                    $("._14_ac_st_1").addClass("_11112").removeClass("_11112-1")
-                    $(".header-fixed").addClass("_11113").removeClass("_11113-1")
-                    $(".search").addClass("_11112").removeClass("_11112-1")
-                    $("._8_sp_lg").addClass("_11110").removeClass("_11110-1")
-                    $("._9_sp_lg").addClass("_11110").removeClass("_11110-1")
-                    $("._7_sws_1").addClass("_11114").removeClass("_11114-1")
-                    $("._13_ac_st_1").addClass("_11112").removeClass("_11112-1")
-                    $(".search").addClass("_11110").removeClass("_11110-1")
-                    $("._7_sp_lg_su_a_spc").addClass("sduikl17")
-                    $(".story").addClass("storyvippro")
-                    $(".create-status").addClass("storyvippro supersunday")
-                    $(".create-status-1").addClass("djkhgjfd")
-                    $(".item").addClass("supersunday")
-                    $("#content .item").addClass("jsdiofdhj")
-                    $(".search").addClass("piofghjd")
-                    $(".l2qw32fc").removeClass("rtyuiedas")
-                    $("._7_sws_1").addClass("hfskjfhsoid")
-                    $("._13_fr_ya_4_pr_f-3").addClass("yjoritjeoif")
-                    $("._13_fr_ya_4_pr_f-2").addClass("jslgjflsdfe")
-                    $("._13_fr_ya_4_pr_f-1").addClass("jslgjflsdfe")
-                    $(".s9tcezmb").addClass("_11112")
-                    $(".nxhoafnm").addClass("piofghjd")
-                    $(".s9tcezmb-2-1-2-2").addClass("piofghjd")
-                    $("._9_sp_lg").addClass("sdioutrs")
-                    $("._7_sp_lg_su_a_spc").addClass("fgukehuiqw")
-                    $(".item5-spc-1").addClass("masokfje")
-                    $(".l2qw32fc").addClass("hjfgieufh")
 
-                    $("._14_ac_st_1_3 section span").addClass("rueyuerw")
-                    $("._14_ac_st_1_4 section span").addClass("rueyuerw")
-                })
-
-
-                //  dark mode
-                $("._14_ac_st_1_4_1").on("click", function() {
-
-                    $(".wrapper").addClass("_11110-1").removeClass("_11110")
-                    $("._7_sp_lg").addClass("_11110-1").removeClass("_11110")
-                    $("*").addClass("_11111-1").removeClass("_11111")
-                    $("._14_ac_st_1").addClass("_11112-1").removeClass("_11112")
-                    $(".header-fixed").addClass("_11113-1").removeClass("_11113")
-                    $(".search").addClass("_11112-1").removeClass("_11112")
-                    $("._8_sp_lg").addClass("_11110-1").removeClass("_11110")
-                    $("._9_sp_lg").addClass("_11110-1").removeClass("_11110")
-                    $("._7_sws_1").addClass("_11114-1").removeClass("_11114")
-                    $("._13_ac_st_1").addClass("._11112-1").removeClass("_11112")
-                    $(".search").addClass("_11110-1").removeClass("_11110")
-                    $("._7_sp_lg_su_a_spc").removeClass("sduikl17")
-                    $(".story").removeClass("storyvippro")
-                    $(".create-status").removeClass("storyvippro supersunday")
-                    $(".create-status-1").removeClass("djkhgjfd")
-                    $(".item").removeClass("supersunday")
-                    $(".search").removeClass("piofghjd")
-                    $(".l2qw32fc").addClass("rtyuiedas")
-                    $("._7_sws_1").removeClass("hfskjfhsoid")
-                    $("._13_fr_ya_4_pr_f-3").removeClass("yjoritjeoif")
-                    $("._13_fr_ya_4_pr_f-2").removeClass("jslgjflsdfe")
-                    $("._13_fr_ya_4_pr_f-1 ").removeClass("jslgjflsdfe")
-                    $(".s9tcezmb").removeClass("_11112")
-                    $(".s9tcezmb-2-1-2-2").removeClass("piofghjd")
-                    $("._9_sp_lg").removeClass("sdioutrs")
-                    $(".item5-spc-1").removeClass("masokfje")
-                    $(".l2qw32fc").removeClass("hjfgieufh")
-
-                    $(".nxhoafnm").removeClass("piofghjd")
-                    $("._7_sp_lg_su_a_spc").removeClass("fgukehuiqw")
-                    $("._14_ac_st_1_3 section span").removeClass("rueyuerw")
-                    $("._14_ac_st_1_4 section span").removeClass("rueyuerw")
-
-
-                })
-            </script>
             <!--  -->
             <!--  -->
-            <script>
+            <script async>
                 $("._7seven_epx_1").on("click", function() {
                     if ($("._7_sp_lg").hasClass("sduigh1 _4_ds_sa_3")) {
                         $("._7_sp_lg").removeClass("sduigh1 _4_ds_sa_3")
@@ -2333,7 +3111,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             </div>
         </div>
     </div>
-    <script>
+    <script async>
         $("._12epx_2").on("click", function() {
             $(".l2qw32fc").css({
                 "opacity": "0"
@@ -2355,7 +3133,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
         })
     </script>
-    <script>
+    <script async>
         $(".nxhoafnm").on("click", function() {
             $(".s9tcezmb").css({
                 "display": "block"
@@ -2374,7 +3152,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         })
     </script>
 
-    <script>
+    <script async>
         $(document).click(function(event) {
             if (!$(event.target).closest(".item1-2,.item1-2-2,.item1-2,._13_ac_st_1,.opiasq1,._14_ac_st_1,.language-setting-1-spc,.language-setting").length) {
                 $("._13_ac_st_1").addClass("ajpiewrj")
@@ -2404,7 +3182,8 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             display: none !important;
         }
     </style>
-    <script>
+
+    <script async>
         $(".opiasq1").on("click", function() {
             if ($("._13_ac_st_1").css("display") == "block") {
                 $("._13_ac_st_1").removeClass("sjkdfsklj").addClass("ajpiewrj")
@@ -2481,7 +3260,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             background: #242526
         }
     </style>
-    <script>
+    <script async>
         $(document).ready(function() {
             $(document).on('click', '._9epx_1 ._9epx_2', function() {
                 $(this).addClass("jglkgjlwfd").siblings().removeClass("jglkgjlwfd")
@@ -2551,7 +3330,14 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             filter: invert(45%) sepia(3%) saturate(1490%) hue-rotate(177deg) brightness(92%) contrast(90%) !important;
         }
     </style>
+    <script async>
+        $(".upload_image_").on("click", function() {
 
+            $(".frame-image-upload").css({
+                "display": "flex"
+            })
+        })
+    </script>
 
     <style>
         .hfskjfhsoid>div:hover {
@@ -2604,11 +3390,12 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
 
     <!--  -->
-    <script>
+    <script async>
         ///
-        $(document).on('click', "._7_sp_lg_su_a_1,.create-status-1-1", function() {
+        $(document).on('click', "._7_sp_lg_su_a_1,.create-status-1-1,.fgifrifhgrprigfhjfiorpwih,._13_fr_ya_4_pr_f-1", function() {
             history.replaceState({}, null, "/cockbook/profile.php?id=<?php echo $id_login ?>")
-
+            $(".fgifrifhgrprigfhjfiorpwih").css({"background-color":"#263951"})
+            $(".gdsghfgjdsedg").css({"color":"#2d88ff"})
             $(".wrapper").css({
                 "display": "none"
             })
@@ -2635,6 +3422,15 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 }
             })
             $("title").html("<?php echo $name_login ?> | Cockbook")
+        })
+        //
+
+        $("._13_fr_ya_4_pr_f-1").on("click", () => {
+            if ($("._13_ac_st_1").css("display") == "block") {
+                $("._13_ac_st_1").addClass("ajpiewrj")
+            } else if ($("._13_ac_st_1").hasClass("ajpiewrj")) {
+                $("._13_ac_st_1").removeClass("ajpiewrj")
+            }
         })
         /// friends
         $(document).on("click", "._17ev_or_2, ._7_sp_lg_su_a_2", function() {
@@ -2808,7 +3604,14 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         })
     </script>
     <!--  -->
-
+<script>
+    $(window).on("click", function() {
+        if(!$(event.target).is("._7_sp_lg_su_a_1,.create-status-1-1,.fgifrifhgrprigfhjfiorpwih,._13_fr_ya_4_pr_f-1")) {
+            $(".gdsghfgjdsedg").css({"color":"#fff"})
+            $(".fgifrifhgrprigfhjfiorpwih").css({"background-color":"unset"})  
+        }
+    })
+</script>
     <!--  -->
     <style>
         .ueiortu {
@@ -2836,7 +3639,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     </style>
 
     <!--  -->
-    <script>
+    <script async>
         $(".oisrhiora").on("click", function() {
             $("._13_ac_st_1").css({
                 "margin-right": "-1000px"
@@ -2864,10 +3667,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             top: 45px !important;
         }
     </style>
-    <script>
+    <script async>
 
     </script>
-    <script>
+    <script async>
         $(".iodufhjio").on("click", function() {
             if ($(".dialog-logout").css("display") == "none") {
                 $(".dialog-logout").css({
@@ -2896,7 +3699,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         })
     </script>
     <!--  -->
-    <script>
+    <script async>
         $(".language-setting-2-1").on("click", function() {
             if ($(".choose-language").css("display") == "none") {
                 $(".choose-language").css({
@@ -2908,9 +3711,15 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 })
             }
         })
+        $(".close-frame-image-upload").on("click", function(e) {
+            $(".frame-image-upload").css({
+                "display": "none"
+            })
+            e.stopPropagation()
+        })
     </script>
     <!--  -->
-    <script>
+    <script async>
         $(".lang-en").on("click", function() {
             $(".search").attr("placeholder", "Search Cockbook")
             $(".nxhoafnm").attr("placeholder", "What's on your mind, <?php echo $name_single_login ?> ?")
@@ -2923,7 +3732,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     </script>
     <!--  -->
 
-    <script>
+    <script async>
         const langs = document.querySelectorAll(".lang")
         const langslink = document.querySelectorAll(".lang-links")
 
@@ -2983,18 +3792,28 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             fill: #2d88ff !important;
         }
 
+        .main-status-section2 {
+            display: flex;
+            border-radius: 8px;
+            position: relative;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            overflow-wrap: break-word;
+        }
+
         @media screen and (max-width: 550px) {}
     </style>
-    <script>
+    <script async>
         $(".header-fixed div,.header-fixed li").on('click', () => {
             $(".uighduifgdasa").css({
                 "display": "none"
             })
         })
     </script>
-    <script>
+    <script async>
         $("._12epx_1").on('click', function() {
-            page= 1
+            page = 1
             $(".wrapper").css({
                 "display": "flex"
             })
@@ -3006,6 +3825,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 method: "GET",
                 success: function(result) {
                     $("._8_sp_lg").empty()
+                    page = 0
                     $(".lds-ring").css({
                         "margin-top": 0,
                         "opacity": "1"
@@ -3033,20 +3853,610 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
         })
     </script>
-<!--  -->
-        <style>
-            ._9epx_1>li,.search,._12epx_1 {
-                position: relative !important;
-                z-index: 1000 !important;
+    <!--  -->
+    <style>
+        ._9epx_1>li,
+        .search,
+        ._12epx_1 {
+            position: relative !important;
+            z-index: 1000 !important;
         }
+
         .lusasV {
-            position: relative !important; 
+            position: relative !important;
             z-index: 1000 !important
         }
-        </style>
-        <!--  -->
-        
-<!--  -->
+    </style>
+    <script async>
+        $("._14_ac_st_1_3").on("click", function() {
+
+            setTimeout(() => {
+
+                window.location.reload()
+            }, 2000)
+        })
+        $("._14_ac_st_1_4").on("click", function() {
+
+            setTimeout(() => {
+
+                window.location.reload()
+            }, 2000)
+        })
+    </script>
+    <!--  -->
+    <?php
+    if (isset($_COOKIE['light_mode_vippro'])) {
+        if ($_COOKIE['light_mode_vippro'] == 1) {
+            echo "<style>
+                    .friends-2-spc {
+                        background-color: #f2f0f5!important;
+                    }
+                    .friends {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .friends-2-spc * {
+                        color: black !important;
+                    }
+                    .friends-list-items {
+                        background-color: #ffffff !important;  
+                    }
+                    .friends-1-spc,.friends-1-spc-vippro {
+                        background-color: #ffffff !important;
+            
+                    }
+                    .friends-1-spc * {
+                        color: black !important;
+                    }
+                    .friends-1-spc-2>div>div>div>div:first-of-type {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .friends-1-spc-2>div>div>div>div:first-of-type i {
+                        filter: invert(12%) sepia(5%) saturate(1101%) hue-rotate(182deg) brightness(86%) contrast(95%);
+                    }
+                   
+                    .friends-1-spc-1-2 {
+                        background-color: #f2f0f5;
+                    }   
+                    .friends-action>div {
+                        background-color: #e4e6eb;
+                    }
+                    .ruieyt8ir {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .friends-1-spc-2>div {
+                        transition: all 0.2s linear !important;
+                    }
+                    .friends-1-spc-2>div:hover {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .friends-1-spc-1-2 {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .friends-action>div:nth-of-type(2) {
+                        background-color: #e4e6eb !important;
+                    }
+                    .friends-action>div:first-of-type {
+                        background-color: #e7f3ff !important;
+                    }
+                    .friends-add-friends {
+                        color: #1877f2 !important;
+                    }
+                     
+                    .friends-2-spc-1-1-2 p {
+                        color: #1877f2 !important;
+                    }
+                    .friends-1-spc-2>div>div>div div:nth-of-type(2) i {
+                        filter: invert(12%) sepia(5%) saturate(1101%) hue-rotate(182deg) brightness(86%) contrast(95%) !important;
+                    }
+                    .friends-1-spc-2-1-2 i {
+                        filter: invert(0%) sepia(7%) saturate(7473%) hue-rotate(351deg) brightness(87%) contrast(105%) !important;
+                    }
+                    .friends-1-spc-1-2 i {
+                        filter: invert(0%) sepia(7%) saturate(7473%) hue-rotate(351deg) brightness(87%) contrast(105%) !important;
+            
+                    }
+                    .header-fixed {
+                        background-color: #ffffff !important;
+                        border-bottom: none !important;
+                        box-shadow: 0px 5px 1px -3px rgba(219,219,219,1) !important;
+            -webkit-box-shadow: 0px 5px 1px -3px rgba(219,219,219,1) !important;
+            -moz-box-shadow: 0px 5px 1px -3px rgba(219,219,219,1) !important;
+                    }
+                    .search {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._9epx_1>li {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._9epx_1>li i,._12epx_2 i {
+                        filter: invert(0%) sepia(7%) saturate(7473%) hue-rotate(351deg) brightness(87%) contrast(105%) !important;
+                        
+                    }
+                    ._9epx_1>li svg path {
+                        fill: black !important;
+                    }
+                    .fjkdlf {
+                        background-color: #ffffff !important;
+                    }
+                    .propro * {
+                        color: black !important;
+                    }
+                    .profile-header {
+                        background-color: #ffffff !important;
+                    }
+                    .section-main {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._8_sp_lg {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .profile-id {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .name-info, {
+                        color: black !important;
+                    }
+                    .header-2,.recommend-friends,.biology{
+                        background-color: #ffffff !important;
+                    }
+                    .load-profile-vippro div {
+                        background-color: #ffffff !important    
+                    } 
+                    @media screen and (max-width: 1200px) {
+                    ._12epx_2 {
+                        background-color: #f0f2f5 !important;
+                    }
+                    }
+                    .create-status {
+                        background-color: #ffffff !important;
+                    }
+                    .wrapper {
+                        background-color: #ffffff !important;
+                        
+                    }
+                    .wrapper * {
+                        color: #000000 !important;
+                    }
+                    .create-status-1 {
+                        border-bottom: 1px solid #e4e6eb !important;
+                    }
+                    .nxhoafnm,.story div{
+                        background-color: #ffffff !important;
+                    }
+                    .item {
+                        background-color: #ffffff !important;
+                    }
+                    ._7_sp_lg::-webkit-scrollbar-track {
+                        background-color: rgba(111, 111, 111, 0.15);
+                    }
+                    .nxhoafnm {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._9_sp_lg > div {
+                        border-bottom: 1px solid  #e4e6eb !important;
+                    } 
+                    body #main .wrapper ._7_sp_lg ._7_sws_1 {
+                        border-bottom: 1px solid #e4e6eb !important;
+                    }
+                    .item5-spc>div {
+                        border-bottom: 1px solid #e4e6eb !important;
+                        border-top: 1px solid #e4e6eb !important;
+                        
+                    }
+                    ._12epx_wq:hover,._8epx_2:hover,._7_sp_lg_su_a_spc>div:hover,._13_ac_st_1>section:first-of-type:hover,._13_fr_ya_4_pr_f-2:hover,._13_fr_ya_4_pr_f-3 >section:hover  {
+                        background-color: #f2f0f5 !important;
+                    }   
+                    ._8epx_2 div {
+                        background-color: #f2f0f5 !important;
+                    }
+                    
+                    ._9epx_1 li div {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._7_sp_lg_su_a_7_1 {
+                        background-color: #e4e6eb !important;
+                    }
+                    ._7_sp_lg_su_a_7_1 i {
+                        filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(192deg) brightness(94%) contrast(102%) !important;
+                    }
+                    ._13_ac_st_1 {
+                        background-color: #fff !important;
+                    }
+                    ._13_ac_st_1 * {
+                        color: #000 !important;
+                    }
+                    ._13_fr_ya_4_pr_f-2_no {
+                        background-color: #e4e6eb !important;
+                    }
+                    ._13_fr_ya_4_pr_f-3 >section>section>section {
+                        background-color: #e4e6eb !important;
+                    }
+                    ._13_fr_ya_4_pr_f-3>section:hover p ,._13_fr_ya_4_pr_f-2:hover p {
+                        color: #ffffff !important;
+                    }
+                    ._8epx_1>li svg path {
+                        fill: black ;
+                    }
+                    .propro .section-main .header-2 {
+                        border: none !important;
+                    }
+                    .add-story1 span {
+                        color: #fff !important;
+                    }
+                    .header-2-2-content, {
+                        background-color: #e4e6eb !important;
+                    }
+                    .detail-photo {
+                        border: none !important;
+                        background-color: #e4e6eb !important;
+                    }
+                    #load-profile-vippro {
+                        background-color: #e4e6eb !important;
+                    }
+                    .item2z {
+                        background-color: #ffffff !important;
+                    }
+                    .tap-to-edit-bio {
+                        background-color: #e4e6eb !important
+                    }
+                    .header-2-2-content,.ffjofrjwar {
+                        background-color: #e4e6eb !important;
+                    }
+                    .ffjofrjwar svg circle,.header-2-2-content svg circle {
+                        fill: black !important;
+                    }
+                    .dfhfsd, .jsiosiodsdio button {
+                        background-color: #e4e6eb !important;
+                    }
+                    .hdhsiodda i {
+                        filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%) !important;
+                    }
+                    .dfhfsd::placeholder {
+                        color: black !important;
+                    }
+                    .lds-ring {
+                        background-color: #fff !important;
+                    }
+                    .balls {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .item5-spc-1>div:hover,.create-status-2>div:hover {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._14_ac_st_1 p,span {
+                        color: #000 !important;
+                    }
+                    ._14_ac_st_1_1_1 _5678 {
+                        background-color: #f2f0f5 !important;
+                    }
+                    ._14_ac_st_1_1_1:hover {
+                        background-color: #3a3b3c !important;
+                    }
+                    .language-setting {
+                        background-color: #ffffff !important;
+                    }
+                    .language-setting section {
+                        color: #000 !important;
+                        }
+                    .language-setting-2-1-1 {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .dialog-logout-1 {
+                        background-color: #fff !important;
+                    }
+                    .dialog-logout-1-1-1 {
+                        color: #000 !important;
+                    } 
+                    .dialog-logout-1-2-2-1 {
+                        color: #000 !important;
+                    }
+                    .dialog-logout-1-2-2:hover {
+                        background-color: #f2f0f5 !important;
+                    } 
+                    .dialog-logout-1-2-1:hover {
+                        background-color: #b6d3ff !important;
+                    }
+                    body #main .header-fixed ._9epx ._9epx_1 ._75_re_21_sa_4 ._13_ac_st_1 ._5_iogh_qw, body #main .header-fixed ._9epx ._9epx_1 ._75_re_21_sa_4 ._14_ac_st_1 ._5_iogh_qw {
+                        border-top: 2px solid #e4e6eb !important;
+                        border-bottom: 1px solid #e4e6eb !important;
+                    }
+                    ._13_ac_st_1 {
+                        border: 1px solid #e4e6eb !important;
+                    }
+                    .item1-2 {
+                        background-color: #f2f0f5 !important;
+                    }
+                    .item1-2-2 {
+                        background-color: #fff !important;
+                        border: 2px solid #bfc2c4 !important;
+
+                    }
+                    .item1-2-2 > div {
+                        color: #000 !important;
+                    }
+                    .search-result-table {
+                        background-color: #f0f2f5 !important;
+
+                    }
+                    .search-result-table * {
+                        color: black !important;
+                    }
+                    .delete-recent-search i {
+                        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(49deg) brightness(101%) contrast(100%) !important;
+            
+                    }
+                    .history-search:hover {
+                        background-color: #fff !important;
+                    }
+                    .search-result-table-1-1 {
+                        background-color: #fff !important;
+                    }
+                    .search-result-table-1-1 * {
+                        fill: black !important;
+                    }
+                    .post-status {
+                        background-color: #fff !important;
+                    }
+                    .post-status * {
+                        color: #000 !important;
+                    }
+                    .frame-image-upload {
+                        background-color: #f0f2f5 !important;
+                    }
+                    .main-button-section5 {
+                        background-color: #e4e6eb !important;
+                        color: #bcc0c4 !important;
+                    }
+                    .frame-image-upload-1-1 i,.close-status i {
+                        filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(49deg) brightness(101%) contrast(100%) !important;
+
+
+                        }
+                    .frame-image-upload-1-1,.close-status,.select-audience {
+                        background-color: #e4e6eb !important;
+                    }
+                    .title-post-status,.main-status-section4 {
+                        border-color: #bcc0c4 !important;
+                    }
+                    .search-result-table {
+                        border: 1px solid #e4e6eb !important;
+                    .add-story-self {
+                        background-color: #2e89ff !important
+                    }
+                    .enter-content-status {
+                        color: #000 !important; 
+                    }
+
+                </style>";
+        }
+    }
+
+    ?>
+    <script async>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        $(".frame-message").on("click", function() {
+            $(".symbol-send svg path").css({
+                "fill": "#2e89ff"
+            })
+        })
+    </script>
+    <style>
+        ._9epx_1 {
+            margin: 0 !important;
+        }
+
+        @media screen and (max-width: 750px) {
+            body #main .header-fixed {
+                height: 100px !important;
+                gap: 0 !important;
+            }
+
+            ._8epx_1 {
+                padding-left: 0 !important;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script async>
+        $(".symbol-send").on("click", function() {
+            if ($(".thioauraitja").val() !== "") {
+
+
+                $(".content-message").scrollTop(10000)
+                $.ajax({
+                    url: "message.php",
+                    method: "POST",
+                    data: {
+                        message: $(".thioauraitja").val(),
+                        key: keyvip
+
+
+                    },
+                    success: function(result) {
+
+                        $(".content-message").append(result)
+                        $(".content-message").scrollTop(10000)
+                        $(".thioauraitja").val("")
+
+                    }
+                })
+                $.ajax({
+
+                    url: "message_to_database.php",
+                    method: "POST",
+                    data: {
+                        message_to_database: $(".thioauraitja").val(),
+                        key: keyvip
+                    },
+
+                })
+            }
+        })
+        $(".thioauraitja").on("keypress", function() {
+            $(".content-message").scrollTop(10000)
+            if ($(this).val() !== "") {
+
+
+                const keycode = (event.keyCode ? event.keyCode : event.which)
+                if (keycode == '13') {
+
+                    $.ajax({
+                        url: "message.php",
+                        method: "POST",
+                        data: {
+                            message: $(".thioauraitja").val(),
+                            key: keyvip
+                        },
+                        success: function(result) {
+
+                            $(".content-message").append(result)
+                            $(".content-message").scrollTop(10000)
+                            $(".thioauraitja").val("")
+                        }
+                    })
+                    $.ajax({
+
+                        url: "message_to_database.php",
+                        method: "POST",
+                        data: {
+                            message_to_database: $(".thioauraitja").val(),
+                            key: keyvip
+                        },
+                    })
+                }
+            }
+        })
+        $(".mfiifriwrjsf").on("click", function() {
+            $(".frame-message").css({
+                "display": "none"
+            })
+        })
+        $(".thioauraitja").on("keyup", function() {
+            if ($(this).val().length == "") {
+                $(".symbol-send").attr("disabled")
+            } else {
+                $(".symbol-send").removeAttr("disabled")
+            }
+        })
+        $(window).on("click", function() {
+            $(".cockbook_mess").css({
+                "display": "none"
+            })
+        })
+        $("._75_re_21_sa_2").on("click", function(e) {
+            e.stopPropagation()
+        })
+        $(".cockbook_mess").on("click", function(e) {
+            e.stopPropagation()
+        })
+        $("._75_re_21_sa_2").on("click", () => {
+            if ($(".cockbook_mess").css("display") == "none") {
+                $(".cockbook_mess").css({
+                    "display": "block"
+                })
+            } else {
+                $(".cockbook_mess").css({
+                    "display": "none"
+                })
+            }
+        })
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        .main-status-section1 .jsiufhainskd p {
+            margin: 0 !important;
+        }
+
+        p {
+            margin: 0 !important;
+        }
+    </style>
+    <!--  -->
+    <script async>
+        $(".enter-content-status").on("keyup", function() {
+            if ($(this).val() === "") {
+                $(".main-button-section5").attr("disable")
+                $(".main-button-section5").css({
+                    "background-color": "#505151",
+                    "color": "#858686",
+                    "cursor": "not-allowed"
+                })
+                $(".main-button-section5").removeClass("tjifjsdas")
+
+            } else {
+                $(".main-button-section5").removeAttr("disable")
+                $(".main-button-section5").css({
+                    "background-color": "rgb(45, 136, 255)",
+                    "color": "#ffffff",
+                    "cursor": "pointer"
+                })
+                $(".main-button-section5").addClass("tjifjsdas")
+            }
+        })
+
+        $(".close-status").on("click", function() {
+            $(".post-status").css({
+                "display": "none"
+            })
+            $(".blur-aovcl").css({
+                "display": "none"
+            })
+        })
+    </script>
+    <script async>
+        $(".enter-content-status").on("keyup", function() {
+            if ($(this).val() != "") {
+                $(".main-button-section5").css({
+                    "background-color": "#505151",
+                    "color": "#858686",
+                    "cursor": "not-allowed"
+                })
+            }
+        })
+    </script>
+    <!--  -->
+    <style>
+        .tjifjsdas {
+            background-color: #1877f2 !important;
+            color: #fff !important;
+            cursor: pointer !important;
+        }
+    </style>
+    <!--  -->
+
+    <!--  -->
 </body>
 
 </html>

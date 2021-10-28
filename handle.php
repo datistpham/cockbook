@@ -7,7 +7,7 @@
     mysqli_set_charset($conn, 'utf8');
     $page = isset($_POST['page']) ? (int) $_POST['page'] : 1;
     if ($page < 1) {
-        $page = 1;
+        $page = 0;
     }
     $limit = 3;
     $start = ($limit * $page) - $limit;

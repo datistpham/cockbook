@@ -5,16 +5,17 @@ if (!isset($_COOKIE['user'])) {
 require 'connect.php';
 $conne = connect();
 
-$detect_account = "SELECT * from user_information where id=".$_GET["id"]."";
+$detect_account = "SELECT * from user_information where id=" . $_GET["id"] . "";
 //
 //
 $query_de = mysqli_query($conne, $detect_account);
 while ($rowzz = mysqli_fetch_assoc($query_de)) {
-        $aaav= $rowzz['story'];
-        $name_single_login = $rowzz['surname'];
-        $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
-        break;
-    
+    $aaav = $rowzz['story'];
+    $name_single_login = $rowzz['surname'];
+    $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
+    $avatarz= $rowzz['avatar'];
+    $cover_photo= $rowzz['cover_photo'];
+    break;
 }
 ?>
 <style>
@@ -24,9 +25,9 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
     <div class="profile-header">
         <div class="profile-header-sub">
-            <img class="cover-photo" src="https://scontent.fhph1-2.fna.fbcdn.net/v/t1.6435-9/243375262_606891540325993_3726923662378113979_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=e3f864&_nc_ohc=7VUw4otU9IEAX-jLrIO&_nc_ht=scontent.fhph1-2.fna&oh=7010d8a84083a17fcf5478d62cc7e844&oe=619A164D" alt="">
+            <img class="cover-photo" src="<?php echo $cover_photo ?>" alt="">
             <div class="avatar">
-                <img src="https://scontent-hkt1-1.xx.fbcdn.net/v/t1.6435-1/c0.0.320.320a/p320x320/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=7206a8&_nc_ohc=MvfZyA4L2DMAX-cq8KA&_nc_ht=scontent-hkt1-1.xx&oh=c4259166dc5b79815c0cd088c5f9544d&oe=61986F07" width="168px" height="168px" alt="">
+                <img src="<?php echo $avatarz ?>" width="168px" height="168px" alt="">
             </div>
             <div class="profile-name">
                 <div class="name-info"><?php echo $name_login ?></div>
@@ -44,18 +45,18 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             <div class="header-2-1">
                 <li class="header-2-1-content">Posts</li>
                 <li class="header-2-1-content qazx">About</li>
-                <li class="header-2-1-content wwwq" >friends</li>
-                <li class="header-2-1-content wwwq" >photos</li>
-                <li class="header-2-1-content wwwq" >story archive</li>
-                <li class="header-2-1-content wwwq" >videos</li>
+                <li class="header-2-1-content wwwq">friends</li>
+                <li class="header-2-1-content wwwq">photos</li>
+                <li class="header-2-1-content wwwq">story archive</li>
+                <li class="header-2-1-content wwwq">videos</li>
                 <li class="header-2-1-content addp " style="position:relative"><span>more</span><svg viewBox="0 0 20 20" width="1em" height="1em" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv gl3lb2sf hhz5lgdu">
                         <path d="M10 14a1 1 0 0 1-.755-.349L5.329 9.182a1.367 1.367 0 0 1-.205-1.46A1.184 1.184 0 0 1 6.2 7h7.6a1.18 1.18 0 0 1 1.074.721 1.357 1.357 0 0 1-.2 1.457l-3.918 4.473A1 1 0 0 1 10 14z"></path>
 
                     </svg>
                     <div class="more_option" style="display:none;position: absolute;z-index: 10;top:100%;width: 342px;background-color: #242526;box-shadow: 0px 0px 25px 2px black;border-radius: 8px;left:0">
                         <div class="option_sub poiw20 qpoi">About</div>
-                        
-                      
+
+
                         <div class="option_sub poiw14 qwevc">Friends</div>
                         <div class="option_sub poiw15 qwevc">Photos</div>
                         <div class="option_sub poiw16 qwevc">Story Archive</div>
@@ -80,6 +81,9 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
             </div>
             <style>
+                .avatar {
+                    object-fit: cover;
+                }
                 .more_option>div {
                     padding: 12px 8px !important;
                     margin: 0 8px;
@@ -98,10 +102,12 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     overflow-y: scroll;
                     user-select: none;
                 }
+
                 .more_option li {
                     -webkit-user-select: none !important;
-                    user-select: none !important; 
+                    user-select: none !important;
                 }
+
                 .addp span {
                     user-select: none !important;
                 }
@@ -122,13 +128,17 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     border-radius: 10px;
                     transform: scale(0.75);
                 }
+
                 .qwevc {
                     display: none;
                 }
+
                 .qpoi {
                     display: none;
                 }
-                
+                .profile-header-sub .avatar img {
+                    object-fit: cover;
+                }
             </style>
             <div class="header-2-2">
                 <div class="header-2-2-content">
@@ -142,16 +152,18 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             </div>
         </div>
         <script>
-            $(".addp").on("click", ()=> {
-                if($(".more_option").css("display")=="none") {
-                    $(".more_option").css({"display":"block"})
+            $(".addp").on("click", () => {
+                if ($(".more_option").css("display") == "none") {
+                    $(".more_option").css({
+                        "display": "block"
+                    })
+                } else {
+                    $(".more_option").css({
+                        "display": "none"
+                    })
                 }
-                else {
-                    $(".more_option").css({"display":"none"})
-                }
-                
-            })
 
+            })
         </script>
         <div class="section-content">
             <div class="recommend-friends">
@@ -295,11 +307,16 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         height: 400px;
                         background: #242526;
                     }
+
                     .asdfgh {
                         display: none;
-                    } 
+                    }
+
                     .propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo {
                         padding: 10px !important;
+                    }
+                    .add-story1 span {
+                        white-space: nowrap;
                     }
                 </style>
                 <!--  -->
@@ -308,6 +325,17 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     <div id="load-profile-vippro">
                         <?php require('loadprofile.php'); ?>
                     </div>
+                    <style>
+
+                        .load_profile_self {
+                            width: 100%;
+                            text-align: center;
+                        }
+                        .name-info {
+                            white-space: nowrap;
+                        }
+                    </style>
+                    
                     <div class="balls hidden">
                         <div></div>
                         <div></div>
@@ -321,20 +349,29 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 <script>
     $(".dfhfsd").on('keyup keypress', function() {
         $(".eurehfdsa").html(parseInt(100 - $(this).val().length))
-        if($(this).val().length===0) {
-            $(".hduihaoidja").attr("disabled").css({"cursor":"not-allowed","color":"#bcc0c4"});
-            
-        } 
-        else {
-            $(".hduihaoidja").removeAttr("disabled").css({"cursor":"pointer","color":"#ffffff"});
+        if ($(this).val().length === 0) {
+            $(".hduihaoidja").attr("disabled").css({
+                "cursor": "not-allowed",
+                "color": "#bcc0c4"
+            });
+
+        } else {
+            $(".hduihaoidja").removeAttr("disabled").css({
+                "cursor": "pointer",
+                "color": "#ffffff"
+            });
         }
-        
-        
+
+
     })
-    $(".hduihaoidja").on("click",function() {
-        $(".edit-direct").css({"display":"none"})
-        $(".edit-bio").css({"display":"block"})
-        
+    $(".hduihaoidja").on("click", function() {
+        $(".edit-direct").css({
+            "display": "none"
+        })
+        $(".edit-bio").css({
+            "display": "block"
+        })
+
     })
     $(".tap-to-edit-bio").on('click', function() {
         $(".edit-bio").css({
@@ -358,6 +395,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 <style>
     @media screen and (max-width: 974px) {
         .propro .profile-header .profile-header-sub .cover-photo {
+            object-fit: cover;
             transform: scale(1);
         }
 
@@ -396,7 +434,9 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             font-size: 24px !important;
         }
     }
-
+    .header-2 {
+        border-radius: 8px !important;
+    }
     @media screen and (max-width: 1268px) {
         .propro .section-main .section-content {
             width: 100% !important;
@@ -405,6 +445,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         .propro .section-main .header-2 {
             width: 100% !important;
             height: auto !important;
+           
         }
 
         .propro .section-main {
@@ -493,42 +534,51 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         }
 
     }
+
     @media screen and (max-width: 320px) {
-         .qazx {
-             display: none;
-         }
-         .qpoi {
-             display: block;
-         }
+        .qazx {
+            display: none;
+        }
+
+        .qpoi {
+            display: block;
+        }
     }
+
     @media screen and (max-width: 670px) {
         .wwwq {
             display: none;
         }
+
         .qwevc {
             display: block !important;
         }
     }
+
     @media screen and (min-width:505px) and (max-width:853px) {
         .more_option {
             width: 270px !important;
             left: unset !important;
         }
     }
+
     @media screen and (max-width: 505px) {
         .more_option {
             width: 270px !important;
             left: unset !important;
         }
     }
+
     @media screen and (max-width: 905px) {
         .super-content {
             flex-direction: column !important;
         }
+
         .biology {
             width: 100% !important;
             position: static !important;
         }
+
         .self-timeline {
             width: 100% !important;
         }
@@ -537,7 +587,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 <script>
     $(".hduihaoidja").on("click", function() {
         $.ajax({
-            url:"story.php",
+            url: "story.php",
             method: "get",
             data: {
                 story: $(".dfhfsd").val()
@@ -545,7 +595,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             success: function(result) {
                 $(".content-story").html(result)
             }
-        
+
         })
     })
 </script>

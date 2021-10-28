@@ -9,18 +9,26 @@ require 'connect.php';
 $conne = connect();
 
 $detect_account = "SELECT * from user_information where token_user=" . $_SESSION["user"] . ""; // declare 1 row
+$detect_account_2 = "SELECT * from user_information where id>1 and id<=5";
 $query_de = mysqli_query($conne, $detect_account);
+$query_dev = mysqli_query($conne, $detect_account_2);
+
 while ($rowzz = mysqli_fetch_assoc($query_de)) {
     if ($rowzz['token_user'] == $_COOKIE["user"]) {
         $name_single_login = $rowzz['surname'];
         $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
         $id_login = $rowzz['id'];
         $storyz = $rowzz['story'];
+        $avatar = $rowzz['avatar'];
         break;
     }
 }
 ?>
-
+<script>
+    if (page == undefined) {
+        page = 1
+    }
+</script>
 <div class="_8_sp_lg_su_se">
     <div class="_8_sp_lg_su_se-main">
         <!--  -->
@@ -62,17 +70,105 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         </style>
         <div id="content">
             <div class="uerhuirfnesd" style="width: 100%;display:flex;flex-direction: column">
+                <style>
+                    .story {
+                        cursor: pointer !important;
+                    }
 
+                    .half-self-1 {
+                        width: 100% !important;
+                        height: 80%;
+                    }
+
+                    .half-self-1 img,
+                    .storyzz img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 8px;
+                        image-resolution: from-image 10000dpi;
+                        object-position: 50%;
+                        image-orientation: 90deg;
+                        image-rendering: crisp-edges;
+                    }
+
+                    .story>div {
+                        background-color: #242526 !important;
+                    }
+
+                    .story1-self {
+                        position: relative;
+                    }
+
+                    .add-story-self {
+                        width: 32px !important;
+                        height: 32px !important;
+                        border-radius: 50%;
+                        background-color: #2e89ff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        top: 80%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        border: 4px solid #242526;
+                        box-sizing: content-box;
+                    }
+
+                    .add-story-self svg * {
+                        fill: white !important;
+
+                    }
+
+                    .half-self-2 {
+                        width: 100%;
+                        height: 20%;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        font-size: 12px;
+                    }
+
+                    .half-self-2 p {
+                        font-size: 12px;
+                        text-align: center;
+                    }
+                </style>
                 <div class="story">
                     <div class="story-i-spc">
                         <p>Story</p>
                     </div>
-                    <div class="story1-self"></div>
-                    <div class="story2"></div>
-                    <div class="story3"></div>
-                    <div class="story4"></div>
-                    <div class="story5"></div>
+                    <div class="story1-self">
+                        <section class="add-story-self">
+                            <svg viewBox="0 0 20 20" width="1em" height="1em" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 p361ku9c jnigpg78 odw8uiq3">
+                                <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                    <g fill-rule="nonzero">
+                                        <path d="M95 201.5h13a1 1 0 1 0 0-2H95a1 1 0 1 0 0 2z" transform="translate(354.5 159.5)"></path>
+                                        <path d="M102.5 207v-13a1 1 0 1 0-2 0v13a1 1 0 1 0 2 0z" transform="translate(354.5 159.5)"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </section>
+                        <div class="half-self-1">
+                            <img src="<?php echo $avatar ?>" alt="">
+                        </div>
+                        <div class="half-self-2">
+                            <p class="fhuedjkdsfarwrdfr">Create story</p>
+                        </div>
+                    </div>
+                    <?php
+                    while ($rowxn = mysqli_fetch_assoc($query_dev)) {
 
+
+                        ?>
+
+                        <div class="storyzz <?php echo $rowxn['account'] ?>">
+                            <img src="<?php echo $rowxn['avatar'] ?>" alt="">
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <!--  -->
                 <!--  -->
@@ -123,6 +219,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
                     }
 
+                    ._8_sp_lg {
+                        background-color: #18191a !important
+                    }
+
                     .create-status-2>div:hover {
                         background-color: #3a3b3c;
                     }
@@ -147,6 +247,9 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         font-weight: lighter;
                     }
 
+                    .create-status {
+                        background-color: #242526 !important
+                    }
 
 
                     @media screen and (max-width: 1200px) {
@@ -189,7 +292,6 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
                         .story div {
                             width: 49.2%;
-                            height: 200px;
                         }
 
                         .story div.story1-self {
@@ -221,9 +323,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     }
 
                     @media screen and (max-width: 975px) {
-                        .story div:not(:first-of-type) {
-                            width: 18% !important;
-                        }
+                        
 
                         .story {
                             justify-content: space-between;
@@ -468,7 +568,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 </div>
             </div>
             <style>
-                .ballszzz {
+                .ballzzz {
                     width: 3.5em;
                     height: 60px;
                     display: flex;
@@ -477,7 +577,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     justify-content: space-between;
                 }
 
-                .ballszzz div {
+                .ballzzz div {
                     width: 0.8em;
                     height: 0.8em;
                     border-radius: 50%;
@@ -486,11 +586,11 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     animation: wavezzz 0.8s ease-in-out alternate infinite;
                 }
 
-                .ballszzz div:nth-of-type(1) {
+                .ballzzz div:nth-of-type(1) {
                     animation-delay: -0.4s;
                 }
 
-                .ballszzz div:nth-of-type(2) {
+                .ballzzz div:nth-of-type(2) {
                     animation-delay: -0.2s;
                 }
 
@@ -503,21 +603,26 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         transform: translateY(100%);
                     }
                 }
+
                 .wrap-ball {
                     width: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
+                .guihfggefdpjgihffjg {
+        background-color: #18191a;
+    }
             </style>
+
             <div class="wrap-ball">
 
-            
-            <div class="ballzzz ">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+
+                <div class="ballzzz ">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </div>
 
@@ -554,7 +659,30 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             })
         </script>
 
+        <script>
+            $(".story1-self").on("click", function() {
+                $.ajax({
 
+                    url: 'storys/create/index.php',
+                    method: 'POST',
+                    data: {
+                        name: '<?php echo $name_login ?>' ,
+                        avatar: '<?php echo $avatar ?>'
+                    },
+                    success: function(result) {
+                        history.replaceState({}, null, "/cockbook/story/create?id=<?php echo $id_login ?>&storytime")
+                        $(".guihfggefdpjgihffjg").css({"display":"flex"})
+                        $("title").html("Create Stories | Cockbook")
+                        setTimeout(()=> {
+                            $(".guihfggefdpjgihffjg").html(result)
+                            
+                            $("#main").css({"display":"none"})
+
+                        },500)
+                    }
+                })
+            })
+        </script>
 
 
 
@@ -592,11 +720,29 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
         <!--  -->
         <script>
-             $("._8_sp_lg").on("scroll", function() {
-                 if($(".wrapper-item").hasClass("end-status")) {
-                     $(".wrap-ball").css({"display":"none"})
-                 }
-             })
+            $("._8_sp_lg").on("scroll", function() {
+                if ($(".wrapper-item").hasClass("end-status")) {
+                    $(".wrap-ball").css({
+                        "display": "none"
+                    })
+                }
+            })
+        </script>
+        <!--  -->
+        <script>
+            $(".create-status-2-1").on("click", function() {
+
+                if ($(".frame-message").css("display") == "none") {
+                    $(".frame-message").css({
+                        "display": "block"
+                    })
+                } else {
+                    $(".frame-message").css({
+                        "display": "none"
+                    })
+                }
+
+            })
         </script>
         <!--  -->
     </div>

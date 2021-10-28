@@ -48,11 +48,16 @@ else{
         </style>
         <div class="item2z">';
             echo $result[$i]['id'].' - '.$result[$i]['content'];
-        echo '</div>';
+        echo '</div>
+            
+        ';
     }
 }
 if ($total <= $limit_profile){
     echo '<script language="javascript">stopped_profile = true; </script>';
+    echo '
+    <div class="load_profile_self">The page is out , Please reload</div>
+    ';
 }
 }
 loadProfile()

@@ -1,3 +1,8 @@
+<?php 
+    if(isset($_COOKIE['user'])) {
+        header("Location: http://localhost/cockbook/cockbook.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
 
