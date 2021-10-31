@@ -12,7 +12,6 @@ $(document).ready(function() {
                 return false
             }
             is_busy = true
-            page++
             $.ajax({
                     method: 'POST',
                     dataType: 'text',
@@ -25,6 +24,8 @@ $(document).ready(function() {
                 .always(function() {
                     is_busy = false
                 })
+            page++
+
             return false
         }
     })

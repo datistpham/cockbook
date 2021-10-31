@@ -8,21 +8,31 @@
     }, false);
 
     window.addEventListener('online', function() {
-       $(".qwgewewgw").css({"display":"block"})
-       $(".dfrrgferehterwgnte").css({"display":"none"})
-       setTimeout(()=> {
-       $(".qwgewewgw").css({"display":"none"})
+        $(".qwgewewgw").css({
+            "display": "block"
+        })
+        $(".dfrrgferehterwgnte").css({
+            "display": "none"
+        })
+        setTimeout(() => {
+            $(".qwgewewgw").css({
+                "display": "none"
+            })
 
-        },5000)
+        }, 5000)
 
     }, false);
-    
+
     window.addEventListener('offline', function(e) {
-        
-       $(".qwgewewgw").css({"display":"none"})
-            
-            $(".dfrrgferehterwgnte").css({"display":"block"})
-         
+
+        $(".qwgewewgw").css({
+            "display": "none"
+        })
+
+        $(".dfrrgferehterwgnte").css({
+            "display": "block"
+        })
+
     }, false);
 </script>
 <?php
@@ -848,6 +858,7 @@ if (isset($_SESSION['user'])) {
             width: 100%;
             height: 100%;
         }
+
         .state-network {
             position: fixed !important;
             z-index: 999;
@@ -857,6 +868,7 @@ if (isset($_SESSION['user'])) {
             background-color: #fff;
 
         }
+
         .hghgdfdfrjwsd {
             width: 300px;
             height: 36px;
@@ -867,21 +879,23 @@ if (isset($_SESSION['user'])) {
             justify-content: space-evenly;
             align-items: center;
         }
-        .hghgdfdfrjwsd {
-        
-        }
+
+        .hghgdfdfrjwsd {}
+
         .fhujfiffdddfsfd {
             font-family: sans-serif !important;
             font-weight: 500;
             color: #000 !important;
             font-size: 14px;
         }
+
         .fiogjfggjifgdfijfgd {
             font-family: sans-serif !important;
             font-weight: 500;
             font-size: 14px;
             text-decoration: none;
         }
+
         .iofjgdfgjkjdsjfnd {
             width: 28px;
             height: 28px;
@@ -890,11 +904,14 @@ if (isset($_SESSION['user'])) {
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;    
+            cursor: pointer;
         }
-        .dfrrgferehterwgnte,.qwgewewgw {
+
+        .dfrrgferehterwgnte,
+        .qwgewewgw {
             display: none;
         }
+
         .igoifdofdss i {
             filter: invert(34%) sepia(91%) saturate(2728%) hue-rotate(102deg) brightness(103%) contrast(95%);
         }
@@ -903,10 +920,15 @@ if (isset($_SESSION['user'])) {
 </head>
 
 <body id="all-full-page">
+    <div class='main-story-network'>
+
+    </div>
     <div class="state-network dfrrgferehterwgnte">
         <div class="hghgdfdfrjwsd">
             <div class="igoifdofdssd">
-                <svg viewBox="0 0 24 24" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 crt8y2ji" height="24" width="24"><path d="M23.7805.2195c.2925.293.2925.768 0 1.061l-22.5 22.5C1.134 23.927.942 24 .75 24c-.192 0-.384-.073-.5305-.2195-.2925-.293-.2925-.768 0-1.061l12.1967947-12.1971509c-2.3773758-.1150468-4.79162015.7286756-6.6038447 2.5401009-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.024 0-1.414 2.65728981-2.65728981 6.3696459-3.62280965 9.8005664-2.90852144l2.430738-2.43186193C11.7816792 4.58111626 6.15198938 5.65271062 2.27735 9.52735c-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.0235 0-1.414 4.6714534-4.67191574 11.571522-5.78608437 17.3096457-3.34843552L22.7195.2195c.293-.2925.768-.2925 1.061 0zM12 18.5c.6905 0 1.25.5595 1.25 1.25S12.6905 21 12 21s-1.25-.5595-1.25-1.25.5595-1.25 1.25-1.25zm1.4175-4.81495c.9705.2455 1.8905.741 2.6485 1.499.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.512-.0975-.707-.293-.7835333-.7835333-1.8301422-1.1445778-2.8581093-1.0880116L11.574 15.52855l1.8435-1.8435zm3.8154-3.8154c.848.4725 1.649 1.059 2.3685 1.779.391.39.391 1.023 0 1.414-.195.195-.451.293-.707.293-.2555 0-.5115-.098-.707-.293-.7285-.728-1.5575-1.291-2.439-1.7085zm2.1908-2.1908l1.4425-1.4425c.8.545 1.5615 1.168 2.2705 1.877.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.5115-.0975-.707-.293-.5933333-.59333333-1.2283333-1.11861111-1.895162-1.57959491L19.4237 7.67885l1.4425-1.4425z"></path></svg>
+                <svg viewBox="0 0 24 24" alt="" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 crt8y2ji" height="24" width="24">
+                    <path d="M23.7805.2195c.2925.293.2925.768 0 1.061l-22.5 22.5C1.134 23.927.942 24 .75 24c-.192 0-.384-.073-.5305-.2195-.2925-.293-.2925-.768 0-1.061l12.1967947-12.1971509c-2.3773758-.1150468-4.79162015.7286756-6.6038447 2.5401009-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.024 0-1.414 2.65728981-2.65728981 6.3696459-3.62280965 9.8005664-2.90852144l2.430738-2.43186193C11.7816792 4.58111626 6.15198938 5.65271062 2.27735 9.52735c-.3905.3905-1.0235.3905-1.414 0-.3905-.3905-.3905-1.0235 0-1.414 4.6714534-4.67191574 11.571522-5.78608437 17.3096457-3.34843552L22.7195.2195c.293-.2925.768-.2925 1.061 0zM12 18.5c.6905 0 1.25.5595 1.25 1.25S12.6905 21 12 21s-1.25-.5595-1.25-1.25.5595-1.25 1.25-1.25zm1.4175-4.81495c.9705.2455 1.8905.741 2.6485 1.499.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.512-.0975-.707-.293-.7835333-.7835333-1.8301422-1.1445778-2.8581093-1.0880116L11.574 15.52855l1.8435-1.8435zm3.8154-3.8154c.848.4725 1.649 1.059 2.3685 1.779.391.39.391 1.023 0 1.414-.195.195-.451.293-.707.293-.2555 0-.5115-.098-.707-.293-.7285-.728-1.5575-1.291-2.439-1.7085zm2.1908-2.1908l1.4425-1.4425c.8.545 1.5615 1.168 2.2705 1.877.3905.3905.3905 1.0235 0 1.414-.1955.1955-.451.293-.707.293-.256 0-.5115-.0975-.707-.293-.5933333-.59333333-1.2283333-1.11861111-1.895162-1.57959491L19.4237 7.67885l1.4425-1.4425z"></path>
+                </svg>
             </div>
             <div class="djfgfjfkgdfis">
                 <p class="fhujfiffdddfsfd">You are currently offine.</p>
@@ -938,7 +960,9 @@ if (isset($_SESSION['user'])) {
     </div>
     <script>
         $(".iofjgdfgjkjdsjfnd").on("click", function() {
-            $(".state-network").css({"display":"none"})
+            $(".state-network").css({
+                "display": "none"
+            })
         })
     </script>
     <script async>
@@ -1305,6 +1329,11 @@ if (isset($_SESSION['user'])) {
     </script>
     <!--  -->
     <div class="blur-aovcl" style="display:none"></div>
+
+
+
+
+
     <div class="post-status" style="display:none">
         <div class="close-status">
 
@@ -1443,6 +1472,8 @@ if (isset($_SESSION['user'])) {
                     filter: invert(86%) sepia(8%) saturate(109%) hue-rotate(186deg) brightness(111%) contrast(85%);
                 }
             </style>
+
+
             <div class="frame-image-upload" style="display:none">
                 <div class="close-frame-image-upload">
                     <i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/zvppbGMwrd_.png&quot;); background-position: -154px -110px; background-size: 190px 190px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
@@ -1508,6 +1539,7 @@ if (isset($_SESSION['user'])) {
                         height: 38px !important;
                     }
                 </style>
+
 
 
                 <script async>
@@ -1660,12 +1692,65 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
     <!--  -->
+    <script async>
+        $(".main-button-section5").on("click", function() {
+            $.ajax({
+                url: 'post_cockbook.php',
+                method: 'get',
+                data: {
 
+                    text: $(".enter-content-status").val(),
+                    background: $(".main-status-section2").css("background-image"),
+                    image: $(".file_hidden").val(),
+                    name_post: "<?php echo $name_login ?>",
+                    class_detect: "<?php echo "jghfsaws" . $id_login ?>",
+                    avatar: "<?php echo $avatarr ?>",
+                    id_current: "<?php echo $id_login ?>"
+                },
+                success: function(result) {
+                    $(".wrapper-item").append(result)
+                },
+                error: function(err) {
+                    console.log(err)
+                }
+            })
+            $.ajax({
+                url: 'append_post.php',
+                method: 'GET',
+                data: {
+                    text: $(".enter-content-status").val(),
+                    background: $(".main-status-section2").css("background-image"),
+                    image: $(".file_hidden").val(),
+                    name_post: "<?php echo $name_login ?>",
+                    class_detect: "<?php echo "jghfsaws" . $id_login ?>",
+                    avatar: "<?php echo $avatarr ?>",
+                    id_current: "<?php echo $id_login ?>"
+                },
+                success: function(result) {
+                    $(".bring_to_top").append(result)
+                }
+            })
+
+        })
+    </script>
     <!--  -->
 
     <!--  -->
 
     <!--  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div class="lds-ring">
@@ -1698,7 +1783,7 @@ if (isset($_SESSION['user'])) {
 
             @media screen and (min-width: 1200px) {
                 ._9epx {
-                    padding-left: 105px !important;
+                    padding-left: 30px !important;
                 }
             }
         </style>
@@ -1858,7 +1943,50 @@ if (isset($_SESSION['user'])) {
 
                     })
                 </script>
+                <style>
+                    .create-room {
+                        width: 100%;
+                        height: 72px;
+                        background: #242526;
+                        border-radius: 8px;
+                        display: flex;
+                        align-content: center;
+                        align-items: center;
+                        padding: 0 16px;
+                    }
 
+                    .hjfdsfdgjfgefdgjdsek {
+                        width: max-content;
+                        padding: 6px 12px;
+                        display: flex;
+                        flex-direction: row;
+                        align-content: center;
+                        align-items: center;
+                        border-radius: 80px;
+                        border: 2px solid #263951;
+                        gap: 5px;
+                        transition: all 0.1s linear;
+                        cursor: pointer;
+
+                    }
+
+                    .hjfdsfdgjfgefdgjdsek>div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                    }
+
+                    .hjfdsfdgjfgefdgjdsek:hover {
+                        background: #3a3b3c;
+                    }
+
+                    @media screen and (max-width: 1200px) {
+                        .create-room {
+                            margin: 20px 0;
+                        }
+                    }
+                </style>
 
 
 
@@ -1983,7 +2111,7 @@ if (isset($_SESSION['user'])) {
                                 <!--  -->
                                 <!--  -->
                                 <section class="_13_fr_ya_4_pr_f-1">
-                                    <img class="_13_fr_ya_4_11" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="60px" height="60px">
+                                    <img style="object-fit:cover" class="_13_fr_ya_4_11" src="<?php echo $avatarr ?>" alt="" width="60px" height="60px">
                                     <section class="_13_fr_ya_4_12">
                                         <p class="_13_fr_ya_4_12_1">
                                             <?php echo $name_login ?>
@@ -2638,8 +2766,13 @@ if (isset($_SESSION['user'])) {
                 <!--  -->
                 <div class="_7_sws_1">
                     <div class="_7_sp_lg_su_a_1 _12epx_wq">
-                        <img style="border-radius: 50%" class="_7_sp_lg_su_a_1_ie" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="" width="36px" height="36px">
+                        <img style="border-radius: 50%;object-fit:cover" class="_7_sp_lg_su_a_1_ie" src="<?php echo $avatarr ?>" alt="" width="36px" height="36px">
                         <span class="_7_sp_lg_su_a_1_tx"><?php echo $name_login ?></span>
+                    </div>
+                    <div class="_7_sp_lg_su_a_story _12epx_wq">
+                        <img class="_7_sp_lg_su_a_story_ie" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/facebook/304/red-heart_2764-fe0f.png" alt="" width="30px" height="30px">
+
+                        <span data-it-root="story" data-it="story" class="_7_sp_lg_su_a_2_tx_2 lang">story</span>
                     </div>
 
                     <div class="_7_sp_lg_su_a_2 _12epx_wq">
@@ -2772,7 +2905,7 @@ if (isset($_SESSION['user'])) {
 
                 #content .item {
                     width: 100%;
-                    height: 500px !important;
+                    height: max-content;
                     background-color: #242526;
                     border-radius: 10px;
                     margin: 20px 0;
@@ -2945,6 +3078,22 @@ if (isset($_SESSION['user'])) {
             <!--  -->
             <!--  -->
             <!--  -->
+            <script>
+                $("._7_sp_lg_su_a_story").on("click", function() {
+                    $(".wrapper").css({
+                        "display": "none"
+                    })
+                    $.ajax({
+                        url: 'story_network.php',
+                        method: 'GET',
+
+                        success: function(result) {
+                            $("#main").css({"display":"none"})
+                            $(".main-story-network").html(result);
+                        }
+                    })
+                })
+            </script>
             <!--  -->
             <!--  -->
             <!--  -->
@@ -3394,8 +3543,12 @@ if (isset($_SESSION['user'])) {
         ///
         $(document).on('click', "._7_sp_lg_su_a_1,.create-status-1-1,.fgifrifhgrprigfhjfiorpwih,._13_fr_ya_4_pr_f-1", function() {
             history.replaceState({}, null, "/cockbook/profile.php?id=<?php echo $id_login ?>")
-            $(".fgifrifhgrprigfhjfiorpwih").css({"background-color":"#263951"})
-            $(".gdsghfgjdsedg").css({"color":"#2d88ff"})
+            $(".fgifrifhgrprigfhjfiorpwih").css({
+                "background-color": "#263951"
+            })
+            $(".gdsghfgjdsedg").css({
+                "color": "#2d88ff"
+            })
             $(".wrapper").css({
                 "display": "none"
             })
@@ -3417,6 +3570,9 @@ if (isset($_SESSION['user'])) {
             $.ajax({
                 url: 'profiles.php?id=<?php echo $id_login ?>',
                 method: 'get',
+                data: {
+                    id_self: <?php echo $id_login ?>
+                },
                 success: function(data) {
                     $(".profile-id").html(data)
                 }
@@ -3604,14 +3760,18 @@ if (isset($_SESSION['user'])) {
         })
     </script>
     <!--  -->
-<script>
-    $(window).on("click", function() {
-        if(!$(event.target).is("._7_sp_lg_su_a_1,.create-status-1-1,.fgifrifhgrprigfhjfiorpwih,._13_fr_ya_4_pr_f-1")) {
-            $(".gdsghfgjdsedg").css({"color":"#fff"})
-            $(".fgifrifhgrprigfhjfiorpwih").css({"background-color":"unset"})  
-        }
-    })
-</script>
+    <script>
+        $(window).on("click", function() {
+            if (!$(event.target).is("._7_sp_lg_su_a_1,.create-status-1-1,.fgifrifhgrprigfhjfiorpwih,._13_fr_ya_4_pr_f-1")) {
+                $(".gdsghfgjdsedg").css({
+                    "color": "#fff"
+                })
+                $(".fgifrifhgrprigfhjfiorpwih").css({
+                    "background-color": "unset"
+                })
+            }
+        })
+    </script>
     <!--  -->
     <style>
         .ueiortu {
@@ -3855,7 +4015,337 @@ if (isset($_SESSION['user'])) {
     </script>
     <!--  -->
     <style>
-        ._9epx_1>li,
+        .story {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 25px 0
+        }
+
+        .story>div {
+            width: 20%;
+            background-color: #242526;
+            border-radius: 10px
+        }
+    </style>
+    <!--  -->
+    <style>
+        .story {
+            cursor: pointer !important;
+        }
+
+        .half-self-1 {
+            width: 100% !important;
+            height: 80%;
+        }
+
+        .half-self-1 img,
+        .storyzz img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            image-resolution: from-image 10000dpi;
+            object-position: 50%;
+            image-orientation: 90deg;
+            image-rendering: crisp-edges;
+        }
+
+        .story>div {
+            background-color: #242526 !important;
+        }
+
+        .story1-self {
+            position: relative;
+        }
+
+        .add-story-self {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50%;
+            background-color: #2e89ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #242526;
+            box-sizing: content-box;
+        }
+
+        .add-story-self svg * {
+            fill: white !important;
+
+        }
+
+        .half-self-2 {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            font-size: 12px;
+        }
+
+        .half-self-2 p {
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+    <!--  -->
+    <style>
+        .create-status {
+            width: 100%;
+            padding: 12px;
+            background-color: #242526;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .create-status-main {
+            width: 100%
+        }
+
+        .create-status-1 {
+            padding-bottom: 12px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            gap: 7px;
+            border-bottom: 1px solid #3a3b3c;
+        }
+
+        .create-status-2 {
+            display: flex;
+            flex-direction: row;
+            padding-top: 8px;
+            width: 100%
+        }
+
+        .create-status-2>div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 7px;
+            width: calc(100% / 3);
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px 0;
+            transition: all 0.2s linear;
+            cursor: pointer;
+
+        }
+
+        ._8_sp_lg {
+            background-color: #18191a !important
+        }
+
+        .create-status-2>div:hover {
+            background-color: #3a3b3c;
+        }
+
+        .create-status-2>div div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 7px;
+        }
+
+        .create-status-1-2 {
+            width: calc(100% - 36px);
+        }
+
+        .create-status-1-2 button {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            font-family: sans-serif !important;
+            font-weight: lighter;
+        }
+
+        .create-status {
+            background-color: #242526 !important
+        }
+
+
+        @media screen and (max-width: 1200px) {
+            .create-status-2 {
+                flex-direction: column;
+
+            }
+
+            ._8epx_1 li {
+                padding: 0 20px !important;
+            }
+
+            .create-status-2>div {
+                width: 100%;
+                justify-content: flex-start;
+                padding-left: 15px;
+            }
+
+            /*  */
+            ._12epx_2 {
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px !important;
+                border-radius: 50%;
+                background-color: #3a3b3c;
+
+            }
+
+            body #main .header-fixed ._12epx ._12epx_2 input {
+                display: none
+            }
+
+            /*  */
+            .story {
+                flex-wrap: wrap;
+                height: auto !important;
+                justify-content: center;
+            }
+
+            .story div {
+                width: 49.2%;
+            }
+
+            .story div.story1-self {
+                width: 100%
+            }
+
+            ._7_sp_lg {
+                display: none !important;
+
+            }
+
+            ._4_ds_sa_3 {
+                display: flex !important;
+            }
+
+            ._8_sp_lg {
+                width: 75% !important;
+            }
+
+            ._8_sp_lg_su_se {
+                padding: 0 !important;
+
+            }
+
+            #content {
+                min-width: 350px !important;
+            }
+
+        }
+
+        @media screen and (max-width: 975px) {
+
+
+            .story {
+                justify-content: space-between;
+                flex-direction: row;
+                flex-wrap: wrap !important;
+            }
+
+            .story-i-spc {
+                display: flex;
+                width: 100% !important;
+            }
+
+            ._7seven_epx_1 {
+                display: flex !important;
+            }
+
+            ._9_sp_lg {
+                display: none !important;
+            }
+
+            ._8_sp_lg {
+                width: 100% !important;
+            }
+        }
+    </style>
+    <!--  -->
+    <style>
+        .wrapper-item {
+
+            width: 100%;
+        }
+    </style>
+    <!--  -->
+    <style>
+        .ballzzz {
+            width: 3.5em;
+            height: 60px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ballzzz div {
+            width: 0.8em;
+            height: 0.8em;
+            border-radius: 50%;
+            background-color: #3cefff;
+            transform: translateY(-100%);
+            animation: wavezzz 0.8s ease-in-out alternate infinite;
+        }
+
+        .ballzzz div:nth-of-type(1) {
+            animation-delay: -0.4s;
+        }
+
+        .ballzzz div:nth-of-type(2) {
+            animation-delay: -0.2s;
+        }
+
+        @keyframes wavezzz {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(100%);
+            }
+        }
+
+        .wrap-ball {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .guihfggefdpjgihffjg {
+            background-color: #18191a;
+        }
+    </style>
+    <!--  -->
+    <style>
+        .story-i-spc {
+            height: 50px !important;
+            display: none;
+            padding-left: 15px;
+            align-items: center;
+
+        }
+
+        .storyvippro * {
+            background-color: #FFFFFF !important;
+        }
+
+        < !-- --><style>._9epx_1>li,
         .search,
         ._12epx_1 {
             position: relative !important;
@@ -4345,7 +4835,7 @@ if (isset($_SESSION['user'])) {
             })
         })
         $(".thioauraitja").on("keyup", function() {
-            if ($(this).val().length == "") {
+            if ($(this).val().length === "") {
                 $(".symbol-send").attr("disabled")
             } else {
                 $(".symbol-send").removeAttr("disabled")
@@ -4404,10 +4894,10 @@ if (isset($_SESSION['user'])) {
         }
     </style>
     <!--  -->
-    <script async>
+    <script>
         $(".enter-content-status").on("keyup", function() {
-            if ($(this).val() === "") {
-                $(".main-button-section5").attr("disable")
+            if ($(this).val().length === 0) {
+                $(".main-button-section5").attr("disabled")
                 $(".main-button-section5").css({
                     "background-color": "#505151",
                     "color": "#858686",
@@ -4416,7 +4906,7 @@ if (isset($_SESSION['user'])) {
                 $(".main-button-section5").removeClass("tjifjsdas")
 
             } else {
-                $(".main-button-section5").removeAttr("disable")
+                $(".main-button-section5").removeAttr("disabled")
                 $(".main-button-section5").css({
                     "background-color": "rgb(45, 136, 255)",
                     "color": "#ffffff",

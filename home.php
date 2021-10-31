@@ -34,107 +34,11 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         <!--  -->
         <!--  -->
         <!--  -->
-        <style>
-            .story {
-                width: 100%;
-                height: auto;
-                display: flex;
-                flex-direction: row;
-                gap: 10px;
-                height: 200px;
-                border-radius: 10px;
-                margin: 25px 0
-            }
-
-            .story>div {
-                width: 20%;
-                background-color: #242526;
-                border-radius: 10px
-            }
-        </style>
-        <!--  -->
-        <!--  -->
-        <!--  -->
-        <style>
-            .story-i-spc {
-                height: 50px !important;
-                display: none;
-                padding-left: 15px;
-                align-items: center;
-
-            }
-
-            .storyvippro * {
-                background-color: #FFFFFF !important;
-            }
+        
         </style>
         <div id="content">
             <div class="uerhuirfnesd" style="width: 100%;display:flex;flex-direction: column">
-                <style>
-                    .story {
-                        cursor: pointer !important;
-                    }
-
-                    .half-self-1 {
-                        width: 100% !important;
-                        height: 80%;
-                    }
-
-                    .half-self-1 img,
-                    .storyzz img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        border-radius: 8px;
-                        image-resolution: from-image 10000dpi;
-                        object-position: 50%;
-                        image-orientation: 90deg;
-                        image-rendering: crisp-edges;
-                    }
-
-                    .story>div {
-                        background-color: #242526 !important;
-                    }
-
-                    .story1-self {
-                        position: relative;
-                    }
-
-                    .add-story-self {
-                        width: 32px !important;
-                        height: 32px !important;
-                        border-radius: 50%;
-                        background-color: #2e89ff;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: absolute;
-                        top: 80%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        border: 4px solid #242526;
-                        box-sizing: content-box;
-                    }
-
-                    .add-story-self svg * {
-                        fill: white !important;
-
-                    }
-
-                    .half-self-2 {
-                        width: 100%;
-                        height: 20%;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: flex-end;
-                        font-size: 12px;
-                    }
-
-                    .half-self-2 p {
-                        font-size: 12px;
-                        text-align: center;
-                    }
-                </style>
+                
                 <div class="story">
                     <div class="story-i-spc">
                         <p>Story</p>
@@ -173,187 +77,14 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 <!--  -->
                 <!--  -->
                 <!--  -->
-                <style>
-                    .create-status {
-                        width: 100%;
-                        padding: 12px;
-                        background-color: #242526;
-                        margin-bottom: 20px;
-                        border-radius: 10px;
-                    }
-
-                    .create-status-main {
-                        width: 100%
-                    }
-
-                    .create-status-1 {
-                        padding-bottom: 12px;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-start;
-                        align-items: center;
-                        width: 100%;
-                        gap: 7px;
-                        border-bottom: 1px solid #3a3b3c;
-                    }
-
-                    .create-status-2 {
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 8px;
-                        width: 100%
-                    }
-
-                    .create-status-2>div {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 7px;
-                        width: calc(100% / 3);
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 10px;
-                        padding: 10px 0;
-                        transition: all 0.2s linear;
-                        cursor: pointer;
-
-                    }
-
-                    ._8_sp_lg {
-                        background-color: #18191a !important
-                    }
-
-                    .create-status-2>div:hover {
-                        background-color: #3a3b3c;
-                    }
-
-                    .create-status-2>div div {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        position: relative;
-                        gap: 7px;
-                    }
-
-                    .create-status-1-2 {
-                        width: calc(100% - 36px);
-                    }
-
-                    .create-status-1-2 button {
-                        display: flex;
-                        justify-content: flex-start;
-                        width: 100%;
-                        font-family: sans-serif !important;
-                        font-weight: lighter;
-                    }
-
-                    .create-status {
-                        background-color: #242526 !important
-                    }
-
-
-                    @media screen and (max-width: 1200px) {
-                        .create-status-2 {
-                            flex-direction: column;
-
-                        }
-
-                        ._8epx_1 li {
-                            padding: 0 20px !important;
-                        }
-
-                        .create-status-2>div {
-                            width: 100%;
-                            justify-content: flex-start;
-                            padding-left: 15px;
-                        }
-
-                        /*  */
-                        ._12epx_2 {
-                            justify-content: center;
-                            align-items: center;
-                            width: 40px;
-                            height: 40px !important;
-                            border-radius: 50%;
-                            background-color: #3a3b3c;
-
-                        }
-
-                        body #main .header-fixed ._12epx ._12epx_2 input {
-                            display: none
-                        }
-
-                        /*  */
-                        .story {
-                            flex-wrap: wrap;
-                            height: auto !important;
-                            justify-content: center;
-                        }
-
-                        .story div {
-                            width: 49.2%;
-                        }
-
-                        .story div.story1-self {
-                            width: 100%
-                        }
-
-                        ._7_sp_lg {
-                            display: none !important;
-
-                        }
-
-                        ._4_ds_sa_3 {
-                            display: flex !important;
-                        }
-
-                        ._8_sp_lg {
-                            width: 75% !important;
-                        }
-
-                        ._8_sp_lg_su_se {
-                            padding: 0 !important;
-
-                        }
-
-                        #content {
-                            min-width: 350px !important;
-                        }
-
-                    }
-
-                    @media screen and (max-width: 975px) {
-                        
-
-                        .story {
-                            justify-content: space-between;
-                            flex-direction: row;
-                            flex-wrap: wrap !important;
-                        }
-
-                        .story-i-spc {
-                            display: flex;
-                            width: 100% !important;
-                        }
-
-                        ._7seven_epx_1 {
-                            display: flex !important;
-                        }
-
-                        ._9_sp_lg {
-                            display: none !important;
-                        }
-
-                        ._8_sp_lg {
-                            width: 100% !important;
-                        }
-                    }
-                </style>
+                
                 <div class="create-status">
                     <div class="create-status-main">
                         <div class="create-status-1">
                             <div class="create-status-1-1">
-                                <img style="border-radius:50%" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX_3_Qz-&_nc_ht=scontent.fhph1-3.fna&oh=76f66289e602119a36991cf53373534b&oe=618A0C15" alt="" width="36px" height="36px">
+
+                                
+                                <img style="border-radius:50%;object-fit:cover" src=<?php echo $avatar?> alt="" width="36px" height="36px">
                             </div>
                             <div class="create-status-1-2">
                                 <button class="nxhoafnm" style="padding:10px 12px;border-radius:80px;background-color:#3a3b3c;border:none;outline:none;cursor:pointer">What's on your mind, <?php echo $name_single_login ?> ?</button>
@@ -388,7 +119,17 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
                     </div>
                 </div>
-
+                
+                <div class="create-room">
+                    <div class="hjfdsfdgjfgefdgjdsek">
+                        <div class="rgfgdgdsfd">
+                            <i data-visualcompletion="css-img" class="hu5pjgll" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/9i4z4VXiZ-Y.png');background-position:0 -220px;background-size:502px 246px;width:24px;height:24px;background-repeat:no-repeat;display:inline-block"></i>
+                        </div>
+                        <div class="difdfjijffas">
+                            <span style="font-family:sans-serif !important;font-weight:lighter;font-size: 14px;color: #2e89ff" class="jdiosdfbdadfs">Create Room</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--  -->
             <!--  -->
@@ -396,18 +137,21 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
             <!--  -->
             <style>
-                .wrapper-item {
-
+                .bring_to_top {
                     width: 100%;
+                    
                 }
             </style>
+           <div class="bring_to_top">
+
+           </div>
             <div class="wrapper-item">
 
 
                 <div class="item">
                     <div class="item1" style="margin-bottom:10px">
                         <div class="item1-1">
-                            <img class="item1-1-1" src="https://scontent.fhph1-3.fna.fbcdn.net/v/t1.6435-1/cp0/c0.0.86.86a/p86x86/115766767_344381379910345_2906344814977556019_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=RJrjTpsbUZoAX-zW2iA&_nc_ht=scontent.fhph1-3.fna&oh=d9d84627b414b4189580d37a35f5c11d&oe=618A0C15" alt="">
+                            <img style="object-fit:cover" class="item1-1-1" src="<?php echo $avatar ?>" alt="">
                             <div class="item1-1-2">
                                 <p class="item1-1-2-1"><?php echo $name_login ?></p>
                                 <p class="item1-1-2-2 lang" style="font-size: 12px" data-it-root="1m" data-it="1 phút ·">1m · &nbsp;<i data-visualcompletion="css-img" class="hu5pjgll m6k467ps" aria-label="Shared with Public group" role="img" style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/woQDhi8VpyK.png&quot;); background-position: 0px -788px; background-size: 26px 928px; width: 12px; height: 12px; background-repeat: no-repeat; display: inline-block;"></i> &nbsp; · </p>
@@ -480,6 +224,34 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                             </div>
                         </div>
                     </div>
+                    <style>
+                .amn<?php echo $result[$i]['id'] ?> {
+                    height: <?php
+                                    if ($result[$i]['background'] !== 'none') {
+                                        echo 300;
+                                        echo 'px';
+                                    } else {
+                                        echo 0;
+                                    }
+                                    ?>;
+                    background-image: <?php echo $result[$i]['background'] ?>;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                
+                .amn<?php echo $result[$i]['id'] ?> {
+                    <?php 
+                        if ($result[$i]['background'] !== 'none') {
+                            echo 'text-align: center;';
+                        }   
+                        else {
+                        echo 'text-align: left';
+                        } 
+                    ?>
+                        
+                }
+            </style>
                     <style>
                         .item5 {
                             display: flex;
@@ -567,53 +339,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     </div>
                 </div>
             </div>
-            <style>
-                .ballzzz {
-                    width: 3.5em;
-                    height: 60px;
-                    display: flex;
-                    flex-flow: row nowrap;
-                    align-items: center;
-                    justify-content: space-between;
-                }
-
-                .ballzzz div {
-                    width: 0.8em;
-                    height: 0.8em;
-                    border-radius: 50%;
-                    background-color: #3cefff;
-                    transform: translateY(-100%);
-                    animation: wavezzz 0.8s ease-in-out alternate infinite;
-                }
-
-                .ballzzz div:nth-of-type(1) {
-                    animation-delay: -0.4s;
-                }
-
-                .ballzzz div:nth-of-type(2) {
-                    animation-delay: -0.2s;
-                }
-
-                @keyframes wavezzz {
-                    from {
-                        transform: translateY(-100%);
-                    }
-
-                    to {
-                        transform: translateY(100%);
-                    }
-                }
-
-                .wrap-ball {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .guihfggefdpjgihffjg {
-        background-color: #18191a;
-    }
-            </style>
+            
 
             <div class="wrap-ball">
 

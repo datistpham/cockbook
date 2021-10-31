@@ -13,8 +13,8 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     $aaav = $rowzz['story'];
     $name_single_login = $rowzz['surname'];
     $name_login = $rowzz['surname'] . " " . $rowzz['firstname'];
-    $avatarz= $rowzz['avatar'];
-    $cover_photo= $rowzz['cover_photo'];
+    $avatarz = $rowzz['avatar'];
+    $cover_photo = $rowzz['cover_photo'];
     break;
 }
 ?>
@@ -84,6 +84,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 .avatar {
                     object-fit: cover;
                 }
+
                 .more_option>div {
                     padding: 12px 8px !important;
                     margin: 0 8px;
@@ -136,6 +137,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                 .qpoi {
                     display: none;
                 }
+
                 .profile-header-sub .avatar img {
                     object-fit: cover;
                 }
@@ -169,14 +171,34 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             <div class="recommend-friends">
                 <div class="people-you-may">
                     <div class="fjksfadad">People you may know</div>
-                    <div class="ffjofrjwar">
-                        <svg viewBox="0 0 24 24" width="1em" height="1em" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry gl3lb2sf hhz5lgdu">
-                            <circle cx="12" cy="12" r="2.5"></circle>
-                            <circle cx="19.5" cy="12" r="2.5"></circle>
-                            <circle cx="4.5" cy="12" r="2.5"></circle>
-                        </svg>
+                    <div class="ffjofrjwar" style="display:flex;flex-direction:row;gap: 20px;align-items:center">
+                        <span class="fjdsfjdfssfjdge" style="color: #2d88ff;text-decoration: underline;cursor:pointer">See all</span>
+                        <div class="jnfgdfggdjnefdcssds" style="cursor:pointer;position:relative;background-color: #3a3b3c;width:36px;height:36px;display:flex;justify-content:center;align-items:center;border-radius:50%">
+                            <svg viewBox="0 0 24 24" width="1em" height="1em" class="a8c37x1j ms05siws hwsy1cff b7h9ocf4 fzdkajry gl3lb2sf hhz5lgdu">
+                                <circle cx="12" cy="12" r="2.5"></circle>
+                                <circle cx="19.5" cy="12" r="2.5"></circle>
+                                <circle cx="4.5" cy="12" r="2.5"></circle>
+                            </svg>
+                            <div class="gndfjdkfdgdf" style="position:absolute;top:120%;left:-270%;display:none">
+                                <p style="background-color:#3a3b3c;padding-right: 100px;padding-top:8px;padding-bottom:8px;border-radius:8px;padding-left:5px" class="fjdneksfdfsewd">Hide</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <script async>
+                    $(".jnfgdfggdjnefdcssds").on('click', function() {
+                        if ($(".gndfjdkfdgdf").css("display") === "none") {
+                            $(".gndfjdkfdgdf").css({
+                                "display": "block"
+                            })
+
+                        } else {
+                            $(".gndfjdkfdgdf").css({
+                                "display": "none"
+                            })
+                        }
+                    })
+                </script>
                 <!--  -->
                 <div class="photo-recommend">
                     <div class="detail-photo">
@@ -315,6 +337,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                     .propro .section-main .section-content .recommend-friends .photo-recommend .detail-photo {
                         padding: 10px !important;
                     }
+
                     .add-story1 span {
                         white-space: nowrap;
                     }
@@ -326,16 +349,16 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
                         <?php require('loadprofile.php'); ?>
                     </div>
                     <style>
-
                         .load_profile_self {
                             width: 100%;
                             text-align: center;
                         }
+
                         .name-info {
                             white-space: nowrap;
                         }
                     </style>
-                    
+
                     <div class="balls hidden">
                         <div></div>
                         <div></div>
@@ -434,9 +457,11 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
             font-size: 24px !important;
         }
     }
+
     .header-2 {
         border-radius: 8px !important;
     }
+
     @media screen and (max-width: 1268px) {
         .propro .section-main .section-content {
             width: 100% !important;
@@ -445,7 +470,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
         .propro .section-main .header-2 {
             width: 100% !important;
             height: auto !important;
-           
+
         }
 
         .propro .section-main {
@@ -454,7 +479,7 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
 
     }
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1200px) {
         .propro .profile-header .profile-header-sub .cover-photo {
             transform: scale(1);
             height: auto;
@@ -511,6 +536,10 @@ while ($rowzz = mysqli_fetch_assoc($query_de)) {
     @media screen and (max-width: 400px) {
         .propro .profile-header .profile-header-sub .profile-name {
             left: -10px !important;
+        }
+
+        .propro .profile-header .profile-header-sub .profile-name {
+            bottom: -50% !important;
         }
 
         .profile-name {

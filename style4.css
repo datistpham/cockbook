@@ -334,8 +334,6 @@
 }
 
 .propro .section-main .section-content .recommend-friends .people-you-may .ffjofrjwar {
-  width: 48px;
-  height: 36px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -346,7 +344,6 @@
       -ms-flex-align: center;
           align-items: center;
   border-radius: 8px;
-  background-color: #3a3b3c;
 }
 
 .propro .section-main .section-content .recommend-friends .people-you-may .ffjofrjwar svg circle {
